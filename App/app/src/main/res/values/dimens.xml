@@ -10,4 +10,10 @@
     <dimen name="design_bottom_navigation_text_size" tools:override="true">18sp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">20sp</dimen>
     <dimen name="design_bottom_navigation_margin" tools:override="true">2dp</dimen>
+    <dimen name="damage_heal_size">80dp</dimen>
+    <dimen name="banner_width">230dp</dimen>
+    <dimen name="banner_height">180dp</dimen>
+    <dimen name="extra_stat_width">95dp</dimen>
+    <dimen name="extra_stat_height">83dp</dimen>
+    <dimen name="ac_image_width_height">110dp</dimen>
 </resources>
