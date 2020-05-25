@@ -12,14 +12,20 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.dndapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_character"
+        android:name="com.example.dndapp.ui.character.CharacterFragment"
+        android:label="@string/title_character"
+        tools:layout="@layout/fragment_character" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.dndapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_bag"
+        android:name="com.example.dndapp.ui.bag.BagFragment"
+        android:label="@string/title_bag"
+        tools:layout="@layout/fragment_bag" />
+
+    <fragment
+        android:id="@+id/navigation_spells"
+        android:name="com.example.dndapp.ui.spells.SpellsFragment"
+        android:label="@string/title_spells"
+        tools:layout="@layout/fragment_spells" />
 </navigation>
