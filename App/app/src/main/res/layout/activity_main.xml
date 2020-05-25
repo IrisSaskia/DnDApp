@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:alpha="@dimen/cohesion_opacity"
         android:background="@color/tabBarColor"
-        app:itemIconSize="80dp"
+        app:itemIconSize="@dimen/tab_icon_size"
         app:itemTextColor="@color/text_color"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
