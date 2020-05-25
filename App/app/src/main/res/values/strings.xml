@@ -4,4 +4,9 @@
     <string name="title_character">Character</string>
     <string name="title_bag">Bag</string>
     <string name="title_spells">Spells</string>
+    <string name="my_characters">My characters</string>
+        <string name="add_character">Add character</string>
+        <string name="delete_character">Delete character</string>
+    <string name="notes">Notes</string>
+    <string name="settings">Settings</string>
 </resources>
