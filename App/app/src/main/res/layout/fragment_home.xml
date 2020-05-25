@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:baselineAligned="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,25 +19,33 @@
             android:id="@+id/llCharacter"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
-            android:orientation="horizontal">
+            android:layout_weight="2.2"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
 
             <ImageButton
                 android:id="@+id/ibDamage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="2"
+                android:layout_weight="1.6"
                 android:adjustViewBounds="true"
+                android:alpha="@dimen/cohesion_opacity"
                 android:background="#00FFFFFF"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/damage_icon" />
+                app:srcCompat="@drawable/damage_icon"
+                tools:ignore="NestedWeights" />
 
             <ImageView
                 android:id="@+id/ivCharacter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.9"
+                android:adjustViewBounds="false"
+                android:alpha="@dimen/cohesion_opacity"
+                android:scaleType="fitXY"
                 app:srcCompat="@drawable/character_banner" />
 
             <ImageButton
@@ -44,8 +53,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="2"
+                android:layout_weight="1.6"
                 android:adjustViewBounds="true"
+                android:alpha="@dimen/cohesion_opacity"
                 android:background="#00FFFFFF"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/heal_icon" />
@@ -55,24 +65,33 @@
             android:id="@+id/llExtraStats"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_weight="1.5"
+            android:orientation="horizontal"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="10dp">
 
             <ImageView
                 android:id="@+id/ivSpeed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="2"
-                app:srcCompat="@drawable/info_background" />
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:alpha="@dimen/cohesion_opacity"
+                android:paddingTop="20dp"
+                app:srcCompat="@drawable/info_background"
+                tools:ignore="NestedWeights" />
 
             <ImageView
                 android:id="@+id/ivArmorClass"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:adjustViewBounds="true"
+                android:alpha="@dimen/cohesion_opacity"
+                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/shield_ac" />
 
             <ImageView
@@ -80,7 +99,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="2"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:alpha="@dimen/cohesion_opacity"
+                android:paddingTop="20dp"
                 app:srcCompat="@drawable/info_background" />
         </LinearLayout>
 
@@ -88,12 +110,14 @@
             android:id="@+id/llStats"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="2.5"
             android:orientation="horizontal">
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp">
 
                 <TableRow
                     android:id="@+id/trStatsOne"
@@ -101,26 +125,145 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <ImageView
-                        android:id="@+id/ivStrength"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/stat_background" />
+                        android:layout_weight="1">
 
-                    <ImageView
-                        android:id="@+id/ivIntelligence"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/stat_background" />
+                        <ImageView
+                            android:id="@+id/ivStrength"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha="@dimen/cohesion_opacity"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stat_background" />
 
-                    <ImageView
-                        android:id="@+id/ivCharisma"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tvStatNameStrength"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/stat_strength_name"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"
+                                android:textStyle="italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvStatStrength"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/stat_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="22sp"
+                                android:textStyle="bold|italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNameStrength" />
+
+                            <TextView
+                                android:id="@+id/ivSaveStrength"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.7"
+                                android:text="@string/name_save"
+                                android:textColor="@color/text_color"
+                                app:autoSizeMaxTextSize="14sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:layout_constraintEnd_toStartOf="@+id/tvStatStrength"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatStrength" />
+
+                            <TextView
+                                android:id="@+id/ivSaveNumberStrength"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/save_mod_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="@+id/ivSaveStrength"
+                                app:layout_constraintStart_toStartOf="@+id/ivSaveStrength"
+                                app:layout_constraintTop_toBottomOf="@+id/ivSaveStrength" />
+
+                            <TextView
+                                android:id="@+id/tvModStrength"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.7"
+                                android:text="@string/title_mod"
+                                android:textColor="@color/text_color"
+                                app:autoSizeMaxTextSize="14sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:layout_constraintStart_toEndOf="@+id/tvStatStrength"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatStrength" />
+
+                            <TextView
+                                android:id="@+id/tvModNumberStrength"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/save_mod_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvModStrength"
+                                app:layout_constraintStart_toStartOf="@+id/tvModStrength"
+                                app:layout_constraintTop_toBottomOf="@+id/tvModStrength" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/stat_background" />
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/ivIntelligence"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha="@dimen/cohesion_opacity"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stat_background" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/ivCharisma"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha="@dimen/cohesion_opacity"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stat_background" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </TableRow>
 
                 <TableRow
@@ -134,6 +277,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:alpha="@dimen/cohesion_opacity"
                         app:srcCompat="@drawable/stat_background" />
 
                     <ImageView
@@ -141,6 +285,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:alpha="@dimen/cohesion_opacity"
                         app:srcCompat="@drawable/stat_background" />
 
                     <ImageView
@@ -148,6 +293,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:alpha="@dimen/cohesion_opacity"
                         app:srcCompat="@drawable/stat_background" />
                 </TableRow>
 
@@ -158,50 +304,42 @@
             android:id="@+id/llButtons"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"></LinearLayout>
+            android:layout_weight="1.8"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <ImageView
+                android:id="@+id/ivDice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2"
+                android:adjustViewBounds="true"
+                android:alpha="@dimen/cohesion_opacity"
+                app:srcCompat="@drawable/dice_icon"
+                tools:ignore="NestedWeights" />
+
+            <ImageView
+                android:id="@+id/ivCombat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:alpha="@dimen/cohesion_opacity"
+                app:srcCompat="@drawable/combat_icon" />
+
+            <ImageView
+                android:id="@+id/ivRest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2"
+                android:adjustViewBounds="true"
+                android:alpha="@dimen/cohesion_opacity"
+                app:srcCompat="@drawable/rest_icon" />
+        </LinearLayout>
 
     </LinearLayout>
-
-    <!--<androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clCharacter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clExtraStats"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/clCharacter">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clStats"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clButtons"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-    </LinearLayout>-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>

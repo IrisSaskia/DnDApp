@@ -7,45 +7,67 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <ImageButton
-        android:id="@+id/ibMenu"
-        android:layout_width="@dimen/top_button_size"
-        android:layout_height="@dimen/top_button_size"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        app:layout_constraintStart_toStartOf="@+id/nav_host_fragment"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hamburger" />
-
-    <ImageButton
-        android:id="@+id/ibExtra"
-        android:layout_width="@dimen/top_button_size"
-        android:layout_height="@dimen/top_button_size"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clInvisibleTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/poppetje" />
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/ibMenu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="#00FFFFFF"
+            android:maxWidth="@dimen/top_button_max_size"
+            android:maxHeight="@dimen/top_button_max_size"
+            android:minWidth="@dimen/top_button_size"
+            android:minHeight="@dimen/top_button_size"
+            android:scaleType="fitStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/hamburger" />
+
+        <ImageButton
+            android:id="@+id/ibExtra"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="#00FFFFFF"
+            android:maxWidth="@dimen/top_button_max_size"
+            android:maxHeight="@dimen/top_button_max_size"
+            android:minWidth="@dimen/top_button_size"
+            android:minHeight="@dimen/top_button_size"
+            android:scaleType="fitEnd"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/poppetje" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <fragment
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="75dp"
+        android:layout_height="0dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/nav_view"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ibMenu"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/clInvisibleTopBar"
         app:navGraph="@navigation/mobile_navigation" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

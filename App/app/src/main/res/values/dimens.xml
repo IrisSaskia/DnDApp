@@ -7,6 +7,7 @@
     <item name="cohesion_opacity" type="dimen" format="float">0.8</item>
     <dimen name="tab_icon_size">90dp</dimen>
     <dimen name="design_bottom_navigation_height" tools:override="true">95dp</dimen>
+    <dimen name="bottom_tab_height">95dp</dimen>
     <dimen name="design_bottom_navigation_text_size" tools:override="true">18sp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">20sp</dimen>
     <dimen name="design_bottom_navigation_margin" tools:override="true">2dp</dimen>
@@ -16,4 +17,5 @@
     <dimen name="extra_stat_width">95dp</dimen>
     <dimen name="extra_stat_height">83dp</dimen>
     <dimen name="ac_image_width_height">110dp</dimen>
+    <dimen name="top_button_max_size">150dp</dimen>
 </resources>
