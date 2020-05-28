@@ -36,9 +36,8 @@ class NotesFragment : Fragment() {
         }
     }
 
-    //@SuppressLint("StringFormatInvalid")
     private fun initViewModel() {
-        notesViewModel.notesBeforeSending.observe(viewLifecycleOwner, Observer { notes ->
+        notesViewModel.notes.observe(viewLifecycleOwner, Observer { notes ->
             if (notes != null) {
                 etNotes.setText(notes.text)
             }
@@ -46,20 +45,20 @@ class NotesFragment : Fragment() {
     }
 
     private fun saveNotes() {
-        Toast.makeText(notesViewModel.getApplication(), "Saving...", Toast.LENGTH_LONG).show()
+        Toast.makeText(notesViewModel.getApplication(), R.string.saving_text, Toast.LENGTH_SHORT).show()
         notesViewModel.notes.value?.apply {
             text = etNotes.text.toString()
         }
 
-//        notesViewModel.notes.value!!.text = etNotes.text.toString()
         notesViewModel.updateNotes()
 
-
+        Toast.makeText(notesViewModel.getApplication(), R.string.saved_text, Toast.LENGTH_SHORT).show()
     }
 
-    /*override fun onPause() {
+    override fun onPause() {
         super.onPause()
 
         //TODO: use this to save the notes!
-    }*/
+        saveNotes()
+    }
 }

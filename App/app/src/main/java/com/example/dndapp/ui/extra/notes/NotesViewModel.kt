@@ -14,9 +14,7 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
     private val notesRepository = NotesRepository(application.applicationContext)
     private val mainScope = CoroutineScope(Dispatchers.Main)
 
-    val notesBeforeSending = notesRepository.getNotes()
-
-    val notes = MutableLiveData<Notes?>()
+    val notes = notesRepository.getNotes()
 
 //TODO: misschien nog error handling voor bijvoorbeeld het opslaan van een lege notitie?
 

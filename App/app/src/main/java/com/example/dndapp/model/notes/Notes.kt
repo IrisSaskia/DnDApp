@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-//@Parcelize
 @Entity(tableName = "notesTable")
 data class Notes (
     @ColumnInfo(name = "notesText")
@@ -13,4 +12,4 @@ data class Notes (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id: Long? = null
-) //: Parcelable
+)
