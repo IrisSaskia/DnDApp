@@ -55,4 +55,10 @@ class NotesFragment : Fragment() {
     private fun testFab() {
         Toast.makeText(notesViewModel.getApplication(), "Notes", Toast.LENGTH_LONG).show()
     }
+
+    override fun onPause() {
+        super.onPause()
+
+        //TODO: use this to save the notes!
+    }
 }

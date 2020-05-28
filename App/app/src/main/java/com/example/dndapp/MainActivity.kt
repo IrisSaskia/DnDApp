@@ -16,12 +16,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private val mainActivity: Activity = this@MainActivity
+    private val fragmentManager = supportFragmentManager
+    private val fragmentTransaction = fragmentManager.beginTransaction()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
         navView.itemIconTintList = null
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             if (id == R.id.action_notes) {
 //                Toast.makeText(this, "Notes", Toast.LENGTH_LONG).show()
 //                b
-                NotesFragment()
+                startNotesFragment()
             }
             if (id == R.id.action_settings) {
                 Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show()
@@ -61,5 +63,18 @@ class MainActivity : AppCompatActivity() {
         }
         inflater.inflate(R.menu.options_menu, popup.menu)
         popup.show()
+    }
+
+    private fun startNotesFragment() {
+        /*findNavController(R.id.nav_host_fragment).navigate(R.id.fr)*/
+        /*val action =
+            SpecifyAmountFragmentDirections
+                .actionSpecifyAmountFragmentToConfirmationFragment()
+        findNavController(R.id.nav_host_fragment).navigate(action)*/
+
+        /*val notesFragment = NotesFragment()
+        fragmentTransaction.replace(R.id.nav_host_fragment, notesFragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()*/
     }
 }
