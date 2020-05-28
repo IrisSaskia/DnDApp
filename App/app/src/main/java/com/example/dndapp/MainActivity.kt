@@ -14,8 +14,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private val mainActivity: Activity = this@MainActivity
-    private val fragmentManager = supportFragmentManager
-    private val fragmentTransaction = fragmentManager.beginTransaction()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,19 +40,14 @@ class MainActivity : AppCompatActivity() {
         popup.setOnMenuItemClickListener { item ->
             val id = item.itemId
 
-//            val b = true
             if (id == R.id.action_my_characters) {
                 Toast.makeText(this, "My Characters", Toast.LENGTH_LONG).show()
-//                b
             }
             if (id == R.id.action_notes) {
-//                Toast.makeText(this, "Notes", Toast.LENGTH_LONG).show()
-//                b
                 startNotesFragment()
             }
             if (id == R.id.action_settings) {
                 Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show()
-//                b
             }
 
             super.onOptionsItemSelected(item)
@@ -64,15 +57,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startNotesFragment() {
-        /*findNavController(R.id.nav_host_fragment).navigate(R.id.fr)*/
-        /*val action =
-            SpecifyAmountFragmentDirections
-                .actionSpecifyAmountFragmentToConfirmationFragment()
-        findNavController(R.id.nav_host_fragment).navigate(action)*/
-
-        /*val notesFragment = NotesFragment()
-        fragmentTransaction.replace(R.id.nav_host_fragment, notesFragment)
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()*/
+        mainActivity.findNavController(R.id.nav_host_fragment).navigate(R.id.navigation_extra_notes)
     }
 }

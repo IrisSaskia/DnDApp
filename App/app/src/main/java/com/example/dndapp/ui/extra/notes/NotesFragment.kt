@@ -27,17 +27,13 @@ class NotesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
         initViews()
         initViewModel()
     }
 
     private fun initViews() {
         fab.setOnClickListener {
-            /*val intent = Intent(this, EditActivity::class.java)
-            intent.putExtra(EditActivity.EXTRA_NOTE, mainActivityViewModel.note.value)
-            startActivity(intent)*/
-            testFab()
+            saveNotes()
         }
     }
 
@@ -45,15 +41,30 @@ class NotesFragment : Fragment() {
     private fun initViewModel() {
         notesViewModel = ViewModelProvider(this).get(NotesViewModel::class.java)
 
-        notesViewModel.notes.observe(viewLifecycleOwner, Observer { notes ->
+        notesViewModel.notesBeforeSending.observe(viewLifecycleOwner, Observer { notes ->
             if (notes != null) {
                 etNotes.setText(notes.text)
             }
         })
+
+/*        notesViewModel.notes.value = intent.extras?.getParcelable(EXTRA_NOTE)!!*/
+
+        /*notesViewModel.error.observe(this, Observer { message ->
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        })
+
+        notesViewModel.success.observe(this, Observer { success ->
+            if (success) finish()
+        })*/
     }
 
-    private fun testFab() {
-        Toast.makeText(notesViewModel.getApplication(), "Notes", Toast.LENGTH_LONG).show()
+    private fun saveNotes() {
+        Toast.makeText(notesViewModel.getApplication(), "Saving...", Toast.LENGTH_LONG).show()
+        notesViewModel.notes.value?.apply {
+            text = etNotes.text.toString()
+        }
+
+        notesViewModel.updateNotes()
     }
 
     override fun onPause() {
