@@ -19,4 +19,5 @@
     <dimen name="ac_image_width_height">110dp</dimen>
     <dimen name="top_button_max_size">150dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="notes_margin">20dp</dimen>
 </resources>
