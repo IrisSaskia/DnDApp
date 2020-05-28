@@ -6,15 +6,16 @@ import android.view.MenuInflater
 import android.view.View
 import android.widget.ImageButton
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.dndapp.ui.extra.notes.ui.NotesFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
     private val mainActivity: Activity = this@MainActivity
-        ?: throw RuntimeException("getCurrentSite() can only be called when an activity is in the resumed state")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,21 +23,13 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        /*val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_character, R.id.navigation_bag, R.id.navigation_spells
-            )
-        )*/
-        //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         navView.itemIconTintList = null
 
-        initViews()
+        this.initViews()
     }
 
-    fun initViews() {
+    private fun initViews() {
         val hamburgerButton = this.findViewById(R.id.ibMenu) as ImageButton
         hamburgerButton.setOnClickListener {
             showPopUp(hamburgerButton)
@@ -46,6 +39,26 @@ class MainActivity : AppCompatActivity() {
     private fun showPopUp(buttonView: View?) {
         val popup = PopupMenu(mainActivity, buttonView)
         val inflater: MenuInflater = popup.menuInflater
+        popup.setOnMenuItemClickListener { item ->
+            val id = item.itemId
+
+//            val b = true
+            if (id == R.id.action_my_characters) {
+                Toast.makeText(this, "My Characters", Toast.LENGTH_LONG).show()
+//                b
+            }
+            if (id == R.id.action_notes) {
+//                Toast.makeText(this, "Notes", Toast.LENGTH_LONG).show()
+//                b
+                NotesFragment()
+            }
+            if (id == R.id.action_settings) {
+                Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show()
+//                b
+            }
+
+            super.onOptionsItemSelected(item)
+        }
         inflater.inflate(R.menu.options_menu, popup.menu)
         popup.show()
     }
