@@ -58,7 +58,6 @@ class NotesFragment : Fragment() {
     override fun onPause() {
         super.onPause()
 
-        //TODO: use this to save the notes!
         saveNotes()
     }
 }

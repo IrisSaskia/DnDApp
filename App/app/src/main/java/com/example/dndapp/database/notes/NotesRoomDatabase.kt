@@ -1,10 +1,12 @@
 package com.example.dndapp.database.notes
 
 import android.content.Context
+import android.provider.Settings.Global.getString
 import androidx.room.Database
 import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.dndapp.R
 import com.example.dndapp.model.notes.Notes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -37,7 +39,8 @@ abstract class NotesRoomDatabase : RoomDatabase() {
                                         CoroutineScope(Dispatchers.IO).launch {
                                             database.notesDAO().insertNotes(
                                                 Notes(
-                                                    "halloooo"
+                                                    //TODO: replace with resource
+                                                    ""
                                                 )
                                             )
                                         }

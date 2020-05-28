@@ -25,4 +25,5 @@
     <string name="notes_hint">Notes:</string>
     <string name="saving_text">Saving…</string>
     <string name="saved_text">Saved!</string>
+    <string name="notes_placeholder">Type here…</string>
 </resources>

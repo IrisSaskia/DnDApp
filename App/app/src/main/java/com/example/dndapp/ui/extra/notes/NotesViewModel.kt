@@ -15,7 +15,7 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
     private val mainScope = CoroutineScope(Dispatchers.Main)
 
     val notes = notesRepository.getNotes()
-
+//TODO: was mutablelivedata nou nodig???
 //TODO: misschien nog error handling voor bijvoorbeeld het opslaan van een lege notitie?
 
     fun updateNotes() {
