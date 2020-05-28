@@ -2,35 +2,28 @@
 
 package com.example.dndapp.ui.character
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.dndapp.ui.character.description.CharacterDescriptionFragment
 import com.example.dndapp.ui.character.features_traits.CharacterFeaturesTraitsFragment
 
-class CharacterPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+private const val ARG_OBJECT = "object"
 
-    override fun getItem(position: Int): Fragment {
-        return when (position) {
-            0 -> {
-                CharacterDescriptionFragment()
-            }
-            else -> {
-                return CharacterFeaturesTraitsFragment()
-            }
+class CharacterPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+    override fun getItemCount(): Int = 2
+
+    override fun createFragment(position: Int): Fragment {
+        when (position) {
+            0 -> return CharacterDescriptionFragment()
+            1 -> return CharacterFeaturesTraitsFragment()
         }
-    }
-
-    override fun getCount(): Int = 2
-
-    override fun getPageTitle(position: Int): CharSequence {
-        return when (position) {
-            0 -> "Description"
-            else -> {
-                return "Features and Traits"
-            }
+        return CharacterDescriptionFragment()
+        /*val fragment = CharacterDescriptionFragment()
+        fragment.arguments = Bundle().apply {
+            // Our object is just an integer :-P
+            putInt(ARG_OBJECT, position + 1)
         }
+        return fragment*/
     }
 }
