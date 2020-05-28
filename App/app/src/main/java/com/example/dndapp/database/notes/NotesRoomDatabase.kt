@@ -1,11 +1,11 @@
-package com.example.dndapp.ui.extra.notes.database
+package com.example.dndapp.database.notes
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.dndapp.ui.extra.notes.model.Notes
+import com.example.dndapp.model.notes.Notes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,7 +27,8 @@ abstract class NotesRoomDatabase : RoomDatabase() {
                     if (INSTANCE == null) {
                         INSTANCE = databaseBuilder(
                             context.applicationContext,
-                            NotesRoomDatabase::class.java, DATABASE_NAME
+                            NotesRoomDatabase::class.java,
+                            DATABASE_NAME
                         )
                             .fallbackToDestructiveMigration()
                             .addCallback(object : RoomDatabase.Callback() {
@@ -35,7 +36,11 @@ abstract class NotesRoomDatabase : RoomDatabase() {
                                     super.onCreate(db)
                                     INSTANCE?.let { database ->
                                         CoroutineScope(Dispatchers.IO).launch {
-                                            database.notesDAO().insertNotes(Notes(""))
+                                            database.notesDAO().insertNotes(
+                                                Notes(
+                                                    ""
+                                                )
+                                            )
                                         }
                                     }
                                 }

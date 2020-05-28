@@ -1,4 +1,4 @@
-package com.example.dndapp.ui.extra.notes.model
+package com.example.dndapp.model.notes
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

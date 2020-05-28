@@ -1,11 +1,11 @@
-package com.example.dndapp.ui.extra.notes.database
+package com.example.dndapp.database.notes
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.dndapp.ui.extra.notes.model.Notes
+import com.example.dndapp.model.notes.Notes
 
 @Dao
 interface NotesDAO {

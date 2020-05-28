@@ -1,15 +1,18 @@
-package com.example.dndapp.ui.extra.notes.database
+package com.example.dndapp.database.notes
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.example.dndapp.ui.extra.notes.model.Notes
+import com.example.dndapp.model.notes.Notes
 
 class NotesRepository(context: Context) {
 
     private val notesDAO: NotesDAO
 
     init {
-        val database = NotesRoomDatabase.getDatabase(context)
+        val database =
+            NotesRoomDatabase.getDatabase(
+                context
+            )
         notesDAO = database!!.notesDAO()
     }
 
