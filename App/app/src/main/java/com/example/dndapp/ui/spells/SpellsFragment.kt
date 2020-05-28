@@ -30,9 +30,9 @@ class SpellsFragment : Fragment() {
         val tabLayout = view.findViewById<TabLayout>(R.id.tlSpells)
         TabLayoutMediator(tabLayout, spellsViewPager) { tab, position ->
             if(position == 1) {
-                tab.text = "Known"
+                tab.text = getString(R.string.title_spells_known)
             } else {
-                tab.text = "Prepared"
+                tab.text = getString(R.string.title_spells_prepared)
             }
         }.attach()
     }

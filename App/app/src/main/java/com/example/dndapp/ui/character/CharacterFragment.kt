@@ -30,9 +30,9 @@ class CharacterFragment : Fragment() {
         val tabLayout = view.findViewById<TabLayout>(R.id.tlCharacter)
         TabLayoutMediator(tabLayout, characterViewPager) { tab, position ->
             if(position == 1) {
-                tab.text = "Features and Traits"
+                tab.text = getString(R.string.title_character_features_traits)
             } else {
-                tab.text = "Description"
+                tab.text = getString(R.string.title_character_description)
             }
         }.attach()
     }
