@@ -5,14 +5,13 @@ import androidx.lifecycle.LiveData
 import com.example.dndapp.model.notes.Notes
 
 class NotesRepository(context: Context) {
-
     private val notesDAO: NotesDAO
 
     init {
         val database =
-            NotesRoomDatabase.getDatabase(
+            NotesRoomDatabase.getDatabase((
                 context
-            )
+            ))
         notesDAO = database!!.notesDAO()
     }
 

@@ -1,4 +1,4 @@
-package com.example.dndapp.ui.extra.notes.ui
+package com.example.dndapp.ui.extra.notes
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -17,29 +17,14 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
     val notesBeforeSending = notesRepository.getNotes()
 
     val notes = MutableLiveData<Notes?>()
-    val error = MutableLiveData<String?>()
-    val success = MutableLiveData<Boolean>()
 
 //TODO: misschien nog error handling voor bijvoorbeeld het opslaan van een lege notitie?
 
     fun updateNotes() {
-        if (areNotesValid()) {
-            mainScope.launch {
-                withContext(Dispatchers.IO) {
-                    notesRepository.updateNotes(notes.value!!)
-                }
-                success.value = true
+        mainScope.launch {
+            withContext(Dispatchers.IO) {
+                notesRepository.updateNotes(notes.value!!)
             }
-        }
-    }
-
-    private fun areNotesValid(): Boolean {
-        return when (notes.value) {
-            null -> {
-                error.value = "Note must not be null"
-                false
-            }
-            else -> true
         }
     }
 }

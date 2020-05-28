@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 
 @Database(entities = [Notes::class], version = 1, exportSchema = false)
 abstract class NotesRoomDatabase : RoomDatabase() {
-
     abstract fun notesDAO(): NotesDAO
 
     companion object {
@@ -38,7 +37,7 @@ abstract class NotesRoomDatabase : RoomDatabase() {
                                         CoroutineScope(Dispatchers.IO).launch {
                                             database.notesDAO().insertNotes(
                                                 Notes(
-                                                    ""
+                                                    "halloooo"
                                                 )
                                             )
                                         }

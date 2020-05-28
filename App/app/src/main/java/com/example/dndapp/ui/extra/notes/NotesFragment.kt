@@ -1,4 +1,4 @@
-package com.example.dndapp.ui.extra.notes.ui
+package com.example.dndapp.ui.extra.notes
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,9 +21,8 @@ class NotesFragment : Fragment() {
     ): View? {
         notesViewModel =
             ViewModelProvider(this).get(NotesViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_extra_notes, container, false)
 
-        return root
+        return inflater.inflate(R.layout.fragment_extra_notes, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,23 +38,11 @@ class NotesFragment : Fragment() {
 
     //@SuppressLint("StringFormatInvalid")
     private fun initViewModel() {
-        notesViewModel = ViewModelProvider(this).get(NotesViewModel::class.java)
-
         notesViewModel.notesBeforeSending.observe(viewLifecycleOwner, Observer { notes ->
             if (notes != null) {
                 etNotes.setText(notes.text)
             }
         })
-
-/*        notesViewModel.notes.value = intent.extras?.getParcelable(EXTRA_NOTE)!!*/
-
-        /*notesViewModel.error.observe(this, Observer { message ->
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        })
-
-        notesViewModel.success.observe(this, Observer { success ->
-            if (success) finish()
-        })*/
     }
 
     private fun saveNotes() {
@@ -64,12 +51,15 @@ class NotesFragment : Fragment() {
             text = etNotes.text.toString()
         }
 
+//        notesViewModel.notes.value!!.text = etNotes.text.toString()
         notesViewModel.updateNotes()
+
+
     }
 
-    override fun onPause() {
+    /*override fun onPause() {
         super.onPause()
 
         //TODO: use this to save the notes!
-    }
+    }*/
 }
