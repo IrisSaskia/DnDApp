@@ -6,17 +6,8 @@
 
     <TextView
         android:id="@+id/tvNotesTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/title_image_height"
-        android:layout_marginTop="@dimen/fragment_margin"
-        android:alpha="@dimen/cohesion_opacity"
-        android:background="@drawable/title_background"
-        android:fontFamily="@font/alice"
-        android:gravity="center_horizontal|center_vertical"
         android:text="@string/title_notes"
-        android:textAlignment="gravity"
-        android:textColor="@color/text_color"
-        android:textSize="24sp"
+        style="@style/CustomTitleBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,13 +42,9 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:tint="@color/text_color"
-        app:backgroundTint="@color/button_border_color"
+        app:srcCompat="@android:drawable/ic_menu_save"
+        style="@style/CustomFAB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_save" />
+         />
 </androidx.constraintlayout.widget.ConstraintLayout>

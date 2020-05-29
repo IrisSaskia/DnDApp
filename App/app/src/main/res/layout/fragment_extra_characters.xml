@@ -5,23 +5,18 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tvMyCharacters"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/tvMyCharactersTitle"
         android:text="@string/title_my_characters"
+        style="@style/CustomTitleBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:tint="@color/text_color"
-        app:backgroundTint="@color/button_border_color"
+        app:srcCompat="@android:drawable/ic_input_add"
+        style="@style/CustomFAB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

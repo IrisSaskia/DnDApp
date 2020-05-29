@@ -20,16 +20,23 @@
     <dimen name="ac_image_width_height">110dp</dimen>
     <dimen name="top_button_max_size">150dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
     <dimen name="fragment_margin">20dp</dimen>
     <!--TODO: bovenstaande margin bij alle content van fragments toevoegen> -->
+
     <dimen name="extra_stats_padding">30dp</dimen>
     <dimen name="stats_margin">30dp</dimen>
+
     <dimen name="content_background_radius">25dp</dimen>
     <dimen name="notes_padding">5dp</dimen>
     <!-- TODO: kunnen de bovenste twee samengevoegd? -->
+
     <dimen name="title_image_height">55dp</dimen>
+    <!--TODO: Bovenstaande is nog niet schaalbaar voor de tablet! -->
+
     <dimen name="content_margin_to_title">5dp</dimen>
 
     <!--TODO: kunnen alle 0dp dingen ook hierin? -->
     <!--TODO: ook alle font-sizes nog toevoegen! -->
+    <dimen name="title_font_size">20sp</dimen>
 </resources>

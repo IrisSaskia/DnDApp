@@ -6,16 +6,10 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tlCharacter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/CustomTabLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tabBackground="@drawable/tab"
-        app:tabGravity="fill"
-        app:tabMaxWidth="0dp"
-        app:tabMode="fixed"
-        app:tabTextColor="@color/text_color" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vpCharacter"
