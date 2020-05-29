@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun levelUp() {
-
+        //TODO: Make level-up functionality
     }
 
     private fun goBack() {
