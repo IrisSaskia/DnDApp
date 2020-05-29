@@ -48,5 +48,6 @@ class SettingsFragment : Fragment() {
         super.onPause()
 
         saveSettings()
+        (activity as MainActivity?)?.checkCurrentFragment()
     }
 }

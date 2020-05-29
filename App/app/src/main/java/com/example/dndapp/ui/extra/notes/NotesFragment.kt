@@ -25,7 +25,7 @@ class NotesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity?)?.checkCurrentFragment()
+        //(activity as MainActivity?)?.checkCurrentFragment()
 
         initViews()
         initViewModel()
@@ -62,5 +62,6 @@ class NotesFragment : Fragment() {
         super.onPause()
 
         saveNotes()
+        (activity as MainActivity?)?.checkCurrentFragment()
     }
 }

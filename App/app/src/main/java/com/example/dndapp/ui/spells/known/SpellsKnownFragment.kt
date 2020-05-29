@@ -21,6 +21,11 @@ class SpellsKnownFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //(activity as MainActivity?)?.checkCurrentFragment()
+    }
+
+    override fun onPause() {
+        super.onPause()
         (activity as MainActivity?)?.checkCurrentFragment()
     }
 }

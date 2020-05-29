@@ -8,6 +8,7 @@ import android.widget.ImageButton
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.dndapp.ui.home.HomeFragment
@@ -20,13 +21,14 @@ class MainActivity : AppCompatActivity() {
     private val mainActivity: Activity = this@MainActivity
     private lateinit var navHostFragment: Fragment
     private lateinit var fragment: Fragment
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
-        val navController = findNavController(R.id.nav_host_fragment)
+        navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
         navView.itemIconTintList = null
 
@@ -83,7 +85,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun goBack() {
-
+        navController.navigateUp()
     }
 
     //////////////////////////////////////////////////////////
@@ -94,16 +96,16 @@ class MainActivity : AppCompatActivity() {
 
     //Navigation to the characters fragment
     private fun startCharactersFragment() {
-        mainActivity.findNavController(R.id.nav_host_fragment).navigate(R.id.navigation_extra_characters)
+        navController.navigate(R.id.navigation_extra_characters)
     }
 
     //Navigation to the notes fragment
     private fun startNotesFragment() {
-        mainActivity.findNavController(R.id.nav_host_fragment).navigate(R.id.navigation_extra_notes)
+        navController.navigate(R.id.navigation_extra_notes)
     }
 
     //Navigation to the settings fragment
     private fun startSettingsFragment() {
-        mainActivity.findNavController(R.id.nav_host_fragment).navigate(R.id.navigation_extra_settings)
+        navController.navigate(R.id.navigation_extra_settings)
     }
 }

@@ -20,7 +20,7 @@ class DiceFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity?)?.checkCurrentFragment()
+        //(activity as MainActivity?)?.checkCurrentFragment()
 
         initViews()
         initViewModel()

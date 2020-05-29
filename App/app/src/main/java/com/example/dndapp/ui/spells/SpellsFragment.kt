@@ -24,7 +24,7 @@ class SpellsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity?)?.checkCurrentFragment()
+        //(activity as MainActivity?)?.checkCurrentFragment()
 
         spellsFragmentAdapter = SpellsPagerAdapter(this)
         spellsViewPager = view.findViewById(R.id.vpSpells)
@@ -37,5 +37,10 @@ class SpellsFragment : Fragment() {
                 tab.text = getString(R.string.title_spells_prepared)
             }
         }.attach()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        (activity as MainActivity?)?.checkCurrentFragment()
     }
 }

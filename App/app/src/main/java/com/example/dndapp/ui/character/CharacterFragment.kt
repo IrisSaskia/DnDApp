@@ -24,7 +24,7 @@ class CharacterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity?)?.checkCurrentFragment()
+        //(activity as MainActivity?)?.checkCurrentFragment()
 
         characterFragmentAdapter = CharacterPagerAdapter(this)
         characterViewPager = view.findViewById(R.id.vpCharacter)
@@ -37,5 +37,10 @@ class CharacterFragment : Fragment() {
                 tab.text = getString(R.string.title_character_description)
             }
         }.attach()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        (activity as MainActivity?)?.checkCurrentFragment()
     }
 }

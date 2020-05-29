@@ -19,7 +19,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        (activity as MainActivity?)?.checkCurrentFragment()
+
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        //(activity as MainActivity?)?.checkCurrentFragment()
+        (activity as MainActivity?)?.checkCurrentFragment()
     }
 
     //////////////////////////////////////////////////////////
