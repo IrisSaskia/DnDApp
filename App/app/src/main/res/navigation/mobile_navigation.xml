@@ -30,8 +30,32 @@
         tools:layout="@layout/fragment_spells" />
 
     <fragment
+        android:id="@+id/navigation_extra_characters"
+        android:name="com.example.dndapp.ui.extra.characters.CharactersFragment"
+        android:label="@string/title_my_characters"
+        tools:layout="@layout/fragment_extra_characters" />
+
+    <fragment
         android:id="@+id/navigation_extra_notes"
         android:name="com.example.dndapp.ui.extra.notes.NotesFragment"
-        android:label="@string/notes"
+        android:label="@string/title_notes"
         tools:layout="@layout/fragment_extra_notes" />
+
+    <fragment
+        android:id="@+id/navigation_extra_settings"
+        android:name="com.example.dndapp.ui.extra.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_extra_settings" />
+
+    <fragment
+        android:id="@+id/navigation_extra_dice"
+        android:name="com.example.dndapp.ui.extra.dice.DiceFragment"
+        android:label="@string/title_dice"
+        tools:layout="@layout/fragment_extra_dice" />
+
+    <fragment
+        android:id="@+id/navigation_extra_combat"
+        android:name="com.example.dndapp.ui.extra.combat.CombatFragment"
+        android:label="@string/title_combat"
+        tools:layout="@layout/fragment_extra_combat" />
 </navigation>

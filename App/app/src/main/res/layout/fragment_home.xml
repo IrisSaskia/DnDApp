@@ -34,7 +34,7 @@
                 android:alpha="@dimen/cohesion_opacity"
                 android:background="#00FFFFFF"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/damage_icon"
+                app:srcCompat="@drawable/home_damage_icon"
                 tools:ignore="NestedWeights" />
 
             <ImageView
@@ -46,7 +46,7 @@
                 android:adjustViewBounds="false"
                 android:alpha="@dimen/cohesion_opacity"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/character_banner" />
+                app:srcCompat="@drawable/home_character_banner" />
 
             <ImageButton
                 android:id="@+id/ibHeal"
@@ -58,7 +58,7 @@
                 android:alpha="@dimen/cohesion_opacity"
                 android:background="#00FFFFFF"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/heal_icon" />
+                app:srcCompat="@drawable/home_heal_icon" />
         </LinearLayout>
 
         <LinearLayout
@@ -80,7 +80,7 @@
                 android:adjustViewBounds="true"
                 android:alpha="@dimen/cohesion_opacity"
                 android:paddingTop="20dp"
-                app:srcCompat="@drawable/info_background"
+                app:srcCompat="@drawable/home_info_background"
                 tools:ignore="NestedWeights" />
 
             <ImageView
@@ -92,7 +92,7 @@
                 android:adjustViewBounds="true"
                 android:alpha="@dimen/cohesion_opacity"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/shield_ac" />
+                app:srcCompat="@drawable/home_shield_ac" />
 
             <ImageView
                 android:id="@+id/ivInitiative"
@@ -103,7 +103,7 @@
                 android:adjustViewBounds="true"
                 android:alpha="@dimen/cohesion_opacity"
                 android:paddingTop="20dp"
-                app:srcCompat="@drawable/info_background" />
+                app:srcCompat="@drawable/home_info_background" />
         </LinearLayout>
 
         <LinearLayout
@@ -140,7 +140,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/stat_background" />
+                            app:srcCompat="@drawable/home_stat_background" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -243,7 +243,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/stat_background" />
+                            app:srcCompat="@drawable/home_stat_background" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -261,7 +261,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/stat_background" />
+                            app:srcCompat="@drawable/home_stat_background" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </TableRow>
@@ -278,7 +278,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:alpha="@dimen/cohesion_opacity"
-                        app:srcCompat="@drawable/stat_background" />
+                        app:srcCompat="@drawable/home_stat_background" />
 
                     <ImageView
                         android:id="@+id/ivWisdom"
@@ -286,7 +286,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:alpha="@dimen/cohesion_opacity"
-                        app:srcCompat="@drawable/stat_background" />
+                        app:srcCompat="@drawable/home_stat_background" />
 
                     <ImageView
                         android:id="@+id/ivConstitution"
@@ -294,7 +294,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:alpha="@dimen/cohesion_opacity"
-                        app:srcCompat="@drawable/stat_background" />
+                        app:srcCompat="@drawable/home_stat_background" />
                 </TableRow>
 
             </TableLayout>
@@ -309,7 +309,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/ivDice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -317,10 +317,10 @@
                 android:layout_weight="2"
                 android:adjustViewBounds="true"
                 android:alpha="@dimen/cohesion_opacity"
-                app:srcCompat="@drawable/dice_icon"
+                app:srcCompat="@drawable/home_dice_icon"
                 tools:ignore="NestedWeights" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/ivCombat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -328,9 +328,9 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:alpha="@dimen/cohesion_opacity"
-                app:srcCompat="@drawable/combat_icon" />
+                app:srcCompat="@drawable/home_combat_icon" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/ivRest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -338,7 +338,7 @@
                 android:layout_weight="2"
                 android:adjustViewBounds="true"
                 android:alpha="@dimen/cohesion_opacity"
-                app:srcCompat="@drawable/rest_icon" />
+                app:srcCompat="@drawable/home_rest_icon" />
         </LinearLayout>
 
     </LinearLayout>

@@ -4,11 +4,11 @@
     <string name="title_character">Character</string>
     <string name="title_bag">Bag</string>
     <string name="title_spells">Spells</string>
-    <string name="my_characters">My characters</string>
+    <string name="title_my_characters">My characters</string>
     <string name="add_character">Add character</string>
     <string name="delete_character">Delete character</string>
-    <string name="notes">Notes</string>
-    <string name="settings">Settings</string>
+    <string name="title_notes">Notes</string>
+    <string name="title_settings">Settings</string>
     <string name="stat_strength_name">Strength</string>
     <string name="stat_placeholder">10</string>
     <string name="save_mod_placeholder">+0</string>
@@ -20,10 +20,15 @@
     <string name="title_character_features_traits">Features and Traits</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--<string name="hello_blank_fragment">Hello blank fragment</string>-->
 
     <string name="notes_hint">Notes:</string>
     <string name="saving_text">Saving…</string>
     <string name="saved_text">Saved!</string>
     <string name="notes_placeholder">Type here…</string>
+    <string name="title_dice">Clickety clackety math rocks</string>
+    <string name="title_combat">Combat</string>
+
+
+    <!-- TODO: Add placeholder text for all images! -->
 </resources>
