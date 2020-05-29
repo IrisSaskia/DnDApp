@@ -20,3 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlCharacter" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- app:tabBackground="@drawable/custom_tab_background" -->
+    <!-- app:tabIndicatorHeight="0dp" -->

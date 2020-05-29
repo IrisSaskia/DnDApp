@@ -38,5 +38,6 @@
 
     <!--TODO: kunnen alle 0dp dingen ook hierin? -->
     <!--TODO: ook alle font-sizes nog toevoegen! -->
-    <dimen name="title_font_size">20sp</dimen>
+    <dimen name="title_font_size">22sp</dimen>
+    <dimen name="tab_padding">5dp</dimen>
 </resources>
