@@ -16,4 +16,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvBagTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/title_image_height"
+        android:layout_marginTop="@dimen/fragment_margin"
+        android:alpha="@dimen/cohesion_opacity"
+        android:background="@drawable/title_background"
+        android:fontFamily="@font/alice"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/title_bag"
+        android:textAlignment="gravity"
+        android:textColor="@color/text_color"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

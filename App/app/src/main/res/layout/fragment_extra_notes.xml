@@ -4,24 +4,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tvNotesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/title_image_height"
+        android:layout_marginTop="@dimen/fragment_margin"
+        android:alpha="@dimen/cohesion_opacity"
+        android:background="@drawable/title_background"
+        android:fontFamily="@font/alice"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/title_notes"
+        android:textAlignment="gravity"
+        android:textColor="@color/text_color"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilNotes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/notes_margin"
-        android:layout_marginTop="@dimen/notes_margin"
-        android:layout_marginEnd="@dimen/notes_margin"
+        android:layout_marginStart="@dimen/fragment_margin"
+        android:layout_marginTop="@dimen/content_margin_to_title"
+        android:layout_marginEnd="@dimen/fragment_margin"
+        android:alpha="@dimen/cohesion_opacity"
+        android:background="@color/content_background"
+        android:padding="@dimen/notes_padding"
         android:textColorHint="@color/text_color"
+        app:boxCornerRadiusBottomEnd="@dimen/content_background_radius"
+        app:boxCornerRadiusBottomStart="@dimen/content_background_radius"
+        app:boxCornerRadiusTopEnd="@dimen/content_background_radius"
+        app:boxCornerRadiusTopStart="@dimen/content_background_radius"
         app:boxStrokeColor="@color/text_color"
+        app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tvNotesTitle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etNotes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/notes_hint"
             android:textColor="@color/text_color" />
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -7,7 +7,6 @@
     tools:context=".ui.character.features_traits.CharacterFeaturesTraitsFragment">
     <!-- TODO: Go through project to look at not needed imports and grey stuff -->
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

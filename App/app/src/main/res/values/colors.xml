@@ -11,4 +11,6 @@
 
     <color name="tabBarColor">#7D734D47</color>
     <color name="background">#611806</color>
+
+    <!--TODO: one way of color declaration: name or type of color! -->
 </resources>
