@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.example.dndapp.MainActivity
 import com.example.dndapp.R
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -18,6 +19,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        (activity as MainActivity?)?.checkCurrentFragment()
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -42,6 +44,11 @@ class HomeFragment : Fragment() {
 
     private fun initViewModel() {
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        //(activity as MainActivity?)?.checkCurrentFragment()
     }
 
     //////////////////////////////////////////////////////////

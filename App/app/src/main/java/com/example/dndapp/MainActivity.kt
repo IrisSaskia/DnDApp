@@ -6,15 +6,20 @@ import android.view.MenuInflater
 import android.view.View
 import android.widget.ImageButton
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.dndapp.ui.home.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
     //TODO: overal comments toevoegen!!!
     private val mainActivity: Activity = this@MainActivity
+    private lateinit var navHostFragment: Fragment
+    private lateinit var fragment: Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,14 +47,12 @@ class MainActivity : AppCompatActivity() {
             val id = item.itemId
 
             if (id == R.id.action_my_characters) {
-                /*Toast.makeText(this, "My Characters", Toast.LENGTH_LONG).show()*/
                 startCharactersFragment()
             }
             if (id == R.id.action_notes) {
                 startNotesFragment()
             }
             if (id == R.id.action_settings) {
-                /*Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show()*/
                 startSettingsFragment()
             }
 
@@ -57,6 +60,30 @@ class MainActivity : AppCompatActivity() {
         }
         inflater.inflate(R.menu.options_menu, popup.menu)
         popup.show()
+    }
+
+    fun checkCurrentFragment() {
+        navHostFragment = supportFragmentManager.primaryNavigationFragment!!
+        fragment = navHostFragment.childFragmentManager.fragments[0]
+        if(fragment is HomeFragment) {
+            ibExtra.setImageResource(R.drawable.top_poppetje)
+            ibExtra.setOnClickListener {
+                levelUp()
+            }
+        } else {
+            ibExtra.setImageResource(R.drawable.top_back_button)
+            ibExtra.setOnClickListener {
+                goBack()
+            }
+        }
+    }
+
+    private fun levelUp() {
+
+    }
+
+    private fun goBack() {
+
     }
 
     //////////////////////////////////////////////////////////

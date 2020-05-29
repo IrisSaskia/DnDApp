@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
+import com.example.dndapp.MainActivity
 import com.example.dndapp.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -18,12 +19,13 @@ class SpellsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         spellsViewModel = ViewModelProvider(this).get(SpellsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_spells, container, false)
-        return root
+        return inflater.inflate(R.layout.fragment_spells, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
+        super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity?)?.checkCurrentFragment()
+
         spellsFragmentAdapter = SpellsPagerAdapter(this)
         spellsViewPager = view.findViewById(R.id.vpSpells)
         spellsViewPager.adapter = spellsFragmentAdapter

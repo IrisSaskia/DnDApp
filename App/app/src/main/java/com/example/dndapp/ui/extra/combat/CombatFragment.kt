@@ -7,23 +7,22 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.dndapp.MainActivity
 import com.example.dndapp.R
 
 class CombatFragment : Fragment() {
     private lateinit var combatViewModel: CombatViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        combatViewModel =
-            ViewModelProvider(this).get(CombatViewModel::class.java)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        combatViewModel = ViewModelProvider(this).get(CombatViewModel::class.java)
 
         return inflater.inflate(R.layout.fragment_extra_combat, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity?)?.checkCurrentFragment()
+
         initViews()
         initViewModel()
     }
