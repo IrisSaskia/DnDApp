@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.dndapp.MainActivity
@@ -43,6 +44,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun initViewModel() {
+        homeViewModel.currentDnDCharacter.observe(viewLifecycleOwner, Observer { currentDnDCharacter ->
+            if(currentDnDCharacter != null) {
+                tvName.text = currentDnDCharacter.name
+                tvLevel.text = getString(R.string.level_indicator, currentDnDCharacter.level.toString())
+                //TODO: Add class/race
+                //TODO: Add HP
+            }
+        })
+    }
+
+    public fun levelUp() {
 
     }
 

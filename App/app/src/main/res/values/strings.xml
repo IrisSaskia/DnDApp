@@ -24,6 +24,10 @@
     <string name="notes_placeholder">Type here…</string>
     <string name="title_dice">Clickety clackety math rocks</string>
     <string name="title_combat">Combat</string>
+    <string name="level_indicator">Level: %1s</string>
+    <string name="name_placeholder">Character Name</string>
+    <string name="hp_text">HP: %1s</string>
+    <string name="class_race_placeholder">Class Race</string>
 
 
     <!-- TODO: Add placeholder text for all images! -->

@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="1.6"
+                android:layout_weight="3"
                 android:adjustViewBounds="true"
                 android:alpha="@dimen/cohesion_opacity"
                 android:background="#00FFFFFF"
@@ -35,23 +35,73 @@
                 app:srcCompat="@drawable/home_damage_icon"
                 tools:ignore="NestedWeights" />
 
-            <ImageView
-                android:id="@+id/ivCharacter"
-                android:layout_width="wrap_content"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clCharacterInfo"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="0.9"
+                android:layout_weight="2"
                 android:adjustViewBounds="false"
                 android:alpha="@dimen/cohesion_opacity"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/home_character_banner" />
+                android:scaleType="fitXY">
+
+                <ImageView
+                    android:id="@+id/ivCharacter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/home_character_banner" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name_placeholder"
+                    app:layout_constraintBottom_toTopOf="@+id/tvLevel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/level_indicator"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/tvClassRace"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvClassRace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/class_race_placeholder"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvHP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hp_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvClassRace" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageButton
                 android:id="@+id/ibHeal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="1.6"
+                android:layout_weight="3"
                 android:adjustViewBounds="true"
                 android:alpha="@dimen/cohesion_opacity"
                 android:background="#00FFFFFF"

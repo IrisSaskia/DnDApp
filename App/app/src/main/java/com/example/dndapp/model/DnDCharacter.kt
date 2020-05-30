@@ -1,4 +1,4 @@
-package com.example.dndapp.model.characters
+package com.example.dndapp.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -21,10 +21,6 @@ data class DnDCharacter (
 
     @ColumnInfo(name = "level")
     var level: Int,
-
-    /*@ColumnInfo(name = "note")
-    @Embedded
-    var note: Notes*/
 
     @ColumnInfo(name = "note")
     var note: String

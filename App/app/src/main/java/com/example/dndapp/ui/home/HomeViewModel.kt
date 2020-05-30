@@ -1,13 +1,24 @@
 package com.example.dndapp.ui.home
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.dndapp.database.characters.DnDCharacterRepository
+import com.example.dndapp.model.DnDCharacter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(application: Application) : AndroidViewModel(application) {
+    private val dndCharacterRepository = DnDCharacterRepository(application.applicationContext)
+    private val mainScope = CoroutineScope(Dispatchers.Main)
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+    var currentDnDCharacter: LiveData<DnDCharacter?> = dndCharacterRepository.getDnDCharacter(1)
+
+    /*fun updateCharacter() {
+        mainScope.launch {
+
+        }
+    }*/
 }

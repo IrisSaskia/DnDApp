@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.dndapp.model.characters.DnDCharacter
+import com.example.dndapp.model.DnDCharacter
 
 @Dao
 interface DnDCharacterDAO {
@@ -13,8 +13,8 @@ interface DnDCharacterDAO {
     suspend fun insertDnDCharacter(dndCharacter: DnDCharacter)
 
 //    @Query("SELECT * FROM characterTable LIMIT 1")
-    @Query("SELECT * FROM dndCharacterTable")
-    fun getDnDCharacter(): LiveData<DnDCharacter?>
+    @Query("SELECT * FROM dndCharacterTable WHERE id = :currentDnDCharacter")
+    fun getDnDCharacter(currentDnDCharacter: Int): LiveData<DnDCharacter?>
 
     @Update
     suspend fun updateDnDCharacter(dndCharacter: DnDCharacter)

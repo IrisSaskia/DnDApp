@@ -2,9 +2,8 @@ package com.example.dndapp.database.characters
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.dndapp.database.DnDDatabase
-import com.example.dndapp.model.characters.DnDCharacter
+import com.example.dndapp.model.DnDCharacter
 
 class DnDCharacterRepository(context: Context) {
     private val dndCharacterDAO: DnDCharacterDAO
@@ -17,8 +16,8 @@ class DnDCharacterRepository(context: Context) {
         dndCharacterDAO = database!!.dndCharacterDAO()
     }
 
-    fun getDnDCharacter(): LiveData<DnDCharacter?> {
-        return dndCharacterDAO.getDnDCharacter()
+    fun getDnDCharacter(currentDnDCharacter: Int): LiveData<DnDCharacter?> {
+        return dndCharacterDAO.getDnDCharacter(currentDnDCharacter)
     }
 
     suspend fun updateDnDCharacter(dndCharacter: DnDCharacter) {
