@@ -1,8 +1,10 @@
 package com.example.dndapp.model
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.dndapp.model.stats.*
 
 @Entity(tableName = "dndCharacterTable")
 data class DnDCharacter (
@@ -23,5 +25,29 @@ data class DnDCharacter (
     var level: Int,
 
     @ColumnInfo(name = "note")
-    var note: String
+    var note: String,
+
+    @ColumnInfo(name = "strength")
+    @Embedded
+    var strength: Strength,
+
+    @ColumnInfo(name = "dexterity")
+    @Embedded
+    var dexterity: Dexterity,
+
+    @ColumnInfo(name = "constitution")
+    @Embedded
+    var constitution: Constitution,
+
+    @ColumnInfo(name = "intelligence")
+    @Embedded
+    var intelligence: Intelligence,
+
+    @ColumnInfo(name = "wisdom")
+    @Embedded
+    var wisdom: Wisdom,
+
+    @ColumnInfo(name = "charisma")
+    @Embedded
+    var charisma: Charisma
 )

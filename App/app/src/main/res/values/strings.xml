@@ -11,7 +11,7 @@
     <string name="title_settings">Settings</string>
     <string name="stat_strength_name">Strength</string>
     <string name="stat_placeholder">10</string>
-    <string name="save_mod_placeholder">+0</string>
+    <string name="save_mod_placeholder">+%1s</string>
     <string name="name_save">Save</string>
     <string name="title_mod">Mod</string>
     <string name="title_spells_known">Known</string>

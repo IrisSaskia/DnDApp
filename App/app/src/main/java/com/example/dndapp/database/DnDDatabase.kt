@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.dndapp.database.characters.DnDCharacterDAO
 import com.example.dndapp.model.DnDCharacter
+import com.example.dndapp.model.stats.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,7 +39,13 @@ abstract class DnDDatabase : RoomDatabase() {
                                                 'O',
                                                 "Chaotic Testing",
                                                 25,
-                                                "Dit is een notitie"
+                                                "Dit is een notitie",
+                                                Strength(1, 14, 2, 2, 2),
+                                                Dexterity(1, 10, 0, 0, 0, 0, 0),
+                                                Constitution(1, 16, 3, 3),
+                                                Intelligence(1, 10, 0, 0,2, 2, 0, 0, 2),
+                                                Wisdom(1, 15, 2, 4, 2, 4, 2, 2, 2),
+                                                Charisma(1, 10, 0, 2, 0, 0, 0, 2)
                                             )
                                         )
                                     }

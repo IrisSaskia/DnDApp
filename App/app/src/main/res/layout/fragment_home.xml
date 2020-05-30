@@ -213,7 +213,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                android:id="@+id/tvStatStrength"
+                                android:id="@+id/tvStatNumberStrength"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:alpha="1"
@@ -226,7 +226,7 @@
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNameStrength" />
 
                             <TextView
-                                android:id="@+id/ivSaveStrength"
+                                android:id="@+id/tvSaveStrength"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:alpha="0.7"
@@ -234,20 +234,20 @@
                                 android:textColor="@color/text_color"
                                 app:autoSizeMaxTextSize="14sp"
                                 app:autoSizeMinTextSize="10sp"
-                                app:layout_constraintEnd_toStartOf="@+id/tvStatStrength"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatStrength" />
+                                app:layout_constraintEnd_toStartOf="@+id/tvStatNumberStrength"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberStrength" />
 
                             <TextView
-                                android:id="@+id/ivSaveNumberStrength"
+                                android:id="@+id/tvSaveNumberStrength"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:alpha="1"
                                 android:text="@string/save_mod_placeholder"
                                 android:textColor="@color/text_color"
                                 android:textSize="16sp"
-                                app:layout_constraintEnd_toEndOf="@+id/ivSaveStrength"
-                                app:layout_constraintStart_toStartOf="@+id/ivSaveStrength"
-                                app:layout_constraintTop_toBottomOf="@+id/ivSaveStrength" />
+                                app:layout_constraintEnd_toEndOf="@+id/tvSaveStrength"
+                                app:layout_constraintStart_toStartOf="@+id/tvSaveStrength"
+                                app:layout_constraintTop_toBottomOf="@+id/tvSaveStrength" />
 
                             <TextView
                                 android:id="@+id/tvModStrength"
@@ -258,8 +258,8 @@
                                 android:textColor="@color/text_color"
                                 app:autoSizeMaxTextSize="14sp"
                                 app:autoSizeMinTextSize="10sp"
-                                app:layout_constraintStart_toEndOf="@+id/tvStatStrength"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatStrength" />
+                                app:layout_constraintStart_toEndOf="@+id/tvStatNumberStrength"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberStrength" />
 
                             <TextView
                                 android:id="@+id/tvModNumberStrength"
