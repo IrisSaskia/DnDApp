@@ -1,5 +1,5 @@
 package com.example.dndapp.database.notes
-
+/*
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
@@ -17,4 +17,4 @@ interface NotesDAO {
 
     @Update
     suspend fun updateNotes(notes: Notes)
-}
+}*/
