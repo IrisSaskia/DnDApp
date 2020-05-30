@@ -9,10 +9,7 @@ class DnDCharacterRepository(context: Context) {
     private val dndCharacterDAO: DnDCharacterDAO
 
     init {
-        val database =
-            DnDDatabase.getDatabase((
-                    context
-                    ))
+        val database = DnDDatabase.getDatabase((context))
         dndCharacterDAO = database!!.dndCharacterDAO()
     }
 

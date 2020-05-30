@@ -1,9 +1,10 @@
 package com.example.dndapp.model.stats
 
 import androidx.room.ColumnInfo
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-//@Entity(tableName = "strengthTable")
+@Entity(tableName = "strengthTable")
 data class Strength (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")

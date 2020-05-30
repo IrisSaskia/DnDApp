@@ -1,9 +1,10 @@
 package com.example.dndapp.model.stats
 
 import androidx.room.ColumnInfo
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-//@Entity(tableName = "wisdomTable")
+@Entity(tableName = "wisdomTable")
 data class Wisdom (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")

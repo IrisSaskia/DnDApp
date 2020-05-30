@@ -1,12 +1,48 @@
 package com.example.dndapp.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.example.dndapp.model.stats.*
 
-@Entity(tableName = "dndCharacterTable")
+@Entity(tableName = "dndCharacterTable",
+    foreignKeys = [
+        ForeignKey(
+            entity = Strength::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("strengthID"),
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = Dexterity::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("dexterityID"),
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = Constitution::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("constitutionID"),
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = Intelligence::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("intelligenceID"),
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = Wisdom::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("wisdomID"),
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = Charisma::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("charismaID"),
+            onDelete = ForeignKey.CASCADE
+        )
+    ]
+)
 data class DnDCharacter (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -27,27 +63,21 @@ data class DnDCharacter (
     @ColumnInfo(name = "note")
     var note: String,
 
-    @ColumnInfo(name = "strength")
-    @Embedded
-    var strength: Strength,
+    @ColumnInfo(name = "strengthID")
+    var strengthID: Long?,
 
-    @ColumnInfo(name = "dexterity")
-    @Embedded
-    var dexterity: Dexterity,
+    @ColumnInfo(name = "dexterityID")
+    var dexterityID: Long?,
 
-    @ColumnInfo(name = "constitution")
-    @Embedded
-    var constitution: Constitution,
+    @ColumnInfo(name = "constitutionID")
+    var constitutionID: Long?,
 
-    @ColumnInfo(name = "intelligence")
-    @Embedded
-    var intelligence: Intelligence,
+    @ColumnInfo(name = "intelligenceID")
+    var intelligenceID: Long?,
 
-    @ColumnInfo(name = "wisdom")
-    @Embedded
-    var wisdom: Wisdom,
+    @ColumnInfo(name = "wisdomID")
+    var wisdomID: Long?,
 
-    @ColumnInfo(name = "charisma")
-    @Embedded
-    var charisma: Charisma
+    @ColumnInfo(name = "charismaID")
+    var charismaID: Long?
 )

@@ -50,9 +50,13 @@ class HomeFragment : Fragment() {
                 tvLevel.text = getString(R.string.level_indicator, currentDnDCharacter.level.toString())
                 //TODO: Add class/race
                 //TODO: Add HP
-                tvStatNumberStrength.text = currentDnDCharacter.strength.stat.toString()
-                tvModNumberStrength.text = getString(R.string.save_mod_placeholder, currentDnDCharacter.strength.modifier.toString())
-                tvSaveNumberStrength.text = getString(R.string.save_mod_placeholder, currentDnDCharacter.strength.save.toString())
+            }
+        })
+        homeViewModel.currentStrength.observe(viewLifecycleOwner, Observer { currentStrength ->
+            if(currentStrength != null) {
+                tvStatNumberStrength.text = currentStrength.stat.toString()
+                tvModNumberStrength.text = getString(R.string.save_mod_placeholder, currentStrength.modifier.toString())
+                tvSaveNumberStrength.text = getString(R.string.save_mod_placeholder, currentStrength.save.toString())
             }
         })
     }
