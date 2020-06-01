@@ -26,6 +26,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     var currentCharisma: LiveData<Charisma?> = statsRepository.getCharisma(1)
 
     //TODO: iets waarmee alles in 1 zit???
+    //TODO: moet er 1 viewmodel zijn waarin dit maar 1x gedaan hoeft te worden?
 
     /*fun updateCharacter() {
         mainScope.launch {

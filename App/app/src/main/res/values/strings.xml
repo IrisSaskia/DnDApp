@@ -33,6 +33,8 @@
     <string name="name_placeholder">Character Name</string>
     <string name="hp_text">HP: %1s</string>
     <string name="class_race_placeholder">Class Race</string>
+    <string name="title_background">Background</string>
+    <string name="placeholder_background">YOUR BACKGROUND</string>
 
 
     <!-- TODO: Add placeholder text for all images! -->

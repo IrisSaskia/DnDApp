@@ -24,7 +24,6 @@ class CharacterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //(activity as MainActivity?)?.checkCurrentFragment()
 
         characterFragmentAdapter = CharacterPagerAdapter(this)
         characterViewPager = view.findViewById(R.id.vpCharacter)
