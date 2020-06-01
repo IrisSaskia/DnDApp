@@ -10,6 +10,11 @@
     <string name="title_notes">Notes</string>
     <string name="title_settings">Settings</string>
     <string name="stat_strength_name">Strength</string>
+    <string name="stat_dexterity_name">Dexterity</string>
+    <string name="stat_intelligence_name">Intelligence</string>
+    <string name="stat_wisdom_name">Wisdom</string>
+    <string name="stat_charisma_name">Charisma</string>
+    <string name="stat_constitution_name">Constitution</string>
     <string name="stat_placeholder">10</string>
     <string name="save_mod_placeholder">+%1s</string>
     <string name="name_save">Save</string>

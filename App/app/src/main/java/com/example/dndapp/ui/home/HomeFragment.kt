@@ -48,7 +48,14 @@ class HomeFragment : Fragment() {
             if(currentDnDCharacter != null) {
                 tvName.text = currentDnDCharacter.name
                 tvLevel.text = getString(R.string.level_indicator, currentDnDCharacter.level.toString())
-                //TODO: Add class/race
+                //TODO: Add class
+                var charRace: String
+                if(currentDnDCharacter.subRace != null) {
+                    charRace = currentDnDCharacter.subRace + " " + currentDnDCharacter.race
+                } else {
+                    charRace = currentDnDCharacter.race
+                }
+                tvClassRace.text = charRace
                 //TODO: Add HP
             }
         })
@@ -57,6 +64,41 @@ class HomeFragment : Fragment() {
                 tvStatNumberStrength.text = currentStrength.stat.toString()
                 tvModNumberStrength.text = getString(R.string.save_mod_placeholder, currentStrength.modifier.toString())
                 tvSaveNumberStrength.text = getString(R.string.save_mod_placeholder, currentStrength.save.toString())
+            }
+        })
+        homeViewModel.currentDexterity.observe(viewLifecycleOwner, Observer { currentDexterity ->
+            if(currentDexterity != null) {
+                tvStatNumberDexterity.text = currentDexterity.stat.toString()
+                tvModNumberDexterity.text = getString(R.string.save_mod_placeholder, currentDexterity.modifier.toString())
+                tvSaveNumberDexterity.text = getString(R.string.save_mod_placeholder, currentDexterity.save.toString())
+            }
+        })
+        homeViewModel.currentIntelligence.observe(viewLifecycleOwner, Observer { currentIntelligence ->
+            if(currentIntelligence != null) {
+                tvStatNumberIntelligence.text = currentIntelligence.stat.toString()
+                tvModNumberIntelligence.text = getString(R.string.save_mod_placeholder, currentIntelligence.modifier.toString())
+                tvSaveNumberIntelligence.text = getString(R.string.save_mod_placeholder, currentIntelligence.save.toString())
+            }
+        })
+        homeViewModel.currentWisdom.observe(viewLifecycleOwner, Observer { currentWisdom ->
+            if(currentWisdom != null) {
+                tvStatNumberWisdom.text = currentWisdom.stat.toString()
+                tvModNumberWisdom.text = getString(R.string.save_mod_placeholder, currentWisdom.modifier.toString())
+                tvSaveNumberWisdom.text = getString(R.string.save_mod_placeholder, currentWisdom.save.toString())
+            }
+        })
+        homeViewModel.currentCharisma.observe(viewLifecycleOwner, Observer { currentCharisma ->
+            if(currentCharisma != null) {
+                tvStatNumberCharisma.text = currentCharisma.stat.toString()
+                tvModNumberCharisma.text = getString(R.string.save_mod_placeholder, currentCharisma.modifier.toString())
+                tvSaveNumberCharisma.text = getString(R.string.save_mod_placeholder, currentCharisma.save.toString())
+            }
+        })
+        homeViewModel.currentConstitution.observe(viewLifecycleOwner, Observer { currentConstitution ->
+            if(currentConstitution != null) {
+                tvStatNumberConstitution.text = currentConstitution.stat.toString()
+                tvModNumberConstitution.text = getString(R.string.save_mod_placeholder, currentConstitution.modifier.toString())
+                tvSaveNumberConstitution.text = getString(R.string.save_mod_placeholder, currentConstitution.save.toString())
             }
         })
     }

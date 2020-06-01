@@ -2,13 +2,22 @@ package com.example.dndapp.model.stats
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.example.dndapp.model.DnDCharacter
 
-@Entity(tableName = "dexterityTable")
+@Entity(tableName = "dexterityTable", foreignKeys = [
+    ForeignKey(
+        entity = DnDCharacter::class,
+        parentColumns = arrayOf("id"),
+        childColumns = arrayOf("characterID"),
+        onDelete = ForeignKey.CASCADE
+    )
+])
 data class Dexterity (
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    var id: Long? = null,
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "characterID")
+    var characterID: Long? = null,
 
     @ColumnInfo(name = "stat")
     var stat: Int,

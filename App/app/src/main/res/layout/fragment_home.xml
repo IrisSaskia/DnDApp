@@ -113,7 +113,7 @@
             android:id="@+id/llExtraStats"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1.8"
             android:orientation="horizontal"
             android:paddingStart="@dimen/extra_stats_padding"
             android:paddingEnd="@dimen/extra_stats_padding"
@@ -272,7 +272,6 @@
                                 app:layout_constraintEnd_toEndOf="@+id/tvModStrength"
                                 app:layout_constraintStart_toStartOf="@+id/tvModStrength"
                                 app:layout_constraintTop_toBottomOf="@+id/tvModStrength" />
-
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -292,6 +291,90 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/home_stat_background" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tvStatNameIntelligence"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/stat_intelligence_name"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"
+                                android:textStyle="italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvStatNumberIntelligence"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/stat_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="22sp"
+                                android:textStyle="bold|italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNameIntelligence" />
+
+                            <TextView
+                                android:id="@+id/tvSaveIntelligence"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.7"
+                                android:text="@string/name_save"
+                                android:textColor="@color/text_color"
+                                app:autoSizeMaxTextSize="14sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:layout_constraintEnd_toStartOf="@+id/tvStatNumberIntelligence"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberIntelligence" />
+
+                            <TextView
+                                android:id="@+id/tvSaveNumberIntelligence"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/save_mod_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvSaveIntelligence"
+                                app:layout_constraintStart_toStartOf="@+id/tvSaveIntelligence"
+                                app:layout_constraintTop_toBottomOf="@+id/tvSaveIntelligence" />
+
+                            <TextView
+                                android:id="@+id/tvModIntelligence"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.7"
+                                android:text="@string/title_mod"
+                                android:textColor="@color/text_color"
+                                app:autoSizeMaxTextSize="14sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:layout_constraintStart_toEndOf="@+id/tvStatNumberIntelligence"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberIntelligence" />
+
+                            <TextView
+                                android:id="@+id/tvModNumberIntelligence"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/save_mod_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvModIntelligence"
+                                app:layout_constraintStart_toStartOf="@+id/tvModIntelligence"
+                                app:layout_constraintTop_toBottomOf="@+id/tvModIntelligence" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -310,6 +393,90 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/home_stat_background" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tvStatNameCharisma"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/stat_charisma_name"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"
+                                android:textStyle="italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvStatNumberCharisma"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/stat_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="22sp"
+                                android:textStyle="bold|italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNameCharisma" />
+
+                            <TextView
+                                android:id="@+id/tvSaveCharisma"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.7"
+                                android:text="@string/name_save"
+                                android:textColor="@color/text_color"
+                                app:autoSizeMaxTextSize="14sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:layout_constraintEnd_toStartOf="@+id/tvStatNumberCharisma"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberCharisma" />
+
+                            <TextView
+                                android:id="@+id/tvSaveNumberCharisma"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/save_mod_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvSaveCharisma"
+                                app:layout_constraintStart_toStartOf="@+id/tvSaveCharisma"
+                                app:layout_constraintTop_toBottomOf="@+id/tvSaveCharisma" />
+
+                            <TextView
+                                android:id="@+id/tvModCharisma"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.7"
+                                android:text="@string/title_mod"
+                                android:textColor="@color/text_color"
+                                app:autoSizeMaxTextSize="14sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:layout_constraintStart_toEndOf="@+id/tvStatNumberCharisma"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberCharisma" />
+
+                            <TextView
+                                android:id="@+id/tvModNumberCharisma"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/save_mod_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvModCharisma"
+                                app:layout_constraintStart_toStartOf="@+id/tvModCharisma"
+                                app:layout_constraintTop_toBottomOf="@+id/tvModCharisma" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </TableRow>
@@ -319,30 +486,308 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
-
-                    <ImageView
-                        android:id="@+id/ivDexterity"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:alpha="@dimen/cohesion_opacity"
-                        app:srcCompat="@drawable/home_stat_background" />
+                        android:layout_weight="1">
+                        <ImageView
+                            android:id="@+id/ivDexterity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha="@dimen/cohesion_opacity"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/home_stat_background" />
 
-                    <ImageView
-                        android:id="@+id/ivWisdom"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tvStatNameDexterity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/stat_dexterity_name"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"
+                                android:textStyle="italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvStatNumberDexterity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/stat_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="22sp"
+                                android:textStyle="bold|italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNameDexterity" />
+
+                            <TextView
+                                android:id="@+id/tvSaveDexterity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.7"
+                                android:text="@string/name_save"
+                                android:textColor="@color/text_color"
+                                app:autoSizeMaxTextSize="14sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:layout_constraintEnd_toStartOf="@+id/tvStatNumberDexterity"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberDexterity" />
+
+                            <TextView
+                                android:id="@+id/tvSaveNumberDexterity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/save_mod_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvSaveDexterity"
+                                app:layout_constraintStart_toStartOf="@+id/tvSaveDexterity"
+                                app:layout_constraintTop_toBottomOf="@+id/tvSaveDexterity" />
+
+                            <TextView
+                                android:id="@+id/tvModDexterity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.7"
+                                android:text="@string/title_mod"
+                                android:textColor="@color/text_color"
+                                app:autoSizeMaxTextSize="14sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:layout_constraintStart_toEndOf="@+id/tvStatNumberDexterity"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberDexterity" />
+
+                            <TextView
+                                android:id="@+id/tvModNumberDexterity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/save_mod_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvModDexterity"
+                                app:layout_constraintStart_toStartOf="@+id/tvModDexterity"
+                                app:layout_constraintTop_toBottomOf="@+id/tvModDexterity" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:alpha="@dimen/cohesion_opacity"
-                        app:srcCompat="@drawable/home_stat_background" />
+                        android:layout_weight="1">
+                        <ImageView
+                            android:id="@+id/ivWisdom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha="@dimen/cohesion_opacity"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/home_stat_background" />
 
-                    <ImageView
-                        android:id="@+id/ivConstitution"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tvStatNameWisdom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/stat_wisdom_name"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"
+                                android:textStyle="italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvStatNumberWisdom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/stat_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="22sp"
+                                android:textStyle="bold|italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNameWisdom" />
+
+                            <TextView
+                                android:id="@+id/tvSaveWisdom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.7"
+                                android:text="@string/name_save"
+                                android:textColor="@color/text_color"
+                                app:autoSizeMaxTextSize="14sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:layout_constraintEnd_toStartOf="@+id/tvStatNumberWisdom"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberWisdom" />
+
+                            <TextView
+                                android:id="@+id/tvSaveNumberWisdom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/save_mod_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvSaveWisdom"
+                                app:layout_constraintStart_toStartOf="@+id/tvSaveWisdom"
+                                app:layout_constraintTop_toBottomOf="@+id/tvSaveWisdom" />
+
+                            <TextView
+                                android:id="@+id/tvModWisdom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.7"
+                                android:text="@string/title_mod"
+                                android:textColor="@color/text_color"
+                                app:autoSizeMaxTextSize="14sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:layout_constraintStart_toEndOf="@+id/tvStatNumberWisdom"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberWisdom" />
+
+                            <TextView
+                                android:id="@+id/tvModNumberWisdom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/save_mod_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvModWisdom"
+                                app:layout_constraintStart_toStartOf="@+id/tvModWisdom"
+                                app:layout_constraintTop_toBottomOf="@+id/tvModWisdom" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:alpha="@dimen/cohesion_opacity"
-                        app:srcCompat="@drawable/home_stat_background" />
+                        android:layout_weight="1">
+                            <ImageView
+                                android:id="@+id/ivConstitution"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:alpha="@dimen/cohesion_opacity"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/home_stat_background" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tvStatNameConstitution"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/stat_constitution_name"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"
+                                android:textStyle="italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvStatNumberConstitution"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/stat_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="22sp"
+                                android:textStyle="bold|italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNameConstitution" />
+
+                            <TextView
+                                android:id="@+id/tvSaveConstitution"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.7"
+                                android:text="@string/name_save"
+                                android:textColor="@color/text_color"
+                                app:autoSizeMaxTextSize="14sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:layout_constraintEnd_toStartOf="@+id/tvStatNumberConstitution"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberConstitution" />
+
+                            <TextView
+                                android:id="@+id/tvSaveNumberConstitution"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/save_mod_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvSaveConstitution"
+                                app:layout_constraintStart_toStartOf="@+id/tvSaveConstitution"
+                                app:layout_constraintTop_toBottomOf="@+id/tvSaveConstitution" />
+
+                            <TextView
+                                android:id="@+id/tvModConstitution"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.7"
+                                android:text="@string/title_mod"
+                                android:textColor="@color/text_color"
+                                app:autoSizeMaxTextSize="14sp"
+                                app:autoSizeMinTextSize="10sp"
+                                app:layout_constraintStart_toEndOf="@+id/tvStatNumberConstitution"
+                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberConstitution" />
+
+                            <TextView
+                                android:id="@+id/tvModNumberConstitution"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="1"
+                                android:text="@string/save_mod_placeholder"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="@+id/tvModConstitution"
+                                app:layout_constraintStart_toStartOf="@+id/tvModConstitution"
+                                app:layout_constraintTop_toBottomOf="@+id/tvModConstitution" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </TableRow>
 
             </TableLayout>
@@ -352,7 +797,7 @@
             android:id="@+id/llButtons"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.8"
+            android:layout_weight="1.6"
             android:orientation="horizontal">
 
             <ImageButton

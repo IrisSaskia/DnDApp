@@ -28,22 +28,22 @@ interface StatsDAO {
     @Insert
     suspend fun insertCharisma(charisma: Charisma)
 
-    @Query("SELECT str.* FROM strengthTable AS str INNER JOIN dndCharacterTable as dnd ON (str.id=dnd.strengthID) WHERE dnd.id = :currentDnDCharacter")
+    @Query("SELECT * FROM strengthTable WHERE characterID = :currentDnDCharacter")
     fun getStrength(currentDnDCharacter: Int): LiveData<Strength?>
 
-    @Query("SELECT dex.* FROM dexterityTable AS dex INNER JOIN dndCharacterTable as dnd ON (dex.id=dnd.strengthID) WHERE dnd.id = :currentDnDCharacter")
+    @Query("SELECT * FROM dexterityTable WHERE characterID = :currentDnDCharacter")
     fun getDexterity(currentDnDCharacter: Int): LiveData<Dexterity?>
 
-    @Query("SELECT con.* FROM constitutionTable AS con INNER JOIN dndCharacterTable as dnd ON (con.id=dnd.strengthID) WHERE dnd.id = :currentDnDCharacter")
+    @Query("SELECT * FROM constitutionTable WHERE characterID = :currentDnDCharacter")
     fun getConstitution(currentDnDCharacter: Int): LiveData<Constitution?>
 
-    @Query("SELECT int.* FROM intelligenceTable AS int INNER JOIN dndCharacterTable as dnd ON (int.id=dnd.strengthID) WHERE dnd.id = :currentDnDCharacter")
+    @Query("SELECT * FROM intelligenceTable WHERE characterID = :currentDnDCharacter")
     fun getIntelligence(currentDnDCharacter: Int): LiveData<Intelligence?>
 
-    @Query("SELECT wis.* FROM wisdomTable AS wis INNER JOIN dndCharacterTable as dnd ON (wis.id=dnd.strengthID) WHERE dnd.id = :currentDnDCharacter")
+    @Query("SELECT * FROM wisdomTable WHERE characterID = :currentDnDCharacter")
     fun getWisdom(currentDnDCharacter: Int): LiveData<Wisdom?>
 
-    @Query("SELECT cha.* FROM charismaTable AS cha INNER JOIN dndCharacterTable as dnd ON (cha.id=dnd.strengthID) WHERE dnd.id = :currentDnDCharacter")
+    @Query("SELECT * FROM charismaTable WHERE characterID = :currentDnDCharacter")
     fun getCharisma(currentDnDCharacter: Int): LiveData<Charisma?>
 
     /*@Query("UPDATE strengthTable AS str INNER JOIN dndCharacterTable as dnd ON (str.id=dnd.strengthID) WHERE dnd.id = :currentDnDCharacter")

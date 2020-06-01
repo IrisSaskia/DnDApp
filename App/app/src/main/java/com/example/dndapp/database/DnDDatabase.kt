@@ -13,7 +13,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [DnDCharacter::class], version = 1, exportSchema = false)
+@Database(entities = [DnDCharacter::class,
+                        Strength::class,
+                        Dexterity::class,
+                        Constitution::class,
+                        Intelligence::class,
+                        Wisdom::class,
+                        Charisma::class], version = 1, exportSchema = false)
 abstract class DnDDatabase : RoomDatabase() {
     abstract fun dndCharacterDAO(): DnDCharacterDAO
     abstract fun statsDAO(): StatsDAO
@@ -42,12 +48,9 @@ abstract class DnDDatabase : RoomDatabase() {
                                                 "Chaotic Testing",
                                                 25,
                                                 "Dit is een notitie",
-                                                1,
-                                                1,
-                                                1,
-                                                1,
-                                                1,
-                                                1
+                                                "Acolyte",
+                                                "Dwarf",
+                                                "Hill"
                                             )
                                         )
                                         database.statsDAO().insertStrength(Strength(1, 14, 2, 2, 2))
