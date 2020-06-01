@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class DnDApi {
     companion object {
         // The base url off the api.
-        private const val baseUrl = "https://open5e.com/"
+        private const val baseUrl = "https://api.open5e.com/"
 
         /**
          * @return [DnDApiService] The service class off the retrofit client.

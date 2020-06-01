@@ -11,7 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.dndapp.ui.home.HomeFragment
+import com.example.dndapp.ui.main.HomeFragment
+//TODO: bovenstaande klopt niet helemaal???
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 

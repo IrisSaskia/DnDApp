@@ -17,3 +17,10 @@ data class Background (
     @SerializedName("document__title") val document__title : String,
     @SerializedName("document__license_url") val document__license_url : String
 )
+
+data class Result (
+    @SerializedName("count") val count : Int,
+    @SerializedName("next") val next : String,
+    @SerializedName("previous") val previous : String,
+    @SerializedName("results") val results : List<Background>
+)
