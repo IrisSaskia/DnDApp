@@ -16,7 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+public class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val dndCharacterRepository = DnDCharacterRepository(application.applicationContext)
     private val statsRepository = StatsRepository(application.applicationContext)
     private val mainScope = CoroutineScope(Dispatchers.Main)
