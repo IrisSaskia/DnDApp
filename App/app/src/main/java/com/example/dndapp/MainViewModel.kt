@@ -17,19 +17,23 @@ import retrofit2.Callback
 import retrofit2.Response
 
 public class MainViewModel(application: Application) : AndroidViewModel(application) {
+    private var currentCharacterID = MutableLiveData<Int>()
+    private var standardCharacterID = 1
+
     private val dndCharacterRepository = DnDCharacterRepository(application.applicationContext)
     private val statsRepository = StatsRepository(application.applicationContext)
     private val mainScope = CoroutineScope(Dispatchers.Main)
 
-    var currentDnDCharacter: LiveData<DnDCharacter?> = dndCharacterRepository.getDnDCharacter(1)
-    var currentStrength: LiveData<Strength?> = statsRepository.getStrength(1)
-    var currentDexterity: LiveData<Dexterity?> = statsRepository.getDexterity(1)
-    var currentConstitution: LiveData<Constitution?> = statsRepository.getConstitution(1)
-    var currentIntelligence: LiveData<Intelligence?> = statsRepository.getIntelligence(1)
-    var currentWisdom: LiveData<Wisdom?> = statsRepository.getWisdom(1)
-    var currentCharisma: LiveData<Charisma?> = statsRepository.getCharisma(1)
+    lateinit var currentDnDCharacter: LiveData<DnDCharacter?>
+    lateinit var currentStrength: LiveData<Strength?>
+    lateinit var currentDexterity: LiveData<Dexterity?>
+    lateinit var currentConstitution: LiveData<Constitution?>
+    lateinit var currentIntelligence: LiveData<Intelligence?>
+    lateinit var currentWisdom: LiveData<Wisdom?>
+    lateinit var currentCharisma: LiveData<Charisma?>
 
     private val dndApiRepository = DnDApiRepository()
+
     val backgroundInfo = MutableLiveData<String>()
     val error = MutableLiveData<String>()
 
@@ -41,6 +45,22 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
 
         }
     }*/
+
+    private fun init() {
+        if(dndCharacterRepository.getCurrentCharacter() != null) {
+            currentCharacterID = dndCharacterRepository.getCurrentCharacter() as MutableLiveData<Int>
+        } else {
+            currentCharacterID.value = standardCharacterID
+        }
+
+        currentDnDCharacter = dndCharacterRepository.getDnDCharacter(currentCharacterID)
+        currentStrength = statsRepository.getStrength(currentCharacterID)
+        currentDexterity = statsRepository.getDexterity(currentCharacterID)
+        currentConstitution = statsRepository.getConstitution(currentCharacterID)
+        currentIntelligence = statsRepository.getIntelligence(currentCharacterID)
+        currentWisdom = statsRepository.getWisdom(currentCharacterID)
+        currentCharisma = statsRepository.getCharisma(currentCharacterID)
+    }
 
     /**
     * Get a random number trivia from the repository using Retrofit.

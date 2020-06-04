@@ -24,4 +24,10 @@ interface DnDCharacterDAO {
 
     @Query("SELECT note FROM dndCharacterTable WHERE id = :currentDnDCharacter")
     fun getNote(currentDnDCharacter: Int): LiveData<String>
+
+
+    //CURRENT CHARACTER
+
+    @Query("SELECT currentCharacter FROM currentAppStateTable WHERE id = 1")
+    fun getCurrentCharacter(): LiveData<Int>
 }

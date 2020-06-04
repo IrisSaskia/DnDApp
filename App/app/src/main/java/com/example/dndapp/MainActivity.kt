@@ -15,7 +15,6 @@ import com.example.dndapp.ui.home.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 class MainActivity : AppCompatActivity() {
     //TODO: overal comments toevoegen!!!
     private val mainActivity: Activity = this@MainActivity
