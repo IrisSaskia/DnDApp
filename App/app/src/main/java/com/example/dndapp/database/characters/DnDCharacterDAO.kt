@@ -29,8 +29,8 @@ interface DnDCharacterDAO {
     fun getNote(currentDnDCharacter: Int): LiveData<String>
 
     //GET THE MOST RECENT LOADED CHARACTER FROM THE LAST TIME THE APP WAS ACTIVE
-    @Query("SELECT id FROM dndCharacterTable WHERE active = 1 ORDER BY id LIMIT 1")
-    fun getLoadedCharacter(): Int
+    @Query("SELECT id FROM dndCharacterTable WHERE active ORDER BY id LIMIT 1")
+    fun getLoadedCharacter(): LiveData<Int>
 
 
 //    //CURRENT CHARACTER

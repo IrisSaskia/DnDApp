@@ -32,13 +32,13 @@ class CharacterDescriptionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
-        initViewModel()
+        //initViewModel()
     }
 
     private fun initViews() {
     }
 
-    private fun initViewModel() {
+    /*private fun initViewModel() {
         viewModel.currentDnDCharacter.observe(viewLifecycleOwner, Observer { currentDnDCharacter ->
             if(currentDnDCharacter != null) {
                 tvBackgroundName.text = currentDnDCharacter.background
@@ -52,7 +52,7 @@ class CharacterDescriptionFragment : Fragment() {
                 tvBackgroundInfo.text = backgroundInfo
             }
         })
-    }
+    }*/
 
     override fun onPause() {
         super.onPause()

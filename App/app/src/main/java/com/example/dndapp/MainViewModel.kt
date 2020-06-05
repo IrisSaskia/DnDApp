@@ -13,7 +13,7 @@ import retrofit2.Response
 import android.util.Log
 
 public class MainViewModel(application: Application) : AndroidViewModel(application) {
-    //private val standardCharacterID = 1 TODO: use this for standard char number
+    private val standardCharacterID = 1 //TODO: use this for standard char number
 
     private val dndCharacterRepository = DnDCharacterRepository(application.applicationContext)
     private val statsRepository = StatsRepository(application.applicationContext)
@@ -21,8 +21,7 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
 
     //private val mainScope = CoroutineScope(Dispatchers.Main)
 
-    var currentCharacterID = dndCharacterRepository.getLoadedCharacter()
-
+    /*
     val currentDnDCharacter = dndCharacterRepository.getDnDCharacter(currentCharacterID)
     val currentStrength = statsRepository.getStrength(currentCharacterID)
     val currentDexterity = statsRepository.getDexterity(currentCharacterID)
@@ -32,7 +31,15 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
     val currentCharisma = statsRepository.getCharisma(currentCharacterID)
 
     val backgroundInfo = MutableLiveData<String>()
-    val error = MutableLiveData<String>()
+    val error = MutableLiveData<String>()*/
+
+    /*var currentCharacterID = MutableLiveData<Int>().apply {
+        value = dndCharacterRepository.getLoadedCharacter().value
+    }*/
+
+    var currentCharacterID = dndCharacterRepository.getLoadedCharacter()
+
+
 
     //TODO: iets waarmee alles in 1 zit???
     //TODO: moet er 1 viewmodel zijn waarin dit maar 1x gedaan hoeft te worden?
@@ -43,9 +50,29 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
     * If the call encountered an error then populate the [error] object.
     */
 
+    fun loadAllData() {
+        currentCharacterID = dndCharacterRepository.getLoadedCharacter()
+        //currentCharacterID = dndCharacterRepository.getLoadedCharacter() as MutableLiveData<Int>
+        /*currentCharacterID = MutableLiveData<Int>().apply {
+            value = dndCharacterRepository.getLoadedCharacter().value
+            Log.d("test vanuit viewmodel", dndCharacterRepository.getLoadedCharacter().value.toString())
+        }*/
+
+        /*val currentDnDCharacter = dndCharacterRepository.getDnDCharacter(currentCharacterID)
+        val currentStrength = statsRepository.getStrength(currentCharacterID)
+        val currentDexterity = statsRepository.getDexterity(currentCharacterID)
+        val currentConstitution = statsRepository.getConstitution(currentCharacterID)
+        val currentIntelligence = statsRepository.getIntelligence(currentCharacterID)
+        val currentWisdom = statsRepository.getWisdom(currentCharacterID)
+        val currentCharisma = statsRepository.getCharisma(currentCharacterID)
+
+        val backgroundInfo = MutableLiveData<String>()
+        val error = MutableLiveData<String>()*/
+    }
+
     //TODO: maak een functie die een character laadt als je m verandert
 
-    fun getBackgroundInfo(charBackground: String) {
+    /*fun getBackgroundInfo(charBackground: String) {
         dndApiRepository.getBackground(charBackground).enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
                 if (response.isSuccessful) {
@@ -60,7 +87,7 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
                 error.value = t.message
             }
         })
-    }
+    }*/
 
     fun onAppClosure() {
         //TODO: saving the current selected character, when it changes, niet perse hier

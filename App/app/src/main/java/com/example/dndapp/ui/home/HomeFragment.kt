@@ -35,11 +35,11 @@ class HomeFragment : Fragment() {
         //TODO: Add all supers again or check if needed
 
         initViews()
-        initViewModel()
+        //initViewModel()
     }
 
     private fun initViews() {
-        Log.d("ID: ", viewModel.currentCharacterID.toString())
+        //Log.d("ID vanuit homefragment:", viewModel.currentCharacterID.value.toString())
         parentActivity = activity!!
 
         ibDice.setOnClickListener {
@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initViewModel() {
+    /*private fun initViewModel() {
         viewModel.currentDnDCharacter.observe(viewLifecycleOwner, Observer { currentDnDCharacter ->
             if(currentDnDCharacter != null) {
                 tvName.text = currentDnDCharacter.name
@@ -108,7 +108,7 @@ class HomeFragment : Fragment() {
                 tvSaveNumberConstitution.text = getString(R.string.save_mod_placeholder, currentConstitution.save.toString())
             }
         })
-    }
+    }*/
 
     public fun levelUp() {
 
