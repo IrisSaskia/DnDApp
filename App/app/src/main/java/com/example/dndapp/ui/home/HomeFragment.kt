@@ -2,6 +2,7 @@ package com.example.dndapp.ui.home
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +24,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewModel = activity?.run {
             ViewModelProvider(this).get(MainViewModel::class.java)
-        }//: throw Exception("Invalid Activity")
+        }!!//: throw Exception("Invalid Activity")
 
             return inflater.inflate(R.layout.fragment_home, container, false)
 
@@ -38,6 +39,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initViews() {
+        Log.d("ID: ", viewModel.currentCharacterID.toString())
         parentActivity = activity!!
 
         ibDice.setOnClickListener {

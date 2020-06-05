@@ -2,37 +2,34 @@ package com.example.dndapp
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.dndapp.database.api.DnDApiRepository
 import com.example.dndapp.database.characters.DnDCharacterRepository
 import com.example.dndapp.database.stats.StatsRepository
-import com.example.dndapp.model.DnDCharacter
 import com.example.dndapp.model.api.dataClasses.Result
-import com.example.dndapp.model.stats.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.util.Log
 
 public class MainViewModel(application: Application) : AndroidViewModel(application) {
-    private val standardCharacterID = 1
+    //private val standardCharacterID = 1 TODO: use this for standard char number
 
     private val dndCharacterRepository = DnDCharacterRepository(application.applicationContext)
     private val statsRepository = StatsRepository(application.applicationContext)
     private val dndApiRepository = DnDApiRepository()
 
-    private val mainScope = CoroutineScope(Dispatchers.Main)
+    //private val mainScope = CoroutineScope(Dispatchers.Main)
 
-    private var currentCharacterID = dndCharacterRepository.getLoadedCharacter()
-    val currentDnDCharacter = dndCharacterRepository.getDnDCharacter(currentCharacterID.value!!)
-    val currentStrength = statsRepository.getStrength(currentCharacterID.value!!)
-    val currentDexterity = statsRepository.getDexterity(currentCharacterID.value!!)
-    val currentConstitution = statsRepository.getConstitution(currentCharacterID.value!!)
-    val currentIntelligence = statsRepository.getIntelligence(currentCharacterID.value!!)
-    val currentWisdom = statsRepository.getWisdom(currentCharacterID.value!!)
-    val currentCharisma = statsRepository.getCharisma(currentCharacterID.value!!)
+    var currentCharacterID = dndCharacterRepository.getLoadedCharacter()
+
+    val currentDnDCharacter = dndCharacterRepository.getDnDCharacter(currentCharacterID)
+    val currentStrength = statsRepository.getStrength(currentCharacterID)
+    val currentDexterity = statsRepository.getDexterity(currentCharacterID)
+    val currentConstitution = statsRepository.getConstitution(currentCharacterID)
+    val currentIntelligence = statsRepository.getIntelligence(currentCharacterID)
+    val currentWisdom = statsRepository.getWisdom(currentCharacterID)
+    val currentCharisma = statsRepository.getCharisma(currentCharacterID)
 
     val backgroundInfo = MutableLiveData<String>()
     val error = MutableLiveData<String>()

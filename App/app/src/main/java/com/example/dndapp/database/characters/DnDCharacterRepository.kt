@@ -29,7 +29,7 @@ class DnDCharacterRepository(context: Context) {
         return dndCharacterDAO.getNote(currentDnDCharacter)
     }
 
-    fun getLoadedCharacter(): LiveData<Int> {
+    fun getLoadedCharacter(): Int {
         return  dndCharacterDAO.getLoadedCharacter()
     }
 
