@@ -60,6 +60,27 @@ abstract class DnDDatabase : RoomDatabase() {
                                         database.statsDAO().insertIntelligence(Intelligence(1, 10, 0, 0,2, 2, 0, 0, 2))
                                         database.statsDAO().insertWisdom(Wisdom(1, 15, 2, 4, 2, 4, 2, 2, 2))
                                         database.statsDAO().insertCharisma(Charisma(1, 10, 0, 2, 0, 0, 0, 2))
+                                        database.dndCharacterDAO().insertDnDCharacter(
+                                            DnDCharacter(
+                                                //TODO: replace with resource
+                                                2,
+                                                false,
+                                                "Test 2",
+                                                'V',
+                                                "Chaotic Testing",
+                                                20,
+                                                "Dit is een notitieee",
+                                                "Scoundrel",
+                                                "Dragonborn",
+                                                ""
+                                            )
+                                        )
+                                        database.statsDAO().insertStrength(Strength(2, 1, 2, 2, 2))
+                                        database.statsDAO().insertDexterity(Dexterity(2, 2, 0, 0, 0, 0, 0))
+                                        database.statsDAO().insertConstitution(Constitution(3, 16, 3, 3))
+                                        database.statsDAO().insertIntelligence(Intelligence(4, 10, 0, 0,2, 2, 0, 0, 2))
+                                        database.statsDAO().insertWisdom(Wisdom(2, 5, 2, 4, 2, 4, 2, 2, 2))
+                                        database.statsDAO().insertCharisma(Charisma(2, 6, 0, 2, 0, 0, 0, 2))
                                     }
                                 }
                             }

@@ -21,24 +21,25 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
 
     //private val mainScope = CoroutineScope(Dispatchers.Main)
 
-    /*
-    val currentDnDCharacter = dndCharacterRepository.getDnDCharacter(currentCharacterID)
-    val currentStrength = statsRepository.getStrength(currentCharacterID)
-    val currentDexterity = statsRepository.getDexterity(currentCharacterID)
-    val currentConstitution = statsRepository.getConstitution(currentCharacterID)
-    val currentIntelligence = statsRepository.getIntelligence(currentCharacterID)
-    val currentWisdom = statsRepository.getWisdom(currentCharacterID)
-    val currentCharisma = statsRepository.getCharisma(currentCharacterID)
 
-    val backgroundInfo = MutableLiveData<String>()
-    val error = MutableLiveData<String>()*/
+
 
     /*var currentCharacterID = MutableLiveData<Int>().apply {
         value = dndCharacterRepository.getLoadedCharacter().value
     }*/
 
-    var currentCharacterID = dndCharacterRepository.getLoadedCharacter()
+    var currentCharacterID = dndCharacterRepository.getLoadedCharacter() //dit moet gecheckt worden of t wel kan
 
+    var currentDnDCharacter = dndCharacterRepository.getDnDCharacter(standardCharacterID)
+    var currentStrength = statsRepository.getStrength(standardCharacterID)
+    var currentDexterity = statsRepository.getDexterity(standardCharacterID)
+    var currentConstitution = statsRepository.getConstitution(standardCharacterID)
+    var currentIntelligence = statsRepository.getIntelligence(standardCharacterID)
+    var currentWisdom = statsRepository.getWisdom(standardCharacterID)
+    var currentCharisma = statsRepository.getCharisma(standardCharacterID)
+
+    val backgroundInfo = MutableLiveData<String>()
+    val error = MutableLiveData<String>()
 
 
     //TODO: iets waarmee alles in 1 zit???
@@ -50,34 +51,35 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
     * If the call encountered an error then populate the [error] object.
     */
 
-    fun loadAllData() {
-        currentCharacterID = dndCharacterRepository.getLoadedCharacter()
+    fun loadAllData(loadedCharacterID: Int) {
+        //currentCharacterID = dndCharacterRepository.getLoadedCharacter()
+
+
         //currentCharacterID = dndCharacterRepository.getLoadedCharacter() as MutableLiveData<Int>
         /*currentCharacterID = MutableLiveData<Int>().apply {
             value = dndCharacterRepository.getLoadedCharacter().value
             Log.d("test vanuit viewmodel", dndCharacterRepository.getLoadedCharacter().value.toString())
         }*/
 
-        /*val currentDnDCharacter = dndCharacterRepository.getDnDCharacter(currentCharacterID)
-        val currentStrength = statsRepository.getStrength(currentCharacterID)
-        val currentDexterity = statsRepository.getDexterity(currentCharacterID)
-        val currentConstitution = statsRepository.getConstitution(currentCharacterID)
-        val currentIntelligence = statsRepository.getIntelligence(currentCharacterID)
-        val currentWisdom = statsRepository.getWisdom(currentCharacterID)
-        val currentCharisma = statsRepository.getCharisma(currentCharacterID)
+        currentDnDCharacter = dndCharacterRepository.getDnDCharacter(loadedCharacterID)
+        currentStrength = statsRepository.getStrength(loadedCharacterID)
+        currentDexterity = statsRepository.getDexterity(loadedCharacterID)
+        currentConstitution = statsRepository.getConstitution(loadedCharacterID)
+        currentIntelligence = statsRepository.getIntelligence(loadedCharacterID)
+        currentWisdom = statsRepository.getWisdom(loadedCharacterID)
+        currentCharisma = statsRepository.getCharisma(loadedCharacterID)
 
-        val backgroundInfo = MutableLiveData<String>()
-        val error = MutableLiveData<String>()*/
+
     }
 
     //TODO: maak een functie die een character laadt als je m verandert
 
-    /*fun getBackgroundInfo(charBackground: String) {
+    fun getBackgroundInfo(charBackground: String) {
         dndApiRepository.getBackground(charBackground).enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
                 if (response.isSuccessful) {
                     backgroundInfo.value = response.body()!!.results[0].desc
-                    print("RESULTAAT:" + backgroundInfo.value)
+                    Log.d("RESULTAAT:", backgroundInfo.value.toString())
                 } else {
                     error.value = "An error occurred: ${response.errorBody().toString()}"
                 }
@@ -87,7 +89,7 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
                 error.value = t.message
             }
         })
-    }*/
+    }
 
     fun onAppClosure() {
         //TODO: saving the current selected character, when it changes, niet perse hier

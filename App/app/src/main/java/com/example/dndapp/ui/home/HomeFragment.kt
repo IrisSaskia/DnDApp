@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
         //TODO: Add all supers again or check if needed
 
         initViews()
-        //initViewModel()
+        initViewModel()
     }
 
     private fun initViews() {
@@ -50,14 +50,14 @@ class HomeFragment : Fragment() {
         }
     }
 
-    /*private fun initViewModel() {
+    private fun initViewModel() {
         viewModel.currentDnDCharacter.observe(viewLifecycleOwner, Observer { currentDnDCharacter ->
             if(currentDnDCharacter != null) {
                 tvName.text = currentDnDCharacter.name
                 tvLevel.text = getString(R.string.level_indicator, currentDnDCharacter.level.toString())
                 //TODO: Add class
                 var charRace: String
-                if(currentDnDCharacter.subRace != null) {
+                if(currentDnDCharacter.subRace != "" && currentDnDCharacter.subRace != null) {
                     charRace = currentDnDCharacter.subRace + " " + currentDnDCharacter.race
                 } else {
                     charRace = currentDnDCharacter.race
@@ -108,7 +108,7 @@ class HomeFragment : Fragment() {
                 tvSaveNumberConstitution.text = getString(R.string.save_mod_placeholder, currentConstitution.save.toString())
             }
         })
-    }*/
+    }
 
     public fun levelUp() {
 

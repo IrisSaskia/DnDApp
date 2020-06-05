@@ -50,11 +50,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.currentCharacterID.observe(this, Observer { currentCharacterID ->
             if(currentCharacterID != null) {
                 Log.d("1ste test", currentCharacterID.toString())
-                viewModel.loadAllData()
+                viewModel.loadAllData(currentCharacterID)
                 Log.d("2de test", currentCharacterID.toString())
             } else {
                 Log.d("error van Iris", "error")
-                viewModel.loadAllData()
+                viewModel.loadAllData(currentCharacterID)
+                //TODO: change to proper error handling
                 Log.d("test na error", currentCharacterID.toString())
             }
         })
