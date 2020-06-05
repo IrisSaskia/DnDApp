@@ -17,22 +17,22 @@ import retrofit2.Callback
 import retrofit2.Response
 
 public class MainViewModel(application: Application) : AndroidViewModel(application) {
-    private var currentCharacterID = MutableLiveData<Int>()
-    private var standardCharacterID = 1
+    private val standardCharacterID = 1
 
     private val dndCharacterRepository = DnDCharacterRepository(application.applicationContext)
     private val statsRepository = StatsRepository(application.applicationContext)
+    private val dndApiRepository = DnDApiRepository()
+
     private val mainScope = CoroutineScope(Dispatchers.Main)
 
-    lateinit var currentDnDCharacter: LiveData<DnDCharacter?>
-    lateinit var currentStrength: LiveData<Strength?>
-    lateinit var currentDexterity: LiveData<Dexterity?>
-    lateinit var currentConstitution: LiveData<Constitution?>
-    lateinit var currentIntelligence: LiveData<Intelligence?>
-    lateinit var currentWisdom: LiveData<Wisdom?>
-    lateinit var currentCharisma: LiveData<Charisma?>
-
-    private val dndApiRepository = DnDApiRepository()
+    private var currentCharacterID = dndCharacterRepository.getLoadedCharacter()
+    val currentDnDCharacter = dndCharacterRepository.getDnDCharacter(currentCharacterID.value!!)
+    val currentStrength = statsRepository.getStrength(currentCharacterID.value!!)
+    val currentDexterity = statsRepository.getDexterity(currentCharacterID.value!!)
+    val currentConstitution = statsRepository.getConstitution(currentCharacterID.value!!)
+    val currentIntelligence = statsRepository.getIntelligence(currentCharacterID.value!!)
+    val currentWisdom = statsRepository.getWisdom(currentCharacterID.value!!)
+    val currentCharisma = statsRepository.getCharisma(currentCharacterID.value!!)
 
     val backgroundInfo = MutableLiveData<String>()
     val error = MutableLiveData<String>()
@@ -40,33 +40,14 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
     //TODO: iets waarmee alles in 1 zit???
     //TODO: moet er 1 viewmodel zijn waarin dit maar 1x gedaan hoeft te worden?
 
-    /*fun updateCharacter() {
-        mainScope.launch {
-
-        }
-    }*/
-
-    private fun init() {
-        if(dndCharacterRepository.getCurrentCharacter() != null) {
-            currentCharacterID = dndCharacterRepository.getCurrentCharacter() as MutableLiveData<Int>
-        } else {
-            currentCharacterID.value = standardCharacterID
-        }
-
-        currentDnDCharacter = dndCharacterRepository.getDnDCharacter(currentCharacterID)
-        currentStrength = statsRepository.getStrength(currentCharacterID)
-        currentDexterity = statsRepository.getDexterity(currentCharacterID)
-        currentConstitution = statsRepository.getConstitution(currentCharacterID)
-        currentIntelligence = statsRepository.getIntelligence(currentCharacterID)
-        currentWisdom = statsRepository.getWisdom(currentCharacterID)
-        currentCharisma = statsRepository.getCharisma(currentCharacterID)
-    }
-
     /**
     * Get a random number trivia from the repository using Retrofit.
     * onResponse if the response is successful populate the [result] object.
     * If the call encountered an error then populate the [error] object.
     */
+
+    //TODO: maak een functie die een character laadt als je m verandert
+
     fun getBackgroundInfo(charBackground: String) {
         dndApiRepository.getBackground(charBackground).enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
@@ -82,5 +63,9 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
                 error.value = t.message
             }
         })
+    }
+
+    fun onAppClosure() {
+        //TODO: saving the current selected character, when it changes, niet perse hier
     }
 }

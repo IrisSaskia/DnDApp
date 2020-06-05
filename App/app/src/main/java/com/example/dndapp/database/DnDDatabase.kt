@@ -43,6 +43,7 @@ abstract class DnDDatabase : RoomDatabase() {
                                             DnDCharacter(
                                                 //TODO: replace with resource
                                                 1,
+                                                true,
                                                 "Test",
                                                 'O',
                                                 "Chaotic Testing",

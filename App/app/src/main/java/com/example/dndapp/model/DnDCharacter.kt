@@ -10,6 +10,9 @@ data class DnDCharacter (
     @ColumnInfo(name = "id")
     var id: Long? = null,
 
+    @ColumnInfo(name = "active")
+    var active: Boolean,
+
     @ColumnInfo(name = "name")
     var name: String,
 

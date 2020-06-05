@@ -14,27 +14,27 @@ class StatsRepository(context: Context) {
         statsDAO = database!!.statsDAO()
     }
 
-    fun getStrength(currentDnDCharacter: MutableLiveData<Int>): LiveData<Strength?> {
+    fun getStrength(currentDnDCharacter: Int): LiveData<Strength?> {
         return statsDAO.getStrength(currentDnDCharacter)
     }
 
-    fun getDexterity(currentDnDCharacter: MutableLiveData<Int>): LiveData<Dexterity?> {
+    fun getDexterity(currentDnDCharacter: Int): LiveData<Dexterity?> {
         return statsDAO.getDexterity(currentDnDCharacter)
     }
 
-    fun getConstitution(currentDnDCharacter: MutableLiveData<Int>): LiveData<Constitution?> {
+    fun getConstitution(currentDnDCharacter: Int): LiveData<Constitution?> {
         return statsDAO.getConstitution(currentDnDCharacter)
     }
 
-    fun getIntelligence(currentDnDCharacter: MutableLiveData<Int>): LiveData<Intelligence?> {
+    fun getIntelligence(currentDnDCharacter: Int): LiveData<Intelligence?> {
         return statsDAO.getIntelligence(currentDnDCharacter)
     }
 
-    fun getWisdom(currentDnDCharacter: MutableLiveData<Int>): LiveData<Wisdom?> {
+    fun getWisdom(currentDnDCharacter: Int): LiveData<Wisdom?> {
         return statsDAO.getWisdom(currentDnDCharacter)
     }
 
-    fun getCharisma(currentDnDCharacter: MutableLiveData<Int>): LiveData<Charisma?> {
+    fun getCharisma(currentDnDCharacter: Int): LiveData<Charisma?> {
         return statsDAO.getCharisma(currentDnDCharacter)
     }
 }

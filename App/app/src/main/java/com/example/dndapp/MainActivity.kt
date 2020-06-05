@@ -8,12 +8,14 @@ import android.widget.ImageButton
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.dndapp.ui.home.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import com.example.dndapp.MainViewModel as AndroidViewModel
 
 class MainActivity : AppCompatActivity() {
     //TODO: overal comments toevoegen!!!

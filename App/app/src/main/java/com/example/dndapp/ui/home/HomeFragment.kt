@@ -21,9 +21,12 @@ class HomeFragment : Fragment() {
     private lateinit var parentActivity: Activity
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = activity?.run {
+            ViewModelProvider(this).get(MainViewModel::class.java)
+        }//: throw Exception("Invalid Activity")
 
-        return inflater.inflate(R.layout.fragment_home, container, false)
+            return inflater.inflate(R.layout.fragment_home, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

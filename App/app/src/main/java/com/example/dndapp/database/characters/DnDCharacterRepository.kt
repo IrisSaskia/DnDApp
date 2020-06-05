@@ -2,7 +2,6 @@ package com.example.dndapp.database.characters
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.dndapp.database.DnDDatabase
 import com.example.dndapp.model.DnDCharacter
 
@@ -14,7 +13,7 @@ class DnDCharacterRepository(context: Context) {
         dndCharacterDAO = database!!.dndCharacterDAO()
     }
 
-    fun getDnDCharacter(currentDnDCharacter: MutableLiveData<Int>): LiveData<DnDCharacter?> {
+    fun getDnDCharacter(currentDnDCharacter: Int): LiveData<DnDCharacter?> {
         return dndCharacterDAO.getDnDCharacter(currentDnDCharacter)
     }
 
@@ -30,8 +29,12 @@ class DnDCharacterRepository(context: Context) {
         return dndCharacterDAO.getNote(currentDnDCharacter)
     }
 
-    //CURRENT CHARACTER
-    fun getCurrentCharacter(): LiveData<Int> {
-        return dndCharacterDAO.getCurrentCharacter()
+    fun getLoadedCharacter(): LiveData<Int> {
+        return  dndCharacterDAO.getLoadedCharacter()
     }
+
+//    //CURRENT CHARACTER
+//    fun getCurrentCharacter(): LiveData<CurrentAppState> {
+//        return dndCharacterDAO.getCurrentCharacter()
+//    }
 }

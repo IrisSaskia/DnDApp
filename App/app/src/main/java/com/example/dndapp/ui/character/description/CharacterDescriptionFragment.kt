@@ -20,7 +20,10 @@ class CharacterDescriptionFragment : Fragment() {
     private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = activity?.run {
+            ViewModelProviders(this).get(MainViewModel::class.java)
+        } ?: throw Exception("Invalid Activity")
+        //viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_character_description, container, false)
     }
