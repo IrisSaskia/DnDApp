@@ -17,17 +17,17 @@ import com.example.dndapp.model.DnDCharacter
 data class Strength (
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "characterID")
-    var characterID: Long? = null,
+    override var characterID: Long? = null,
 
     @ColumnInfo(name = "stat")
-    var stat: Int,
+    override var stat: Int,
 
     @ColumnInfo(name = "modifier")
-    var modifier: Int,
+    override var modifier: Int,
 
     @ColumnInfo(name = "save")
-    var save: Int,
+    override var save: Int,
 
     @ColumnInfo(name = "athletics")
     var athletics: Int
-)
+) : Stat()

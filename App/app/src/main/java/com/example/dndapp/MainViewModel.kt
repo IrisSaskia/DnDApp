@@ -11,6 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.util.Log
+import com.example.dndapp.model.stats.Stat
 
 public class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val standardCharacterID = 1 //TODO: use this for standard char number
@@ -38,6 +39,11 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
     var currentWisdom = statsRepository.getWisdom(standardCharacterID)
     var currentCharisma = statsRepository.getCharisma(standardCharacterID)
 
+    var statArray = arrayOf<Stat>(
+        currentStrength,
+        currentDexterity
+    )
+
     val backgroundInfo = MutableLiveData<String>()
     val error = MutableLiveData<String>()
 
@@ -50,6 +56,10 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
     * onResponse if the response is successful populate the [result] object.
     * If the call encountered an error then populate the [error] object.
     */
+
+    fun toStat() {
+
+    }
 
     fun loadAllData(loadedCharacterID: Int) {
         //currentCharacterID = dndCharacterRepository.getLoadedCharacter()

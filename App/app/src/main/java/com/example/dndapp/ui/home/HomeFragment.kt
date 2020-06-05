@@ -64,6 +64,8 @@ class HomeFragment : Fragment() {
                 }
                 tvClassRace.text = charRace
                 //TODO: Add HP
+
+                viewModel.loadAllData(currentDnDCharacter.id!!.toInt())
             }
         })
         viewModel.currentStrength.observe(viewLifecycleOwner, Observer { currentStrength ->

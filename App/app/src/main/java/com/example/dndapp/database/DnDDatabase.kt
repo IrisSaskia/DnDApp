@@ -43,7 +43,7 @@ abstract class DnDDatabase : RoomDatabase() {
                                             DnDCharacter(
                                                 //TODO: replace with resource
                                                 1,
-                                                true,
+                                                false,
                                                 "Test",
                                                 'O',
                                                 "Chaotic Testing",
@@ -64,7 +64,7 @@ abstract class DnDDatabase : RoomDatabase() {
                                             DnDCharacter(
                                                 //TODO: replace with resource
                                                 2,
-                                                false,
+                                                true,
                                                 "Test 2",
                                                 'V',
                                                 "Chaotic Testing",
@@ -77,8 +77,8 @@ abstract class DnDDatabase : RoomDatabase() {
                                         )
                                         database.statsDAO().insertStrength(Strength(2, 1, 2, 2, 2))
                                         database.statsDAO().insertDexterity(Dexterity(2, 2, 0, 0, 0, 0, 0))
-                                        database.statsDAO().insertConstitution(Constitution(3, 16, 3, 3))
-                                        database.statsDAO().insertIntelligence(Intelligence(4, 10, 0, 0,2, 2, 0, 0, 2))
+                                        database.statsDAO().insertConstitution(Constitution(2, 3, 3, 3))
+                                        database.statsDAO().insertIntelligence(Intelligence(2, 4, 0, 0,2, 2, 0, 0, 2))
                                         database.statsDAO().insertWisdom(Wisdom(2, 5, 2, 4, 2, 4, 2, 2, 2))
                                         database.statsDAO().insertCharisma(Charisma(2, 6, 0, 2, 0, 0, 0, 2))
                                     }
