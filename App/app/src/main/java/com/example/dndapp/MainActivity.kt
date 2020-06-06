@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         hamburgerButton.setOnClickListener {
             showPopUp(hamburgerButton)
         }
+
     }
 
     private fun initViewModel() {
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d("2de test", currentCharacterID.toString())
             } else {
                 Log.d("error van Iris", "error")
-                viewModel.loadAllData(currentCharacterID)
+                viewModel.loadAllData(1)
                 //TODO: change to proper error handling
                 Log.d("test na error", currentCharacterID.toString())
             }
@@ -83,8 +84,6 @@ class MainActivity : AppCompatActivity() {
                 Log.d("error", "strength")
             }
         })
-
-        //Log.d("strength test", viewModel.arrayOfStats[0]!!.stat.toString())
     }
 
     private fun showPopUp(buttonView: View?) {

@@ -73,12 +73,16 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
 
         currentDnDCharacter = dndCharacterRepository.getDnDCharacter(loadedCharacterID)
 
+        Log.d("laden", "bezig")
+
         currentStrength = statsRepository.getStrength(loadedCharacterID)
         currentDexterity = statsRepository.getDexterity(loadedCharacterID)
         currentConstitution = statsRepository.getConstitution(loadedCharacterID)
         currentIntelligence = statsRepository.getIntelligence(loadedCharacterID)
         currentWisdom = statsRepository.getWisdom(loadedCharacterID)
         currentCharisma = statsRepository.getCharisma(loadedCharacterID)
+
+//        Log.d("laden strength", currentStrength.value?.stat.toString())
 
         /*arrayOfStats[0] = currentStrength.value
         arrayOfStats[1] = currentDexterity.value

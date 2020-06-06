@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
                         Constitution::class,
                         Intelligence::class,
                         Wisdom::class,
-                        Charisma::class], version = 1, exportSchema = false)
+                        Charisma::class], version = 2, exportSchema = false)
 abstract class DnDDatabase : RoomDatabase() {
     abstract fun dndCharacterDAO(): DnDCharacterDAO
     abstract fun statsDAO(): StatsDAO
