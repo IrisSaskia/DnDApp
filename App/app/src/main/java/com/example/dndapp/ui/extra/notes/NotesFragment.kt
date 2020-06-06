@@ -12,16 +12,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dndapp.MainActivity
+import com.example.dndapp.MainViewModel
 import com.example.dndapp.R
 import kotlinx.android.synthetic.main.fragment_extra_notes.*
 import kotlin.toString as toString
 
 class NotesFragment : Fragment() {
-    private lateinit var notesViewModel: NotesViewModel
+    private lateinit var viewModel: MainViewModel
     private lateinit var parentActivity: Activity
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        notesViewModel = ViewModelProvider(this).get(NotesViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         return inflater.inflate(R.layout.fragment_extra_notes, container, false)
     }
@@ -42,7 +43,7 @@ class NotesFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        notesViewModel.note.observe(viewLifecycleOwner, Observer { note ->
+        viewModel.note.observe(viewLifecycleOwner, Observer { note ->
             if (note != null) {
                 etNotes.setText(note)
             }
@@ -50,14 +51,16 @@ class NotesFragment : Fragment() {
     }
 
     private fun saveNotes() {
-        Toast.makeText(notesViewModel.getApplication(), R.string.saving_text, Toast.LENGTH_SHORT).show()
-        notesViewModel.note.value?.apply {
-            notesViewModel.note = MutableLiveData(etNotes.text.toString())
+        Toast.makeText(viewModel.getApplication(), R.string.saving_text, Toast.LENGTH_SHORT).show()
+        viewModel.note.value?.apply {
+            viewModel.note = MutableLiveData(etNotes.text.toString())
         }
 
-        notesViewModel.updateNotes()
+        viewModel.currentCharacterID.observe(viewLifecycleOwner, Observer { currentCharacterID ->
+            viewModel.updateNotes(currentCharacterID)
+        })
 
-        Toast.makeText(notesViewModel.getApplication(), R.string.saved_text, Toast.LENGTH_SHORT).show()
+        Toast.makeText(viewModel.getApplication(), R.string.saved_text, Toast.LENGTH_SHORT).show()
     }
 
     override fun onPause() {

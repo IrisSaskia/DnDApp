@@ -1,5 +1,6 @@
 package com.example.dndapp.ui.extra.notes
 
+/*
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -26,4 +27,4 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
-}
+}*/
