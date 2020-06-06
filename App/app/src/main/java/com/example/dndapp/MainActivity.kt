@@ -9,12 +9,9 @@ import android.widget.ImageButton
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.dndapp.model.DnDCharacter
 import com.example.dndapp.ui.home.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,15 +22,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navHostFragment: Fragment
     private lateinit var fragment: Fragment
     private lateinit var navController: NavController
-    lateinit var viewModel: MainViewModel
-
-    lateinit var loadedCharacter: DnDCharacter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        //viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         navController = findNavController(R.id.nav_host_fragment)
@@ -53,37 +47,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        viewModel.loadAllData(1)
-        viewModel.currentCharacterID.observe(this, Observer { currentCharacterID ->
-            if(currentCharacterID != null) {
-                Log.d("1ste test", currentCharacterID.toString())
-                viewModel.loadAllData(currentCharacterID)
-                Log.d("2de test", currentCharacterID.toString())
-            } else {
-                Log.d("error van Iris", "error")
-                viewModel.loadAllData(1)
-                //TODO: change to proper error handling
-                Log.d("test na error", currentCharacterID.toString())
-            }
-            viewModel.currentDnDCharacter.observe(this, Observer {currentDnDCharacter ->
-                if(currentDnDCharacter != null) {
-                    Log.d("background check main", currentDnDCharacter.background)
-                    loadedCharacter = currentDnDCharacter
-                } else {
-                    Log.d("error", "character")
-                }
-            })
-        })
-
-
-
-        viewModel.currentStrength.observe(this, Observer {currentStrength ->
-            if(currentStrength != null) {
-                Log.d("strength via main", currentStrength.stat.toString())
-            } else {
-                Log.d("error", "strength")
-            }
-        })
     }
 
     private fun showPopUp(buttonView: View?) {

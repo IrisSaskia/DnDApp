@@ -19,13 +19,10 @@ import kotlinx.android.synthetic.main.fragment_character_description.*
  * A simple [Fragment] subclass.
  */
 class CharacterDescriptionFragment : Fragment() {
-    //private lateinit var viewModel: MainViewModel
-    private lateinit var parentActivity: Activity
-    private lateinit var activityVarRef: MainActivity
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        //viewModel = activity?.run { ViewModelProvider(this).get(MainViewModel::class.java) } ?: throw Exception("Invalid Activity")
-        //viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_character_description, container, false)
     }
@@ -38,21 +35,19 @@ class CharacterDescriptionFragment : Fragment() {
     }
 
     private fun initViews() {
-        parentActivity = activity!!
-        activityVarRef = ((activity as MainActivity?)!!)
     }
 
     private fun initViewModel() {
-        activityVarRef.viewModel.currentDnDCharacter.observe(viewLifecycleOwner, Observer { currentDnDCharacter ->
+        viewModel.currentDnDCharacter.observe(viewLifecycleOwner, Observer { currentDnDCharacter ->
             if(currentDnDCharacter != null) {
                 tvBackgroundName.text = currentDnDCharacter.background
-                activityVarRef.viewModel.getBackgroundInfo(currentDnDCharacter.background)
-                tvBackgroundInfo.text = activityVarRef.viewModel.backgroundInfo.toString()
+                viewModel.getBackgroundInfo(currentDnDCharacter.background)
+                tvBackgroundInfo.text = viewModel.backgroundInfo.toString()
                 Log.d("backgroundTV", tvBackgroundInfo.text as String)
             }
         })
 
-        activityVarRef.viewModel.backgroundInfo.observe(viewLifecycleOwner, Observer { backgroundInfo ->
+        viewModel.backgroundInfo.observe(viewLifecycleOwner, Observer { backgroundInfo ->
             if(backgroundInfo != null) {
                 tvBackgroundInfo.text = backgroundInfo
             }
