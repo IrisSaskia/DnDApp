@@ -6,3 +6,5 @@ abstract class Stat {
     abstract var modifier: Int
     abstract var save: Int
 }
+
+//TODO: als ik hier niet uitkom kan deze class weg en de inheritence ervan ook

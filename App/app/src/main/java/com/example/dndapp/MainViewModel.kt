@@ -39,10 +39,10 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
     var currentWisdom = statsRepository.getWisdom(standardCharacterID)
     var currentCharisma = statsRepository.getCharisma(standardCharacterID)
 
-    var statArray = arrayOf<Stat>(
+    /*var statArray = arrayOf<Stat>(
         currentStrength,
         currentDexterity
-    )
+    )*/
 
     val backgroundInfo = MutableLiveData<String>()
     val error = MutableLiveData<String>()
