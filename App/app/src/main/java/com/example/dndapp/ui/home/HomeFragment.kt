@@ -37,9 +37,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initViews() {
-        //Log.d("ID vanuit homefragment:", viewModel.currentCharacterID.value.toString())
         parentActivity = activity!!
-        //activityVarRef = ((activity as MainActivity?)!!)
 
         ibDice.setOnClickListener {
             startDiceFragment()
@@ -52,11 +50,8 @@ class HomeFragment : Fragment() {
     private fun initViewModel() {
         viewModel.currentCharacterID.observe(viewLifecycleOwner, Observer { currentCharacterID ->
             if(currentCharacterID != null) {
-                //viewModel.loadAllData(currentCharacterID)
-                //loadedCharacter = viewModel.currentDnDCharacter.value!!
                 Log.d("null?", "yay")
             } else {
-                //viewModel.loadAllData(1)
                 Log.d("null?", "potver")
             }
         })

@@ -17,6 +17,7 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
     var note: LiveData<String> = dndCharacterRepository.getNote(1)
 //TODO: was mutablelivedata nou nodig???
 //TODO: misschien nog error handling voor bijvoorbeeld het opslaan van een lege notitie?
+    //TODO: dit nog naar mainviewmodel verplaatsen
 
     fun updateNotes() {
         mainScope.launch {

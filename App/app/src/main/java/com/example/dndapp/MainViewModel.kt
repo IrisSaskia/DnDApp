@@ -73,14 +73,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    //var currentDnDCharacter = dndCharacterRepository.getDnDCharacter(currentCharacterID.value?: standardCharacterID) //TODO: miss op deze manier oplossen???
-    /*var currentStrength = statsRepository.getStrength(currentCharacterID.value?: standardCharacterID)
-    var currentDexterity = statsRepository.getDexterity(currentCharacterID.value?: standardCharacterID)
-    var currentConstitution = statsRepository.getConstitution(currentCharacterID.value?: standardCharacterID)
-    var currentIntelligence = statsRepository.getIntelligence(currentCharacterID.value?: standardCharacterID)
-    var currentWisdom = statsRepository.getWisdom(currentCharacterID.value?: standardCharacterID)
-    var currentCharisma = statsRepository.getCharisma(currentCharacterID.value?: standardCharacterID)*/
-
     val backgroundInfo = MutableLiveData<String>()
     val error = MutableLiveData<String>()
 
