@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.dndapp.model.DnDCharacter
 import com.example.dndapp.ui.home.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fragment: Fragment
     private lateinit var navController: NavController
     lateinit var viewModel: MainViewModel
+
+    lateinit var loadedCharacter: DnDCharacter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,15 +64,17 @@ class MainActivity : AppCompatActivity() {
                 //TODO: change to proper error handling
                 Log.d("test na error", currentCharacterID.toString())
             }
+            viewModel.currentDnDCharacter.observe(this, Observer {currentDnDCharacter ->
+                if(currentDnDCharacter != null) {
+                    Log.d("background check main", currentDnDCharacter.background)
+                    loadedCharacter = currentDnDCharacter
+                } else {
+                    Log.d("error", "character")
+                }
+            })
         })
 
-        viewModel.currentDnDCharacter.observe(this, Observer {currentDnDCharacter ->
-            if(currentDnDCharacter != null) {
-                Log.d("background check main", currentDnDCharacter.background)
-            } else {
-                Log.d("error", "character")
-            }
-        })
+
 
         viewModel.currentStrength.observe(this, Observer {currentStrength ->
             if(currentStrength != null) {

@@ -23,7 +23,7 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
 
     var currentCharacterID = dndCharacterRepository.getLoadedCharacter() //dit moet gecheckt worden of t wel kan
 
-    var currentDnDCharacter = dndCharacterRepository.getDnDCharacter(currentCharacterID.value?: standardCharacterID)
+    var currentDnDCharacter = dndCharacterRepository.getDnDCharacter(currentCharacterID.value?: standardCharacterID) //TODO: miss op deze manier oplossen???
     var currentStrength = statsRepository.getStrength(currentCharacterID.value?: standardCharacterID)
     var currentDexterity = statsRepository.getDexterity(standardCharacterID)
     var currentConstitution = statsRepository.getConstitution(standardCharacterID)

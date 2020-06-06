@@ -36,6 +36,7 @@
     <string name="title_background">Background</string>
     <string name="placeholder_background">YOUR BACKGROUND</string>
     <string name="background_info_placeholder">Background infoooo</string>
+    <string name="made_by">Gemaakt door: Iris Oostra</string>
 
 
     <!-- TODO: Add placeholder text for all images! -->

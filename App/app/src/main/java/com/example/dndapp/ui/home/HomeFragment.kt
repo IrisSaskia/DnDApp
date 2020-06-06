@@ -18,7 +18,6 @@ import com.example.dndapp.model.DnDCharacter
 import com.example.dndapp.model.stats.Stat
 import kotlinx.android.synthetic.main.fragment_home.*
 
-
 class HomeFragment : Fragment() {
     //private lateinit var viewModel: MainViewModel
     //TODO: add viewmodel in mainactivity???
@@ -121,7 +120,7 @@ class HomeFragment : Fragment() {
             }
         })
 
-        activityVarRef.viewModel.currentDnDCharacter.observe(viewLifecycleOwner, Observer { currentDnDCharacter ->
+        /*activityVarRef.viewModel.currentDnDCharacter.observe(viewLifecycleOwner, Observer { currentDnDCharacter ->
             if(currentDnDCharacter != null) {
                 tvName.text = currentDnDCharacter.name
                 Log.d("name textview", tvName.text as String)
@@ -139,7 +138,26 @@ class HomeFragment : Fragment() {
 
                 //viewModel.loadAllData(currentDnDCharacter.id!!.toInt())
             }
-        })
+        })*/
+
+        if(activityVarRef.loadedCharacter != null) {
+            tvName.text = activityVarRef.loadedCharacter.name
+            Log.d("name textview", tvName.text as String)
+            Log.d("name database", activityVarRef.loadedCharacter.name)
+            tvLevel.text = getString(R.string.level_indicator, activityVarRef.loadedCharacter.level.toString())
+            //TODO: Add class
+            var charRace: String
+            if(activityVarRef.loadedCharacter.subRace != "" && activityVarRef.loadedCharacter.subRace != null) {
+                charRace = activityVarRef.loadedCharacter.subRace + " " + activityVarRef.loadedCharacter.race
+            } else {
+                charRace = activityVarRef.loadedCharacter.race
+            }
+            tvClassRace.text = charRace
+            //TODO: Add HP
+
+            //viewModel.loadAllData(currentDnDCharacter.id!!.toInt())
+        }
+
 
         /*for (i in arrayOfStats.size until arrayOfStats.size) {
             arrayOfTVStat[i]!!.text = arrayOfStats[i]!!.stat.toString()
