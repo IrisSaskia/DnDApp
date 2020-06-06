@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         navView.itemIconTintList = null
 
         this.initViews()
+        this.initViewModel()
     }
 
     private fun initViews() {
@@ -45,8 +46,9 @@ class MainActivity : AppCompatActivity() {
         hamburgerButton.setOnClickListener {
             showPopUp(hamburgerButton)
         }
-        
-        
+    }
+
+    private fun initViewModel() {
         viewModel.currentCharacterID.observe(this, Observer { currentCharacterID ->
             if(currentCharacterID != null) {
                 Log.d("1ste test", currentCharacterID.toString())

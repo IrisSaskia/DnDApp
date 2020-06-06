@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,18 +14,24 @@ import androidx.navigation.findNavController
 import com.example.dndapp.MainActivity
 import com.example.dndapp.MainViewModel
 import com.example.dndapp.R
+import com.example.dndapp.model.DnDCharacter
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class HomeFragment : Fragment() {
-    private lateinit var viewModel: MainViewModel
+    //private lateinit var viewModel: MainViewModel
     //TODO: add viewmodel in mainactivity???
     private lateinit var parentActivity: Activity
+    private lateinit var activityVarRef: MainActivity
+
+    lateinit var loadedCharacter: DnDCharacter
+
+    var arrayOfTVStat: Array<TextView?> = arrayOfNulls(6)
+    var arrayOfTVMod: Array<TextView?> = arrayOfNulls(6)
+    var arrayOfTVSave: Array<TextView?> = arrayOfNulls(6)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewModel = activity?.run {
-            ViewModelProvider(this).get(MainViewModel::class.java)
-        }!!//: throw Exception("Invalid Activity")
+        //viewModel = activity?.run { ViewModelProvider(this).get(MainViewModel::class.java) }!!//: throw Exception("Invalid Activity")
 
             return inflater.inflate(R.layout.fragment_home, container, false)
 
@@ -36,11 +43,13 @@ class HomeFragment : Fragment() {
 
         initViews()
         initViewModel()
+        initTextViewArrays()
     }
 
     private fun initViews() {
         //Log.d("ID vanuit homefragment:", viewModel.currentCharacterID.value.toString())
         parentActivity = activity!!
+        activityVarRef = ((activity as MainActivity?)!!)
 
         ibDice.setOnClickListener {
             startDiceFragment()
@@ -48,12 +57,33 @@ class HomeFragment : Fragment() {
         ibCombat.setOnClickListener {
             startCombatFragment()
         }
+
+        //arrayOfTVStat[0] = tvStatNumberStrength
+    }
+
+    private fun initTextViewArrays() {
+        arrayOfTVStat[0] = tvStatNumberStrength
+        arrayOfTVStat[1] = tvStatNumberDexterity
+        arrayOfTVStat[2] = tvStatNumberConstitution
+        arrayOfTVStat[3] = tvStatNumberIntelligence
+        arrayOfTVStat[4] = tvStatNumberWisdom
+        arrayOfTVStat[5] = tvStatNumberCharisma
+
     }
 
     private fun initViewModel() {
-        viewModel.currentDnDCharacter.observe(viewLifecycleOwner, Observer { currentDnDCharacter ->
+        activityVarRef.viewModel.currentCharacterID.observe(viewLifecycleOwner, Observer { currentCharacterID ->
+            if(currentCharacterID != null) {
+                activityVarRef.viewModel.loadAllData(currentCharacterID)
+                //loadedCharacter = viewModel.currentDnDCharacter.value!!
+            }
+        })
+
+        activityVarRef.viewModel.currentDnDCharacter.observe(viewLifecycleOwner, Observer { currentDnDCharacter ->
             if(currentDnDCharacter != null) {
                 tvName.text = currentDnDCharacter.name
+                Log.d("name textview", tvName.text as String)
+                Log.d("name database", currentDnDCharacter.name)
                 tvLevel.text = getString(R.string.level_indicator, currentDnDCharacter.level.toString())
                 //TODO: Add class
                 var charRace: String
@@ -65,10 +95,14 @@ class HomeFragment : Fragment() {
                 tvClassRace.text = charRace
                 //TODO: Add HP
 
-                viewModel.loadAllData(currentDnDCharacter.id!!.toInt())
+                //viewModel.loadAllData(currentDnDCharacter.id!!.toInt())
             }
         })
-        viewModel.currentStrength.observe(viewLifecycleOwner, Observer { currentStrength ->
+
+        for (i in activityVarRef.viewModel.arrayOfStats.size until activityVarRef.viewModel.arrayOfStats.size) {
+            arrayOfTVStat[i]!!.text = activityVarRef.viewModel.arrayOfStats[i]!!.stat.toString()
+        }
+        /*viewModel.currentStrength.observe(viewLifecycleOwner, Observer { currentStrength ->
             if(currentStrength != null) {
                 tvStatNumberStrength.text = currentStrength.stat.toString()
                 tvModNumberStrength.text = getString(R.string.save_mod_placeholder, currentStrength.modifier.toString())
@@ -109,7 +143,7 @@ class HomeFragment : Fragment() {
                 tvModNumberConstitution.text = getString(R.string.save_mod_placeholder, currentConstitution.modifier.toString())
                 tvSaveNumberConstitution.text = getString(R.string.save_mod_placeholder, currentConstitution.save.toString())
             }
-        })
+        })*/
     }
 
     public fun levelUp() {
