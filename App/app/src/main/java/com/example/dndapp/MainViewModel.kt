@@ -23,23 +23,30 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
 
     var currentCharacterID = dndCharacterRepository.getLoadedCharacter() //dit moet gecheckt worden of t wel kan
 
-    //var currentDnDCharacter = dndCharacterRepository.getDnDCharacter(standardCharacterID)
-    //var currentStrength = statsRepository.getStrength(standardCharacterID)
-    /*var currentDexterity = statsRepository.getDexterity(standardCharacterID)
+    var currentDnDCharacter = dndCharacterRepository.getDnDCharacter(currentCharacterID.value?: standardCharacterID)
+    var currentStrength = statsRepository.getStrength(currentCharacterID.value?: standardCharacterID)
+    var currentDexterity = statsRepository.getDexterity(standardCharacterID)
     var currentConstitution = statsRepository.getConstitution(standardCharacterID)
     var currentIntelligence = statsRepository.getIntelligence(standardCharacterID)
     var currentWisdom = statsRepository.getWisdom(standardCharacterID)
-    var currentCharisma = statsRepository.getCharisma(standardCharacterID)*/
+    var currentCharisma = statsRepository.getCharisma(standardCharacterID)
 
-    val currentDnDCharacter = MutableLiveData<DnDCharacter>()
+    /*val currentDnDCharacter = MutableLiveData<DnDCharacter>()
     val currentStrength = MutableLiveData<Strength>()
     val currentDexterity = MutableLiveData<Dexterity>()
     val currentConstitution = MutableLiveData<Constitution>()
     val currentIntelligence = MutableLiveData<Intelligence>()
     val currentWisdom = MutableLiveData<Wisdom>()
-    val currentCharisma = MutableLiveData<Charisma>()
+    val currentCharisma = MutableLiveData<Charisma>()*/
 
-    var arrayOfStats: Array<Stat?> = arrayOfNulls(6)
+//    var arrayOfStats: Array<Stat?> = arrayOfNulls(6)
+    /*arrayOfStats[0] = currentStrength.value
+    arrayOfStats[1] = currentDexterity.value
+    arrayOfStats[2] = currentConstitution.value
+    arrayOfStats[3] = currentIntelligence.value
+    arrayOfStats[4] = currentWisdom.value
+    arrayOfStats[5] = currentCharisma.value*/
+
     //val arrayOfStats = MutableLiveData<Array<Stat?>>()
 
     val backgroundInfo = MutableLiveData<String>()
@@ -64,21 +71,21 @@ public class MainViewModel(application: Application) : AndroidViewModel(applicat
             Log.d("test vanuit viewmodel", dndCharacterRepository.getLoadedCharacter().value.toString())
         }*/
 
-        currentDnDCharacter.value = dndCharacterRepository.getDnDCharacter(loadedCharacterID).value
+        currentDnDCharacter = dndCharacterRepository.getDnDCharacter(loadedCharacterID)
 
-        currentStrength.value = statsRepository.getStrength(loadedCharacterID).value
-        currentDexterity.value = statsRepository.getDexterity(loadedCharacterID).value
-        currentConstitution.value = statsRepository.getConstitution(loadedCharacterID).value
-        currentIntelligence.value = statsRepository.getIntelligence(loadedCharacterID).value
-        currentWisdom.value = statsRepository.getWisdom(loadedCharacterID).value
-        currentCharisma.value = statsRepository.getCharisma(loadedCharacterID).value
+        currentStrength = statsRepository.getStrength(loadedCharacterID)
+        currentDexterity = statsRepository.getDexterity(loadedCharacterID)
+        currentConstitution = statsRepository.getConstitution(loadedCharacterID)
+        currentIntelligence = statsRepository.getIntelligence(loadedCharacterID)
+        currentWisdom = statsRepository.getWisdom(loadedCharacterID)
+        currentCharisma = statsRepository.getCharisma(loadedCharacterID)
 
-        arrayOfStats[0] = currentStrength.value
+        /*arrayOfStats[0] = currentStrength.value
         arrayOfStats[1] = currentDexterity.value
         arrayOfStats[2] = currentConstitution.value
         arrayOfStats[3] = currentIntelligence.value
         arrayOfStats[4] = currentWisdom.value
-        arrayOfStats[5] = currentCharisma.value
+        arrayOfStats[5] = currentCharisma.value*/
 
         /*for (a in arr) {
             println(a.getName().toString() + " " + a.getBreed())

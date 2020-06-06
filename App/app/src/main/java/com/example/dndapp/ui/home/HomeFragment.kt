@@ -15,6 +15,7 @@ import com.example.dndapp.MainActivity
 import com.example.dndapp.MainViewModel
 import com.example.dndapp.R
 import com.example.dndapp.model.DnDCharacter
+import com.example.dndapp.model.stats.Stat
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
@@ -24,11 +25,13 @@ class HomeFragment : Fragment() {
     private lateinit var parentActivity: Activity
     private lateinit var activityVarRef: MainActivity
 
-    lateinit var loadedCharacter: DnDCharacter
+    //lateinit var loadedCharacter: DnDCharacter
+
+    /*var arrayOfStats: Array<Stat?> = arrayOfNulls(6)
 
     var arrayOfTVStat: Array<TextView?> = arrayOfNulls(6)
     var arrayOfTVMod: Array<TextView?> = arrayOfNulls(6)
-    var arrayOfTVSave: Array<TextView?> = arrayOfNulls(6)
+    var arrayOfTVSave: Array<TextView?> = arrayOfNulls(6)*/
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //viewModel = activity?.run { ViewModelProvider(this).get(MainViewModel::class.java) }!!//: throw Exception("Invalid Activity")
@@ -43,7 +46,7 @@ class HomeFragment : Fragment() {
 
         initViews()
         initViewModel()
-        initTextViewArrays()
+        initStatArrays()
     }
 
     private fun initViews() {
@@ -61,7 +64,39 @@ class HomeFragment : Fragment() {
         //arrayOfTVStat[0] = tvStatNumberStrength
     }
 
-    private fun initTextViewArrays() {
+    private fun initStatArrays() {
+        /*activityVarRef.viewModel.currentStrength.observe(viewLifecycleOwner, Observer { currentStrength ->
+            if(currentStrength != null) {
+                arrayOfStats[0] = currentStrength
+                Log.d("strength", "is hier")
+            }
+        })
+        activityVarRef.viewModel.currentDexterity.observe(viewLifecycleOwner, Observer { currentDexterity ->
+            if(currentDexterity != null) {
+                arrayOfStats[0] = currentDexterity
+            }
+        })
+        activityVarRef.viewModel.currentConstitution.observe(viewLifecycleOwner, Observer { currentConstitution ->
+            if(currentConstitution != null) {
+                arrayOfStats[0] = currentConstitution
+            }
+        })
+        activityVarRef.viewModel.currentIntelligence.observe(viewLifecycleOwner, Observer { currentIntelligence ->
+            if(currentIntelligence != null) {
+                arrayOfStats[0] = currentIntelligence
+            }
+        })
+        activityVarRef.viewModel.currentWisdom.observe(viewLifecycleOwner, Observer { currentWisdom ->
+            if(currentWisdom != null) {
+                arrayOfStats[0] = currentWisdom
+            }
+        })
+        activityVarRef.viewModel.currentCharisma.observe(viewLifecycleOwner, Observer { currentCharisma ->
+            if(currentCharisma != null) {
+                arrayOfStats[0] = currentCharisma
+            }
+        })
+
         arrayOfTVStat[0] = tvStatNumberStrength
         arrayOfTVStat[1] = tvStatNumberDexterity
         arrayOfTVStat[2] = tvStatNumberConstitution
@@ -69,6 +104,13 @@ class HomeFragment : Fragment() {
         arrayOfTVStat[4] = tvStatNumberWisdom
         arrayOfTVStat[5] = tvStatNumberCharisma
 
+
+        arrayOfTVMod[0] = tvModNumberStrength
+        arrayOfTVMod[1] = tvModNumberDexterity
+        arrayOfTVMod[2] = tvModNumberConstitution
+        arrayOfTVMod[3] = tvModNumberIntelligence
+        arrayOfTVMod[4] = tvModNumberWisdom
+        arrayOfTVMod[5] = tvModNumberCharisma*/
     }
 
     private fun initViewModel() {
@@ -99,51 +141,51 @@ class HomeFragment : Fragment() {
             }
         })
 
-        for (i in activityVarRef.viewModel.arrayOfStats.size until activityVarRef.viewModel.arrayOfStats.size) {
-            arrayOfTVStat[i]!!.text = activityVarRef.viewModel.arrayOfStats[i]!!.stat.toString()
-        }
-        /*viewModel.currentStrength.observe(viewLifecycleOwner, Observer { currentStrength ->
+        /*for (i in arrayOfStats.size until arrayOfStats.size) {
+            arrayOfTVStat[i]!!.text = arrayOfStats[i]!!.stat.toString()
+        }*/
+        activityVarRef.viewModel.currentStrength.observe(viewLifecycleOwner, Observer { currentStrength ->
             if(currentStrength != null) {
                 tvStatNumberStrength.text = currentStrength.stat.toString()
                 tvModNumberStrength.text = getString(R.string.save_mod_placeholder, currentStrength.modifier.toString())
                 tvSaveNumberStrength.text = getString(R.string.save_mod_placeholder, currentStrength.save.toString())
             }
         })
-        viewModel.currentDexterity.observe(viewLifecycleOwner, Observer { currentDexterity ->
+        activityVarRef.viewModel.currentDexterity.observe(viewLifecycleOwner, Observer { currentDexterity ->
             if(currentDexterity != null) {
                 tvStatNumberDexterity.text = currentDexterity.stat.toString()
                 tvModNumberDexterity.text = getString(R.string.save_mod_placeholder, currentDexterity.modifier.toString())
                 tvSaveNumberDexterity.text = getString(R.string.save_mod_placeholder, currentDexterity.save.toString())
             }
         })
-        viewModel.currentIntelligence.observe(viewLifecycleOwner, Observer { currentIntelligence ->
+        activityVarRef.viewModel.currentIntelligence.observe(viewLifecycleOwner, Observer { currentIntelligence ->
             if(currentIntelligence != null) {
                 tvStatNumberIntelligence.text = currentIntelligence.stat.toString()
                 tvModNumberIntelligence.text = getString(R.string.save_mod_placeholder, currentIntelligence.modifier.toString())
                 tvSaveNumberIntelligence.text = getString(R.string.save_mod_placeholder, currentIntelligence.save.toString())
             }
         })
-        viewModel.currentWisdom.observe(viewLifecycleOwner, Observer { currentWisdom ->
+        activityVarRef.viewModel.currentWisdom.observe(viewLifecycleOwner, Observer { currentWisdom ->
             if(currentWisdom != null) {
                 tvStatNumberWisdom.text = currentWisdom.stat.toString()
                 tvModNumberWisdom.text = getString(R.string.save_mod_placeholder, currentWisdom.modifier.toString())
                 tvSaveNumberWisdom.text = getString(R.string.save_mod_placeholder, currentWisdom.save.toString())
             }
         })
-        viewModel.currentCharisma.observe(viewLifecycleOwner, Observer { currentCharisma ->
+        activityVarRef.viewModel.currentCharisma.observe(viewLifecycleOwner, Observer { currentCharisma ->
             if(currentCharisma != null) {
                 tvStatNumberCharisma.text = currentCharisma.stat.toString()
                 tvModNumberCharisma.text = getString(R.string.save_mod_placeholder, currentCharisma.modifier.toString())
                 tvSaveNumberCharisma.text = getString(R.string.save_mod_placeholder, currentCharisma.save.toString())
             }
         })
-        viewModel.currentConstitution.observe(viewLifecycleOwner, Observer { currentConstitution ->
+        activityVarRef.viewModel.currentConstitution.observe(viewLifecycleOwner, Observer { currentConstitution ->
             if(currentConstitution != null) {
                 tvStatNumberConstitution.text = currentConstitution.stat.toString()
                 tvModNumberConstitution.text = getString(R.string.save_mod_placeholder, currentConstitution.modifier.toString())
                 tvSaveNumberConstitution.text = getString(R.string.save_mod_placeholder, currentConstitution.save.toString())
             }
-        })*/
+        })
     }
 
     public fun levelUp() {

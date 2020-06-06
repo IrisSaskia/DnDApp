@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
+        viewModel.loadAllData(1)
         viewModel.currentCharacterID.observe(this, Observer { currentCharacterID ->
             if(currentCharacterID != null) {
                 Log.d("1ste test", currentCharacterID.toString())
@@ -61,6 +62,24 @@ class MainActivity : AppCompatActivity() {
                 Log.d("test na error", currentCharacterID.toString())
             }
         })
+
+        viewModel.currentDnDCharacter.observe(this, Observer {currentDnDCharacter ->
+            if(currentDnDCharacter != null) {
+                Log.d("background check main", currentDnDCharacter.background)
+            } else {
+                Log.d("error", "character")
+            }
+        })
+
+        viewModel.currentStrength.observe(this, Observer {currentStrength ->
+            if(currentStrength != null) {
+                Log.d("strength via main", currentStrength.stat.toString())
+            } else {
+                Log.d("error", "strength")
+            }
+        })
+
+        //Log.d("strength test", viewModel.arrayOfStats[0]!!.stat.toString())
     }
 
     private fun showPopUp(buttonView: View?) {
