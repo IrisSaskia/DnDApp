@@ -18,14 +18,12 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : Fragment() {
     //TODO: add viewmodel in mainactivity???
     private lateinit var parentActivity: Activity
-    //private lateinit var activityVarRef: MainActivity
     private lateinit var  viewModel: MainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewModel = activity?.run { ViewModelProvider(this).get(MainViewModel::class.java) }!!//: throw Exception("Invalid Activity")
 
         return inflater.inflate(R.layout.fragment_home, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,8 +69,6 @@ class HomeFragment : Fragment() {
                 }
                 tvClassRace.text = charRace
                 //TODO: Add HP
-
-                //viewModel.loadAllData(currentDnDCharacter.id!!.toInt())
             }
         })
 

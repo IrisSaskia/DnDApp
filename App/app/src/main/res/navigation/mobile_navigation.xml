@@ -3,14 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/splash_screen">
-
-    <fragment
-        android:id="@+id/splash_screen"
-        android:name="com.example.dndapp.ui.extra.SplashFragment"
-        android:label="Splash"
-        tools:layout="@layout/fragment_extra_splash"/>
-
+    app:startDestination="@+id/navigation_home">
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.dndapp.ui.home.HomeFragment"
