@@ -6,16 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.dndapp.MainActivity
-import com.example.dndapp.MainViewModel
 import com.example.dndapp.R
-import com.example.dndapp.model.DnDCharacter
-import com.example.dndapp.model.stats.Stat
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
