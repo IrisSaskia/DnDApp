@@ -11,7 +11,7 @@ import com.example.dndapp.R
 class SplashActivity : AppCompatActivity() {
     private lateinit var parentActivity: Activity
 
-    private val SPLASH_TIME_OUT:Long = 3000 // 1 sec
+    private val SPLASH_TIME_OUT:Long = 500 // 1 sec, was 3000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -4,19 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:alpha="@dimen/cohesion_opacity"
-    android:background="@color/content_background"
-    tools:context=".ui.character.description.CharacterDescriptionFragment" >
+    tools:context=".ui.character.description.CharacterDescriptionFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:alpha="@dimen/cohesion_opacity"
+        android:background="@color/content_background"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/tvBackgroundTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/title_background"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/placeholder_background"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="18sp"
+            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvBackgroundTitle" />
 
@@ -34,10 +39,22 @@
             android:id="@+id/tvBackgroundInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="@string/background_info_placeholder"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvBackgroundName" />
+
+        <View
+            android:id="@+id/dividerDescription"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvBackgroundInfo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
