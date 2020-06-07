@@ -17,8 +17,20 @@ interface DnDCharacterDAO {
     @Query("SELECT * FROM dndCharacterTable WHERE id = :currentDnDCharacter")
     fun getDnDCharacter(currentDnDCharacter: Int): LiveData<DnDCharacter?>
 
-    @Update
-    suspend fun updateDnDCharacter(dndCharacter: DnDCharacter)
+    @Query("SELECT * FROM dndCharacterTable")
+    fun getAllCharacters(): LiveData<List<DnDCharacter>>
+
+    /*@Query("UPDATE dndCharacterTable (" + "SET active = 1 WHERE id = :chosenCharacterID) UNION UPDATE dndCharacterTable SET active = 0 WHERE id = :currentCharacterID)")
+    fun changeCurrentCharacter(chosenCharacterID: Long?, currentCharacterID: Long?)*/
+
+    @Query("UPDATE dndCharacterTable SET active = 1 WHERE id = :chosenCharacterID")
+    fun makeActive(chosenCharacterID: Int)
+
+    @Query("UPDATE dndCharacterTable SET active = 0 WHERE id = :currentCharacterID")
+    fun makeInactive(currentCharacterID: Int)
+
+    /*@Update
+    suspend fun updateDnDCharacter(dndCharacter: DnDCharacter)*/
 
     //UPDATE THE NOTES FOR THE SELECTED CHARACTER
     @Query("UPDATE dndCharacterTable SET note = :note WHERE id = :currentDnDCharacter")

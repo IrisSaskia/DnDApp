@@ -7,6 +7,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:fontFamily">@font/alice</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
     </style>
 
     <style name="CustomTitleBar" parent="Widget.AppCompat.TextView">
@@ -51,5 +52,14 @@
         <item name="android:layout_gravity">bottom|end</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@color/colorPrimaryDark</item>
+        <item name="android:alpha">@dimen/cohesion_opacity</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 </resources>

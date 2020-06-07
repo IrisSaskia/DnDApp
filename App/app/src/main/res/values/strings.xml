@@ -37,6 +37,9 @@
     <string name="placeholder_background">YOUR BACKGROUND</string>
     <string name="background_info_placeholder">Background infoooo</string>
     <string name="made_by">Gemaakt door: Iris Oostra</string>
+    <string name="character_in_list">%1s Level: %2s</string>
+    <string name="already_selected">You have already selected this character</string>
+    <string name="error">Error!</string>
 
 
     <!-- TODO: Add placeholder text for all images! -->

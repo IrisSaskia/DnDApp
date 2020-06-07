@@ -9,6 +9,8 @@ import androidx.lifecycle.Transformations
 import com.example.dndapp.database.api.DnDApiRepository
 import com.example.dndapp.database.characters.DnDCharacterRepository
 import com.example.dndapp.database.stats.StatsRepository
+import com.example.dndapp.model.DnDCharacter
+import com.example.dndapp.model.api.dataClasses.Background
 import com.example.dndapp.model.api.dataClasses.Result
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,6 +25,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val standardCharacterID = 1 //TODO: use this for standard char number
 
     private val mainScope = CoroutineScope(Dispatchers.Main)
+    private val ioScope = CoroutineScope(Dispatchers.IO)
 
     private val dndCharacterRepository = DnDCharacterRepository(application.applicationContext)
     private val statsRepository = StatsRepository(application.applicationContext)
@@ -88,9 +91,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    val dndCharacters: LiveData<List<DnDCharacter>> = dndCharacterRepository.getAllCharacters()
 
     val backgroundInfo = MutableLiveData<String>()
     val error = MutableLiveData<String>()
+    val backgrounds = mutableListOf<Background>()
 
     //TODO: iets waarmee alles in 1 zit???
     //TODO: moet er 1 viewmodel zijn waarin dit maar 1x gedaan hoeft te worden?
@@ -101,22 +106,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     * If the call encountered an error then populate the [error] object.
     */
 
-    /*fun loadAllData(loadedCharacterID: Int) {
-
-
-        currentDnDCharacter = dndCharacterRepository.getDnDCharacter(loadedCharacterID)
-
-        Log.d("laden", "bezig")
-        //Log.d("characterinfotest", currentDnDCharacter.value?.name.toString())
-
-        currentStrength = statsRepository.getStrength(loadedCharacterID)
-        currentDexterity = statsRepository.getDexterity(loadedCharacterID)
-        currentConstitution = statsRepository.getConstitution(loadedCharacterID)
-        currentIntelligence = statsRepository.getIntelligence(loadedCharacterID)
-        currentWisdom = statsRepository.getWisdom(loadedCharacterID)
-        currentCharisma = statsRepository.getCharisma(loadedCharacterID)
+    fun changeCurrentCharacter(chosenCharacterID: Int, currentCharacterID: Int) {
+        ioScope.launch {
+            dndCharacterRepository.changeCurrentCharacter(chosenCharacterID, currentCharacterID)
+        }
     }
-*/
 
 
 //TODO: was mutablelivedata nou nodig???
@@ -139,6 +133,25 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 if (response.isSuccessful) {
                     backgroundInfo.value = response.body()!!.results[0].desc
                     Log.d("Result background api", backgroundInfo.value.toString())
+                } else {
+                    error.value = "An error occurred: ${response.errorBody().toString()}"
+                }
+            }
+
+            override fun onFailure(call: Call<Result>, t: Throwable) {
+                error.value = t.message
+            }
+        })
+    }
+
+    fun getAllBackgrounds() {
+        dndApiRepository.getBackgroundNames().enqueue(object : Callback<Result> {
+            override fun onResponse(call: Call<Result>, response: Response<Result>) {
+                if (response.isSuccessful) {
+                    backgrounds += response.body()!!.results
+                    Log.d("hallo??", "hallo")
+                    Log.d("res test", response.body()!!.results[1].name)
+                    Log.d("opslaan test", backgrounds[1].name)
                 } else {
                     error.value = "An error occurred: ${response.errorBody().toString()}"
                 }

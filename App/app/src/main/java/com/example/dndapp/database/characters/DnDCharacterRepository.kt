@@ -2,6 +2,7 @@ package com.example.dndapp.database.characters
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.room.Transaction
 import com.example.dndapp.database.DnDDatabase
 import com.example.dndapp.model.DnDCharacter
 
@@ -17,9 +18,20 @@ class DnDCharacterRepository(context: Context) {
         return dndCharacterDAO.getDnDCharacter(currentDnDCharacter)
     }
 
-    suspend fun updateDnDCharacter(dndCharacter: DnDCharacter) {
-        dndCharacterDAO.updateDnDCharacter(dndCharacter)
+    fun getAllCharacters(): LiveData<List<DnDCharacter>> {
+        return dndCharacterDAO.getAllCharacters()
     }
+
+    @Transaction
+    suspend fun changeCurrentCharacter(chosenCharacterID: Int, currentCharacterID: Int) {
+        //dndCharacterDAO.changeCurrentCharacter(chosenCharacterID, currentCharacterID)
+        dndCharacterDAO.makeActive(chosenCharacterID)
+        dndCharacterDAO.makeInactive(currentCharacterID)
+    }
+
+    /*suspend fun updateDnDCharacter(dndCharacter: DnDCharacter) {
+        dndCharacterDAO.updateDnDCharacter(dndCharacter)
+    }*/
 
     suspend fun updateNote(currentDnDCharacter: Int, note: String) {
         dndCharacterDAO.updateNote(currentDnDCharacter, note)

@@ -71,12 +71,12 @@
                     android:layout_height="wrap_content"
                     android:text="@string/level_indicator"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toTopOf="@+id/tvClassRace"
+                    app:layout_constraintBottom_toTopOf="@+id/tvCharacterClassRace"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvClassRace"
+                    android:id="@+id/tvCharacterClassRace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/class_race_placeholder"
@@ -92,7 +92,7 @@
                     android:text="@string/hp_text"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvClassRace" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvCharacterClassRace" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

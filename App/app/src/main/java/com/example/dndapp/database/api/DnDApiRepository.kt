@@ -11,4 +11,8 @@ class DnDApiRepository {
     fun getBackground(name: String): Call<Result> {
         return dndApi.getBackground(name)
     }
+
+    fun getBackgroundNames(): Call<Result> {
+        return dndApi.getBackgroundNames()
+    }
 }

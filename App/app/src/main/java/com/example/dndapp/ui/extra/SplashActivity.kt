@@ -9,7 +9,7 @@ import com.example.dndapp.MainActivity
 import com.example.dndapp.R
 
 class SplashActivity : AppCompatActivity() {
-    private lateinit var parentActivity: Activity
+//    private lateinit var parentActivity: Activity
 
     private val SPLASH_TIME_OUT:Long = 500 // 1 sec, was 3000
 

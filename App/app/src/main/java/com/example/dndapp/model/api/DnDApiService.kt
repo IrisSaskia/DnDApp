@@ -6,10 +6,12 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 public interface DnDApiService {
-    // The GET method needed to retrieve a random number trivia.
+    // The GET method needed to retrieve the background info for the character
     @GET("/backgrounds/?format=json")
-    //fun getBackground(name: String): Call<Background>
     fun getBackground(
         @Query("name") name: String?
     ): Call<Result>
+
+    @GET("/backgrounds/?format=json")
+    fun getBackgroundNames(): Call<Result>
 }
