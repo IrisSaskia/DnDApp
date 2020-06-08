@@ -78,6 +78,8 @@ class CharactersFragment : Fragment() {
         //Toast.makeText(viewModel.getApplication(), R.string.add_character, Toast.LENGTH_SHORT).show()
         val newCharacterDialog = LayoutInflater.from(context).inflate(R.layout.add_character_dialog, null)
 
+        initRaceSpinner(newCharacterDialog)
+        initCClassSpinner(newCharacterDialog)
         initBackgroundSpinner(newCharacterDialog)
 
         val newCharacterBuilder = AlertDialog.Builder(context, R.style.DialogTheme)
@@ -91,7 +93,7 @@ class CharactersFragment : Fragment() {
     }
 
     private fun initRaceSpinner(alertDialog: View) {
-        val raceSpinner: Spinner = alertDialog.findViewById(R.id.spinnerBackground)
+        val raceSpinner: Spinner = alertDialog.findViewById(R.id.spinnerRace)
 
         viewModel.getRaceNames().observe(this, Observer {raceNames ->
             Log.d("grootte", raceNames.size.toString())
@@ -100,6 +102,19 @@ class CharactersFragment : Fragment() {
             }
             val adapter = ArrayAdapter(parentActivity, android.R.layout.simple_spinner_item, raceNames)
             raceSpinner.adapter = adapter
+        })
+    }
+
+    private fun initCClassSpinner(alertDialog: View) {
+        val cclassSpinner: Spinner = alertDialog.findViewById(R.id.spinnerCClass)
+
+        viewModel.getCClassNames().observe(this, Observer {cclassNames ->
+            Log.d("grootte", cclassNames.size.toString())
+            cclassNames.forEachIndexed{index, value ->
+                Log.d("kan ik het ophalen", value)
+            }
+            val adapter = ArrayAdapter(parentActivity, android.R.layout.simple_spinner_item, cclassNames)
+            cclassSpinner.adapter = adapter
         })
     }
 

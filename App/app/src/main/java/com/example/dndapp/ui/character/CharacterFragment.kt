@@ -13,12 +13,12 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class CharacterFragment : Fragment() {
-    private lateinit var characterViewModel: CharacterViewModel
+    //private lateinit var characterViewModel: CharacterViewModel
     private lateinit var characterFragmentAdapter: CharacterPagerAdapter
     private lateinit var characterViewPager: ViewPager2
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        characterViewModel = ViewModelProvider(this).get(CharacterViewModel::class.java)
+        //characterViewModel = ViewModelProvider(this).get(CharacterViewModel::class.java)
         return inflater.inflate(R.layout.fragment_character, container, false)
     }
 
