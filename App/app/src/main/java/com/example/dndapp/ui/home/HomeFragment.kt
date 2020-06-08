@@ -69,6 +69,14 @@ class HomeFragment : Fragment() {
                 }
                 tvCharacterClassRace.text = charRace
                 //TODO: Add HP
+
+                viewModel.getRaceSpeed(currentDnDCharacter.race)
+            }
+        })
+
+        viewModel.raceSpeed.observe(viewLifecycleOwner, Observer { raceSpeed ->
+            if(raceSpeed != null) {
+                tvSpeedNumber.text = raceSpeed.toString()
             }
         })
 
@@ -84,6 +92,8 @@ class HomeFragment : Fragment() {
                 tvStatNumberDexterity.text = currentDexterity.stat.toString()
                 tvModNumberDexterity.text = getString(R.string.save_mod_placeholder, currentDexterity.modifier.toString())
                 tvSaveNumberDexterity.text = getString(R.string.save_mod_placeholder, currentDexterity.save.toString())
+
+                tvInitiativeNumber.text = currentDexterity.modifier.toString()
             }
         })
         viewModel.currentIntelligence.observe(viewLifecycleOwner, Observer { currentIntelligence ->

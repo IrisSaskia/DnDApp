@@ -20,7 +20,6 @@ data class Race (
     @SerializedName("document__slug") val document__slug : String,
     @SerializedName("document__title") val document__title : String,
     @SerializedName("document__license_url") val document__license_url : String
-
 )
 
 data class RaceResult (

@@ -95,6 +95,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val dndCharacters: LiveData<List<DnDCharacter>> = dndCharacterRepository.getAllCharacters()
 
     val backgroundInfo = MutableLiveData<String>()
+    val raceSpeed = MutableLiveData<Int>()
     val error = MutableLiveData<String>()
     var raceNames = MutableLiveData<List<String>>()
     var cclassNames = MutableLiveData<List<String>>()
@@ -217,6 +218,23 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onFailure(call: Call<BackgroundResult>, t: Throwable) {
+                error.value = t.message
+            }
+        })
+    }
+
+    fun getRaceSpeed(charRace: String) {
+        dndApiRepository.getRace(charRace).enqueue(object : Callback<RaceResult> {
+            override fun onResponse(call: Call<RaceResult>, response: Response<RaceResult>) {
+                if (response.isSuccessful) {
+                    raceSpeed.value = response.body()!!.results[0].speed.walk
+                    Log.d("Result race api", raceSpeed.value.toString())
+                } else {
+                    error.value = "An error occurred: ${response.errorBody().toString()}"
+                }
+            }
+
+            override fun onFailure(call: Call<RaceResult>, t: Throwable) {
                 error.value = t.message
             }
         })

@@ -1,18 +1,16 @@
 package com.example.dndapp.ui.character.description
 
-import android.app.Activity
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dndapp.MainActivity
-
-import com.example.dndapp.R
 import com.example.dndapp.MainViewModel
+import com.example.dndapp.R
 import kotlinx.android.synthetic.main.fragment_character_description.*
 
 /**
@@ -38,15 +36,17 @@ class CharacterDescriptionFragment : Fragment() {
     }
 
     private fun initViewModel() {
+        //Fill in the name of the background by retrieving the background name from the database
         viewModel.currentDnDCharacter.observe(viewLifecycleOwner, Observer { currentDnDCharacter ->
             if(currentDnDCharacter != null) {
                 tvBackgroundName.text = currentDnDCharacter.background
+                //Fill in the background info by retrieving it from the api using the background name
                 viewModel.getBackgroundInfo(currentDnDCharacter.background)
-                tvBackgroundInfo.text = viewModel.backgroundInfo.toString()
-                Log.d("backgroundTV", tvBackgroundInfo.text as String)
+                //Log.d("backgroundTV", tvBackgroundInfo.text as String)
             }
         })
 
+        //Fill in the background info by retrieving it from the api using the background name
         viewModel.backgroundInfo.observe(viewLifecycleOwner, Observer { backgroundInfo ->
             if(backgroundInfo != null) {
                 tvBackgroundInfo.text = backgroundInfo

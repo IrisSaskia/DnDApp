@@ -13,6 +13,9 @@ class DnDApiRepository {
     fun getRaceNames(): Call<RaceResult> {
         return dndApi.getRaceNames()
     }
+    fun getRace(name: String): Call<RaceResult> {
+        return dndApi.getRace(name)
+    }
 
     fun getCClassNames(): Call<CClassResult> {
         return dndApi.getCClassNames()

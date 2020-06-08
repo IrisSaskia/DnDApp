@@ -11,6 +11,12 @@ public interface DnDApiService {
     @GET("/races/?format=json")
     fun getRaceNames(): Call<RaceResult>
 
+    // The GET method needed to retrieve the race info for the character
+    @GET("/races/?format=json")
+    fun getRace(
+        @Query("name") name: String?
+    ): Call<RaceResult>
+
     @GET("/classes/?format=json")
     fun getCClassNames(): Call<CClassResult>
 
