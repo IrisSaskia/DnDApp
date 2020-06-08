@@ -24,7 +24,6 @@ import com.example.dndapp.model.CharacterAdapter
 import com.example.dndapp.model.DnDCharacter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_extra_characters.*
-import kotlinx.coroutines.selects.select
 
 class CharactersFragment : Fragment() {
     private lateinit var parentActivity: Activity
@@ -78,25 +77,29 @@ class CharactersFragment : Fragment() {
     //////////////////////////////////////////////////
     private fun newCharacter() {
         //Toast.makeText(viewModel.getApplication(), R.string.add_character, Toast.LENGTH_SHORT).show()
-        val newCharacterDialog = LayoutInflater.from(context).inflate(R.layout.add_character_dialog, null)
+        /*val newCharacterDialog = LayoutInflater.from(context).inflate(R.layout.add_character_dialog, null)*/
 
-        val raceSpinner: Spinner = newCharacterDialog.findViewById(R.id.spinnerRace)
-        val cclassSpinner: Spinner = newCharacterDialog.findViewById(R.id.spinnerCClass)
-        val backgroundSpinner: Spinner = newCharacterDialog.findViewById(R.id.spinnerBackground)
+
+
+        /*val newCharacterBuilder = AlertDialog.Builder(context, R.style.AlertDialogStyle)
+            .setView(newCharacterDialog)
+            .setTitle(R.string.add_character)*/
+
+
+        /*val alertDialog = newCharacterBuilder.show()*/
+
+        val alertDialog = makeAlert(R.layout.add_character_dialog, R.string.add_character)
+
+        val exitButton: Button = alertDialog.findViewById(R.id.btnCancel)
+        val nextButton: Button = alertDialog.findViewById(R.id.btnNext)
+
+        val raceSpinner: Spinner = alertDialog.findViewById(R.id.spinnerRace)
+        val cclassSpinner: Spinner = alertDialog.findViewById(R.id.spinnerCClass)
+        val backgroundSpinner: Spinner = alertDialog.findViewById(R.id.spinnerBackground)
 
         initRaceSpinner(raceSpinner)
         initCClassSpinner(cclassSpinner)
         initBackgroundSpinner(backgroundSpinner)
-
-        val newCharacterBuilder = AlertDialog.Builder(context, R.style.DialogTheme)
-            .setView(newCharacterDialog)
-            .setTitle(R.string.add_character)
-
-
-        val alertDialog = newCharacterBuilder.show()
-
-        val exitButton: Button = newCharacterDialog.findViewById(R.id.btnCancel)
-        val nextButton: Button = newCharacterDialog.findViewById(R.id.btnNext)
 
         exitButton.setOnClickListener {
             alertDialog.dismiss()
@@ -104,6 +107,7 @@ class CharactersFragment : Fragment() {
 
         nextButton.setOnClickListener {
             //TODO: Save the currently chosen options!!
+            //TODO: Add error handling for when the spinners are not filled yet
             val selectedRace = getSelectedCharacterOptions(raceSpinner)
             val selectedCClass = getSelectedCharacterOptions(cclassSpinner)
             val selectedBackground = getSelectedCharacterOptions(backgroundSpinner)
@@ -119,6 +123,16 @@ class CharactersFragment : Fragment() {
         alertDialog.show()
     }
 
+    //This function makes an alert dialog
+    private fun makeAlert(layout: Int, title: Int): AlertDialog {
+        val dialogView = LayoutInflater.from(context).inflate(layout, null)
+        val newAlertBuilder = AlertDialog.Builder(context, R.style.AlertDialogStyle)
+            .setView(dialogView)
+            .setTitle(title)
+
+        return newAlertBuilder.show()
+    }
+
     private fun getSelectedCharacterOptions(spinner: Spinner): String {
         return spinner.selectedItem.toString()
     }
@@ -127,7 +141,7 @@ class CharactersFragment : Fragment() {
     private fun initRaceSpinner(raceSpinner: Spinner) {
         viewModel.getRaceNames().observe(this, Observer {raceNames ->
             Log.d("grootte", raceNames.size.toString())
-            raceNames.forEachIndexed{index, value ->
+            raceNames.forEachIndexed{ _, value ->
                 Log.d("kan ik het ophalen", value)
             }
             val adapter = ArrayAdapter(parentActivity, android.R.layout.simple_spinner_item, raceNames)
@@ -139,7 +153,7 @@ class CharactersFragment : Fragment() {
     private fun initCClassSpinner(cclassSpinner: Spinner) {
         viewModel.getCClassNames().observe(this, Observer {cclassNames ->
             Log.d("grootte", cclassNames.size.toString())
-            cclassNames.forEachIndexed{index, value ->
+            cclassNames.forEachIndexed{ _, value ->
                 Log.d("kan ik het ophalen", value)
             }
             val adapter = ArrayAdapter(parentActivity, android.R.layout.simple_spinner_item, cclassNames)
@@ -151,7 +165,7 @@ class CharactersFragment : Fragment() {
     private fun initBackgroundSpinner(backgroundSpinner: Spinner) {
         viewModel.getBackgroundNames().observe(this, Observer {backgroundNames ->
             Log.d("grootte", backgroundNames.size.toString())
-            backgroundNames.forEachIndexed{index, value ->
+            backgroundNames.forEachIndexed{ _, value ->
                 Log.d("kan ik het ophalen", value)
             }
             val adapter = ArrayAdapter(parentActivity, android.R.layout.simple_spinner_item, backgroundNames)
@@ -159,28 +173,23 @@ class CharactersFragment : Fragment() {
         })
     }
 
+    ///////////////////////////////////////////////////////////
+    //This function is for the dialog for selecting a subrace//
+    ///////////////////////////////////////////////////////////
     private fun selectSubRace(chosenRace: String) {
         viewModel.getSubraceNames(chosenRace).observe(this, Observer {subraceNames ->
-            if(subraceNames != null && subraceNames.size > 0) {
-                val newCharacterDialogSubrace = LayoutInflater.from(context).inflate(R.layout.add_character_dialog_subrace, null)
+            if(subraceNames != null && subraceNames.isNotEmpty()) {
+                val alertDialog = makeAlert(R.layout.add_character_dialog_subrace, R.string.select_subrace)
 
-                val subraceSpinner: Spinner = newCharacterDialogSubrace.findViewById(R.id.spinnerSubrace)
-                //initRaceSpinner(subraceSpinner)
+                val subraceSpinner: Spinner = alertDialog.findViewById(R.id.spinnerSubrace)
                 val adapter = ArrayAdapter(parentActivity, android.R.layout.simple_spinner_item, subraceNames)
                 subraceSpinner.adapter = adapter
 
-                val newCharacterBuilder = AlertDialog.Builder(context, R.style.DialogTheme)
-                    .setView(newCharacterDialogSubrace)
-                    .setTitle(R.string.select_subrace)
-
-
-                val alertDialogSubrace = newCharacterBuilder.show()
-
-                val previousButton: Button = newCharacterDialogSubrace.findViewById(R.id.btnSubracePrevious)
-                val nextButton: Button = newCharacterDialogSubrace.findViewById(R.id.btnSubraceNext)
+                val previousButton: Button = alertDialog.findViewById(R.id.btnSubracePrevious)
+                val nextButton: Button = alertDialog.findViewById(R.id.btnSubraceNext)
 
                 previousButton.setOnClickListener {
-                    alertDialogSubrace.dismiss()
+                    alertDialog.dismiss()
                     newCharacter()
                 }
 
@@ -190,12 +199,35 @@ class CharactersFragment : Fragment() {
 
                     Log.d("subrace", selectedSubrace)
 
-                    alertDialogSubrace.dismiss()
+                    alertDialog.dismiss()
+                    selectStats(chosenRace)
                 }
 
-                alertDialogSubrace.show()
+                alertDialog.show()
             }
         })
+    }
+
+    //////////////////////////////////////////////////////////////////
+    //This function handles the alert dialog for the stats selection//
+    //////////////////////////////////////////////////////////////////
+    private fun selectStats(chosenRace: String) {
+        val alertDialog = makeAlert(R.layout.add_character_dialog, R.string.add_character)
+
+        val previousButton: Button = alertDialog.findViewById(R.id.btnStatPrevious)
+        val nextButton: Button = alertDialog.findViewById(R.id.btnStatNext)
+
+        previousButton.setOnClickListener {
+            alertDialog.dismiss()
+            selectSubRace(chosenRace)
+        }
+
+        nextButton.setOnClickListener {
+            //TODO: Save the currently chosen options!!
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
     }
 
     //////////////////////////////////////////////////////////

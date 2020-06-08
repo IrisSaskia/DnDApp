@@ -3,6 +3,7 @@
 
 <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -25,7 +26,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:text="@string/title_race"
-                android:textColor="@color/text_color" />
+                android:textColor="@color/text_color"
+                tools:ignore="NestedWeights" />
 
             <Spinner
                 android:id="@+id/spinnerSubrace"
@@ -49,7 +51,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/previous" />
+                android:text="@string/previous"
+                tools:ignore="NestedWeights" />
 
             <Button
                 android:id="@+id/btnSubraceNext"
