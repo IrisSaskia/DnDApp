@@ -40,6 +40,9 @@
     <string name="character_in_list">%1s Level: %2s</string>
     <string name="already_selected">You have already selected this character</string>
     <string name="error">Error!</string>
+    <string name="title_race">Race</string>
+    <string name="title_subrace">Subrace</string>
+    <string name="title_class">Class</string>
 
 
     <!-- TODO: Add placeholder text for all images! -->

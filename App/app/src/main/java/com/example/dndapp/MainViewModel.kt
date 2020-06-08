@@ -11,7 +11,7 @@ import com.example.dndapp.database.characters.DnDCharacterRepository
 import com.example.dndapp.database.stats.StatsRepository
 import com.example.dndapp.model.DnDCharacter
 import com.example.dndapp.model.api.dataClasses.Background
-import com.example.dndapp.model.api.dataClasses.Result
+import com.example.dndapp.model.api.dataClasses.BackgroundResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -95,7 +95,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     val backgroundInfo = MutableLiveData<String>()
     val error = MutableLiveData<String>()
-    val backgrounds = mutableListOf<Background>()
+    var backgroundNames = MutableLiveData<List<String>>()
+
 
     //TODO: iets waarmee alles in 1 zit???
     //TODO: moet er 1 viewmodel zijn waarin dit maar 1x gedaan hoeft te worden?
@@ -128,8 +129,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     //TODO: maak een functie die een character laadt als je m verandert
 
     fun getBackgroundInfo(charBackground: String) {
-        dndApiRepository.getBackground(charBackground).enqueue(object : Callback<Result> {
-            override fun onResponse(call: Call<Result>, response: Response<Result>) {
+        dndApiRepository.getBackground(charBackground).enqueue(object : Callback<BackgroundResult> {
+            override fun onResponse(call: Call<BackgroundResult>, response: Response<BackgroundResult>) {
                 if (response.isSuccessful) {
                     backgroundInfo.value = response.body()!!.results[0].desc
                     Log.d("Result background api", backgroundInfo.value.toString())
@@ -138,30 +139,38 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 }
             }
 
-            override fun onFailure(call: Call<Result>, t: Throwable) {
+            override fun onFailure(call: Call<BackgroundResult>, t: Throwable) {
                 error.value = t.message
             }
         })
     }
 
-    fun getAllBackgrounds() {
-        dndApiRepository.getBackgroundNames().enqueue(object : Callback<Result> {
-            override fun onResponse(call: Call<Result>, response: Response<Result>) {
+    /*fun getBackgroundNames(): LiveData<List<String>> {
+        dndApiRepository.getBackgroundNames().enqueue(object : Callback<BackgroundResult> {
+            override fun onResponse(call: Call<BackgroundResult>, response: Response<BackgroundResult>) {
                 if (response.isSuccessful) {
-                    backgrounds += response.body()!!.results
-                    Log.d("hallo??", "hallo")
-                    Log.d("res test", response.body()!!.results[1].name)
-                    Log.d("opslaan test", backgrounds[1].name)
+                    val namesList = ArrayList<String>(response.body()!!.count)
+                    response.body()!!.results.forEachIndexed{index, value ->
+                        namesList.add(value.name)
+                        Log.d("NL$index", namesList[index])
+                    }
+                    backgroundNames.apply {
+                        value = namesList
+                    }
+
                 } else {
                     error.value = "An error occurred: ${response.errorBody().toString()}"
                 }
             }
 
-            override fun onFailure(call: Call<Result>, t: Throwable) {
+            override fun onFailure(call: Call<BackgroundResult>, t: Throwable) {
                 error.value = t.message
             }
         })
-    }
+        return backgroundNames
+    }*/
+
+
 
     fun onAppClosure() {
         //TODO: saving the current selected character, when it changes, niet perse hier

@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -31,20 +30,15 @@ class CharactersFragment : Fragment() {
     private val characterAdapter = CharacterAdapter(dndCharacters) { dndCharacter -> onCharacterClick(dndCharacter) }
     private lateinit var viewModel: MainViewModel
     private lateinit var backgroundSpinner: Spinner
-    private var backgroundNames = mutableListOf<String>()
-    private lateinit var layoutDialog: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-
-        layoutDialog = inflater.inflate(R.layout.add_character_dialog, container, false)
 
         return inflater.inflate(R.layout.fragment_extra_characters, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //(activity as MainActivity?)?.checkCurrentFragment()
 
         initViews()
         initViewModel()
@@ -53,12 +47,13 @@ class CharactersFragment : Fragment() {
 
     private fun initViews() {
         parentActivity = activity!!
-        backgroundSpinner = layoutDialog.findViewById(R.id.spinnerBackground)
+        /*backgroundSpinner = layoutDialog.findViewById(R.id.spinnerBackground)*/
 
         rvCharacters.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         rvCharacters.adapter = characterAdapter
         rvCharacters.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 
+        //Make the floating action button call the newCharacter() function
         fab.setOnClickListener {
             newCharacter()
         }
@@ -76,75 +71,55 @@ class CharactersFragment : Fragment() {
         })
     }
 
-    //Button opens dialog for new character creation
+    //////////////////////////////////////////////////
+    //Button opens dialog for new character creation//
+    //////////////////////////////////////////////////
     private fun newCharacter() {
-        Toast.makeText(viewModel.getApplication(), R.string.add_character, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(viewModel.getApplication(), R.string.add_character, Toast.LENGTH_SHORT).show()
         val newCharacterDialog = LayoutInflater.from(context).inflate(R.layout.add_character_dialog, null)
+
+        initBackgroundSpinner(newCharacterDialog)
 
         val newCharacterBuilder = AlertDialog.Builder(context, R.style.DialogTheme)
             .setView(newCharacterDialog)
-            .setTitle("MAAKT GE EENS EEN NIEUW POPSKE AN MAN")
+            .setTitle(R.string.add_character)
 
 
         val alertDialog = newCharacterBuilder.show()
 
-        initSpinner()
-
         alertDialog.show()
     }
 
-    private fun initSpinner() {
-        viewModel.getAllBackgrounds()
+    private fun initRaceSpinner(alertDialog: View) {
+        val raceSpinner: Spinner = alertDialog.findViewById(R.id.spinnerBackground)
 
-        /*viewModel.backgrounds.observe(this, Observer {backgrounds ->
-            Log.d("result viewmodel", backgrounds[0].name)
-        })*/
-        //backgroundSpinner = parentActivity.findViewById<Spinner>(R.id.spinnerBackground)
-        //if(spinnerBackground != null) {
-//            viewModel.getBackgroundNames()
-            //viewModel.backgrounds.observe(this, Observer {backgrounds ->
-                /*viewModel.backgrounds.forEachIndexed {index, value ->
-                    backgroundNames.plusAssign(value.name)
-                    Log.d("naam", backgroundNames[index])
-                    Log.d("naamview", value.name)
-                }*/
+        viewModel.getRaceNames().observe(this, Observer {raceNames ->
+            Log.d("grootte", raceNames.size.toString())
+            raceNames.forEachIndexed{index, value ->
+                Log.d("kan ik het ophalen", value)
+            }
+            val adapter = ArrayAdapter(parentActivity, android.R.layout.simple_spinner_item, raceNames)
+            raceSpinner.adapter = adapter
+        })
+    }
 
-        Log.d("halloooo??", "okayyy")
-        /*for(background in viewModel.backgrounds) {
-            backgroundNames.add(background.name)
-            Log.d("naam", backgroundNames[1])
-            Log.d("naamview", background.name)
-            Log.d("gebeurt dit ooit", "ja")
-        }*/
+    private fun initBackgroundSpinner(alertDialog: View) {
+        val backgroundSpinner: Spinner = alertDialog.findViewById(R.id.spinnerBackground)
 
-        /*viewModel.backgrounds.forEach {
-            backgroundNames.plusAssign(it.name)
-
-            Log.d("naam", backgroundNames[1])
-            Log.d("naamview", it.name)
-            Log.d("gebeurt dit ooit", "ja")
-        }*/
-
-        if(viewModel.backgrounds != null) {
-            Log.d("please", "werk")
-            Log.d("werkt dit", viewModel.backgrounds.size.toString())
-        }
-
-            //})
+        viewModel.getBackgroundNames().observe(this, Observer {backgroundNames ->
+            Log.d("grootte", backgroundNames.size.toString())
+            backgroundNames.forEachIndexed{index, value ->
+                Log.d("kan ik het ophalen", value)
+            }
             val adapter = ArrayAdapter(parentActivity, android.R.layout.simple_spinner_item, backgroundNames)
             backgroundSpinner.adapter = adapter
-        /*} else {
-            Log.d("null", "jup toch wel")
-        }*/
+        })
     }
 
-    override fun onPause() {
-        super.onPause()
-        (activity as MainActivity?)?.checkCurrentFragment()
-    }
-
+    //////////////////////////////////////////////////////////
+    //This function handles the loading of another character//
+    //////////////////////////////////////////////////////////
     private fun onCharacterClick(dndCharacter: DnDCharacter) {
-        //Snackbar.make(rvCharacters, "Dit character is: ${dndCharacter.name}", Snackbar.LENGTH_LONG).show()
         viewModel.currentDnDCharacter.observe(this, Observer {currentDnDCharacter ->
             if (currentDnDCharacter != null) {
                 if(currentDnDCharacter.id == dndCharacter.id) {
@@ -161,5 +136,12 @@ class CharactersFragment : Fragment() {
 
     private fun startHomeFragment(){
         parentActivity.findNavController(R.id.nav_host_fragment).navigate(R.id.navigation_home)
+    }
+
+
+    //This gets executed when the fragment is being left
+    override fun onPause() {
+        super.onPause()
+        (activity as MainActivity?)?.checkCurrentFragment()
     }
 }

@@ -18,7 +18,7 @@ data class Background (
     @SerializedName("document__license_url") val document__license_url : String
 )
 
-data class Result (
+data class BackgroundResult (
     @SerializedName("count") val count : Int,
     @SerializedName("next") val next : String,
     @SerializedName("previous") val previous : String,
