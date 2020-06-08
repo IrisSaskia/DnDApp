@@ -40,13 +40,12 @@ class CharacterDescriptionFragment : Fragment() {
         viewModel.currentDnDCharacter.observe(viewLifecycleOwner, Observer { currentDnDCharacter ->
             if(currentDnDCharacter != null) {
                 tvBackgroundName.text = currentDnDCharacter.background
-                //Fill in the background info by retrieving it from the api using the background name
+                //Retrieving the background info from the api using the background name
                 viewModel.getBackgroundInfo(currentDnDCharacter.background)
-                //Log.d("backgroundTV", tvBackgroundInfo.text as String)
             }
         })
 
-        //Fill in the background info by retrieving it from the api using the background name
+        //Fill in the background info
         viewModel.backgroundInfo.observe(viewLifecycleOwner, Observer { backgroundInfo ->
             if(backgroundInfo != null) {
                 tvBackgroundInfo.text = backgroundInfo

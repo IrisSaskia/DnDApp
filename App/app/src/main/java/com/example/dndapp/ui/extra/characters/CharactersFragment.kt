@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -23,6 +24,7 @@ import com.example.dndapp.model.CharacterAdapter
 import com.example.dndapp.model.DnDCharacter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_extra_characters.*
+import kotlinx.coroutines.selects.select
 
 class CharactersFragment : Fragment() {
     private lateinit var parentActivity: Activity
@@ -78,9 +80,13 @@ class CharactersFragment : Fragment() {
         //Toast.makeText(viewModel.getApplication(), R.string.add_character, Toast.LENGTH_SHORT).show()
         val newCharacterDialog = LayoutInflater.from(context).inflate(R.layout.add_character_dialog, null)
 
-        initRaceSpinner(newCharacterDialog)
-        initCClassSpinner(newCharacterDialog)
-        initBackgroundSpinner(newCharacterDialog)
+        val raceSpinner: Spinner = newCharacterDialog.findViewById(R.id.spinnerRace)
+        val cclassSpinner: Spinner = newCharacterDialog.findViewById(R.id.spinnerCClass)
+        val backgroundSpinner: Spinner = newCharacterDialog.findViewById(R.id.spinnerBackground)
+
+        initRaceSpinner(raceSpinner)
+        initCClassSpinner(cclassSpinner)
+        initBackgroundSpinner(backgroundSpinner)
 
         val newCharacterBuilder = AlertDialog.Builder(context, R.style.DialogTheme)
             .setView(newCharacterDialog)
@@ -89,12 +95,36 @@ class CharactersFragment : Fragment() {
 
         val alertDialog = newCharacterBuilder.show()
 
+        val exitButton: Button = newCharacterDialog.findViewById(R.id.btnCancel)
+        val nextButton: Button = newCharacterDialog.findViewById(R.id.btnNext)
+
+        exitButton.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        nextButton.setOnClickListener {
+            //TODO: Save the currently chosen options!!
+            val selectedRace = getSelectedCharacterOptions(raceSpinner)
+            val selectedCClass = getSelectedCharacterOptions(cclassSpinner)
+            val selectedBackground = getSelectedCharacterOptions(backgroundSpinner)
+
+            Log.d("race", selectedRace)
+            Log.d("cclass", selectedCClass)
+            Log.d("background", selectedBackground)
+
+            alertDialog.dismiss()
+            selectSubRace(selectedRace)
+        }
+
         alertDialog.show()
     }
 
-    private fun initRaceSpinner(alertDialog: View) {
-        val raceSpinner: Spinner = alertDialog.findViewById(R.id.spinnerRace)
+    private fun getSelectedCharacterOptions(spinner: Spinner): String {
+        return spinner.selectedItem.toString()
+    }
 
+    //This function fills the race spinner with all race names gotten from the api
+    private fun initRaceSpinner(raceSpinner: Spinner) {
         viewModel.getRaceNames().observe(this, Observer {raceNames ->
             Log.d("grootte", raceNames.size.toString())
             raceNames.forEachIndexed{index, value ->
@@ -105,9 +135,8 @@ class CharactersFragment : Fragment() {
         })
     }
 
-    private fun initCClassSpinner(alertDialog: View) {
-        val cclassSpinner: Spinner = alertDialog.findViewById(R.id.spinnerCClass)
-
+    //This function fills the cclass spinner with all cclass names gotten from the api
+    private fun initCClassSpinner(cclassSpinner: Spinner) {
         viewModel.getCClassNames().observe(this, Observer {cclassNames ->
             Log.d("grootte", cclassNames.size.toString())
             cclassNames.forEachIndexed{index, value ->
@@ -118,9 +147,8 @@ class CharactersFragment : Fragment() {
         })
     }
 
-    private fun initBackgroundSpinner(alertDialog: View) {
-        val backgroundSpinner: Spinner = alertDialog.findViewById(R.id.spinnerBackground)
-
+    //This function fills the background spinner with all background names gotten from the api
+    private fun initBackgroundSpinner(backgroundSpinner: Spinner) {
         viewModel.getBackgroundNames().observe(this, Observer {backgroundNames ->
             Log.d("grootte", backgroundNames.size.toString())
             backgroundNames.forEachIndexed{index, value ->
@@ -128,6 +156,45 @@ class CharactersFragment : Fragment() {
             }
             val adapter = ArrayAdapter(parentActivity, android.R.layout.simple_spinner_item, backgroundNames)
             backgroundSpinner.adapter = adapter
+        })
+    }
+
+    private fun selectSubRace(chosenRace: String) {
+        viewModel.getSubraceNames(chosenRace).observe(this, Observer {subraceNames ->
+            if(subraceNames != null && subraceNames.size > 0) {
+                val newCharacterDialogSubrace = LayoutInflater.from(context).inflate(R.layout.add_character_dialog_subrace, null)
+
+                val subraceSpinner: Spinner = newCharacterDialogSubrace.findViewById(R.id.spinnerSubrace)
+                //initRaceSpinner(subraceSpinner)
+                val adapter = ArrayAdapter(parentActivity, android.R.layout.simple_spinner_item, subraceNames)
+                subraceSpinner.adapter = adapter
+
+                val newCharacterBuilder = AlertDialog.Builder(context, R.style.DialogTheme)
+                    .setView(newCharacterDialogSubrace)
+                    .setTitle(R.string.select_subrace)
+
+
+                val alertDialogSubrace = newCharacterBuilder.show()
+
+                val previousButton: Button = newCharacterDialogSubrace.findViewById(R.id.btnSubracePrevious)
+                val nextButton: Button = newCharacterDialogSubrace.findViewById(R.id.btnSubraceNext)
+
+                previousButton.setOnClickListener {
+                    alertDialogSubrace.dismiss()
+                    newCharacter()
+                }
+
+                nextButton.setOnClickListener {
+                    //TODO: Save the currently chosen options!!
+                    val selectedSubrace = getSelectedCharacterOptions(subraceSpinner)
+
+                    Log.d("subrace", selectedSubrace)
+
+                    alertDialogSubrace.dismiss()
+                }
+
+                alertDialogSubrace.show()
+            }
         })
     }
 
@@ -149,6 +216,7 @@ class CharactersFragment : Fragment() {
         })
     }
 
+    //This function switches the loaded fragment to be the home fragment
     private fun startHomeFragment(){
         parentActivity.findNavController(R.id.nav_host_fragment).navigate(R.id.navigation_home)
     }

@@ -98,6 +98,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val raceSpeed = MutableLiveData<Int>()
     val error = MutableLiveData<String>()
     var raceNames = MutableLiveData<List<String>>()
+    var subraceNames = MutableLiveData<List<String>>()
     var cclassNames = MutableLiveData<List<String>>()
     var backgroundNames = MutableLiveData<List<String>>()
 
@@ -117,9 +118,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-//TODO: was mutablelivedata nou nodig???
-//TODO: misschien nog error handling voor bijvoorbeeld het opslaan van een lege notitie?
-    //TODO: dit nog naar mainviewmodel verplaatsen
+    //TODO: misschien nog error handling voor bijvoorbeeld het opslaan van een lege notitie?
 
     fun updateNotes(loadedCharacterID: Int) {
         mainScope.launch {
@@ -129,8 +128,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    //TODO: maak een functie die een character laadt als je m verandert
-
+    //Retrieve a list of all race-names from the api
     fun getRaceNames(): LiveData<List<String>> {
         dndApiRepository.getRaceNames().enqueue(object : Callback<RaceResult> {
             override fun onResponse(call: Call<RaceResult>, response: Response<RaceResult>) {
@@ -156,6 +154,33 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         return raceNames
     }
 
+    //Retrieve a list of all subrace names from the api depending on the selected race
+    fun getSubraceNames(chosenRace: String): LiveData<List<String>> {
+        dndApiRepository.getRace(chosenRace).enqueue(object : Callback<RaceResult> {
+            override fun onResponse(call: Call<RaceResult>, response: Response<RaceResult>) {
+                if (response.isSuccessful) {
+                    val namesList = ArrayList<String>(response.body()!!.count)
+                    response.body()!!.results[0].subraces.forEachIndexed{index, value ->
+                        namesList.add(value.name)
+                        Log.d("SUBRACE res $index", namesList[index])
+                    }
+                    subraceNames.apply {
+                        value = namesList
+                    }
+
+                } else {
+                    error.value = "An error occurred: ${response.errorBody().toString()}"
+                }
+            }
+
+            override fun onFailure(call: Call<RaceResult>, t: Throwable) {
+                error.value = t.message
+            }
+        })
+        return subraceNames
+    }
+
+    //Retrieve a list of all class names from the api, called CClass because class is a thing in Koltin
     fun getCClassNames(): LiveData<List<String>> {
         dndApiRepository.getCClassNames().enqueue(object : Callback<CClassResult> {
             override fun onResponse(call: Call<CClassResult>, response: Response<CClassResult>) {
@@ -181,6 +206,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         return cclassNames
     }
 
+    //Retrieve a list of all background names from the api
     fun getBackgroundNames(): LiveData<List<String>> {
         dndApiRepository.getBackgroundNames().enqueue(object : Callback<BackgroundResult> {
             override fun onResponse(call: Call<BackgroundResult>, response: Response<BackgroundResult>) {
@@ -206,6 +232,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         return backgroundNames
     }
 
+    //Retrieve the background info for a chosen background
     fun getBackgroundInfo(charBackground: String) {
         dndApiRepository.getBackground(charBackground).enqueue(object : Callback<BackgroundResult> {
             override fun onResponse(call: Call<BackgroundResult>, response: Response<BackgroundResult>) {
@@ -223,6 +250,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         })
     }
 
+    //Retrieve the speed for a chosen race
     fun getRaceSpeed(charRace: String) {
         dndApiRepository.getRace(charRace).enqueue(object : Callback<RaceResult> {
             override fun onResponse(call: Call<RaceResult>, response: Response<RaceResult>) {
@@ -240,7 +268,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         })
     }
 
-    fun onAppClosure() {
+    /*fun onAppClosure() {
         //TODO: saving the current selected character, when it changes, niet perse hier
-    }
+    }*/
 }

@@ -45,4 +45,14 @@
     <string name="title_character_features_traits">Eigenschappen</string>
     <string name="title_mod">Mod</string>
     <string name="name_save">Save</string>
+    <string name="background_stat_description">Achtergrond plaatje voor stat</string>
+    <string name="ac_title">AC</string>
+    <string name="dice_text">Dobbelstenen</string>
+    <string name="previous">Vorige</string>
+    <string name="select_subrace">Selecteer een subras</string>
+    <string name="title_damage">Schade</string>
+    <string name="title_heal">Heling</string>
+    <string name="title_initiative">Initiatief</string>
+    <string name="title_rest">Rust</string>
+    <string name="title_speed">Snelheid</string>
 </resources>

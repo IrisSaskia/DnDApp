@@ -52,6 +52,8 @@
     <string name="ac_title">AC</string>
     <string name="title_speed">Speed</string>
     <string name="title_initiative">Initiative</string>
+    <string name="select_subrace">Select a subrace</string>
+    <string name="previous">Previous</string>
 
 
     <!-- TODO: Add placeholder text for all images! -->
