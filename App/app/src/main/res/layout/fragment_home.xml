@@ -26,7 +26,8 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="3">
+                android:layout_weight="3"
+                tools:ignore="NestedWeights">
 
                 <ImageButton
                     android:id="@+id/ibDamage"
@@ -38,7 +39,9 @@
                     android:alpha="@dimen/cohesion_opacity"
                     android:background="#00FFFFFF"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/home_damage_icon" />
+                    app:srcCompat="@drawable/home_damage_icon"
+                    android:contentDescription="@string/title_damage"
+                    tools:ignore="ObsoleteLayoutParam" />
 
                 <TextView
                     android:id="@+id/tvDamage"
@@ -48,7 +51,8 @@
                     android:layout_weight="0"
                     android:text="@string/title_damage"
                     android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:ignore="ObsoleteLayoutParam" />
             </FrameLayout>
 
 
@@ -57,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="2"
+                android:layout_weight="1.8"
                 android:adjustViewBounds="false"
                 android:alpha="@dimen/cohesion_opacity"
                 android:scaleType="fitXY">
@@ -70,7 +74,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/home_character_banner" />
+                    app:srcCompat="@drawable/home_character_banner"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/tvName"
@@ -127,7 +132,9 @@
                     android:alpha="@dimen/cohesion_opacity"
                     android:background="#00FFFFFF"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/home_heal_icon" />
+                    app:srcCompat="@drawable/home_heal_icon"
+                    tools:ignore="ObsoleteLayoutParam"
+                    android:contentDescription="@string/title_heal" />
 
                 <TextView
                     android:id="@+id/tvHeal"
@@ -137,7 +144,8 @@
                     android:layout_weight="0"
                     android:text="@string/title_heal"
                     android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:ignore="ObsoleteLayoutParam" />
             </FrameLayout>
 
         </LinearLayout>
@@ -146,11 +154,11 @@
             android:id="@+id/llExtraStats"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.7"
+            android:layout_weight="1.6"
             android:orientation="horizontal"
             android:paddingStart="@dimen/extra_stats_padding"
             android:paddingEnd="@dimen/extra_stats_padding"
-            android:paddingBottom="@dimen/extra_stats_padding">
+            android:paddingBottom="5dp">
 
             <ImageView
                 android:id="@+id/ivSpeed"
@@ -162,18 +170,37 @@
                 android:alpha="@dimen/cohesion_opacity"
                 android:paddingTop="20dp"
                 app:srcCompat="@drawable/home_info_background"
-                tools:ignore="NestedWeights" />
+                tools:ignore="ContentDescription,NestedWeights" />
 
-            <ImageView
-                android:id="@+id/ivArmorClass"
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0"
-                android:adjustViewBounds="true"
-                android:alpha="@dimen/cohesion_opacity"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/home_shield_ac" />
+                android:layout_weight="0">
+
+                <TextView
+                    android:id="@+id/tvACName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ac_title" />
+
+                <TextView
+                    android:id="@+id/tvACValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stat_placeholder" />
+
+                <ImageView
+                    android:id="@+id/ivArmorClass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:alpha="@dimen/cohesion_opacity"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/home_shield_ac"
+                    tools:ignore="ContentDescription,ObsoleteLayoutParam" />
+            </FrameLayout>
 
             <ImageView
                 android:id="@+id/ivInitiative"
@@ -184,19 +211,14 @@
                 android:adjustViewBounds="true"
                 android:alpha="@dimen/cohesion_opacity"
                 android:paddingTop="20dp"
-                app:srcCompat="@drawable/home_info_background" />
+                app:srcCompat="@drawable/home_info_background"
+                tools:ignore="ContentDescription" />
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llStats"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2.5"
-            android:orientation="horizontal">
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.5"
                 android:layout_marginStart="@dimen/stats_margin"
                 android:layout_marginEnd="@dimen/stats_margin">
 
@@ -207,21 +229,16 @@
                     android:layout_weight="1">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        style="@style/ConstraintStatHome">
 
                         <ImageView
                             android:id="@+id/ivStrength"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:alpha="@dimen/cohesion_opacity"
+                            style="@style/ImageViewStatBackgroundHome"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/home_stat_background" />
+                            tools:ignore="ContentDescription" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -232,76 +249,51 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvStatNameStrength"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
+                                style="@style/StatNameHome"
                                 android:text="@string/stat_strength_name"
-                                android:textColor="@color/text_color"
-                                android:textSize="18sp"
-                                android:textStyle="italic"
+                                app:autoSizeTextType="uniform"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvStatNumberStrength"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/stat_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="22sp"
-                                android:textStyle="bold|italic"
+                                style="@style/StatNumberHome"
+                                app:autoSizeTextType="uniform"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNameStrength" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvSaveStrength"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="0.7"
+                                style="@style/StatSaveModNameHome"
                                 android:text="@string/name_save"
-                                android:textColor="@color/text_color"
-                                app:autoSizeMaxTextSize="14sp"
-                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeTextType="uniform"
                                 app:layout_constraintEnd_toStartOf="@+id/tvStatNumberStrength"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNumberStrength" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvSaveNumberStrength"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/save_mod_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
+                                style="@style/StatSaveModNumberHome"
+                                app:autoSizeTextType="uniform"
                                 app:layout_constraintEnd_toEndOf="@+id/tvSaveStrength"
                                 app:layout_constraintStart_toStartOf="@+id/tvSaveStrength"
                                 app:layout_constraintTop_toBottomOf="@+id/tvSaveStrength" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvModStrength"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="0.7"
+                                style="@style/StatSaveModNameHome"
                                 android:text="@string/title_mod"
-                                android:textColor="@color/text_color"
-                                app:autoSizeMaxTextSize="14sp"
-                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeTextType="uniform"
                                 app:layout_constraintStart_toEndOf="@+id/tvStatNumberStrength"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNumberStrength" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvModNumberStrength"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/save_mod_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
+                                style="@style/StatSaveModNumberHome"
+                                app:autoSizeTextType="uniform"
                                 app:layout_constraintEnd_toEndOf="@+id/tvModStrength"
                                 app:layout_constraintStart_toStartOf="@+id/tvModStrength"
                                 app:layout_constraintTop_toBottomOf="@+id/tvModStrength" />
@@ -309,21 +301,16 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        style="@style/ConstraintStatHome">
 
                         <ImageView
                             android:id="@+id/ivIntelligence"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:alpha="@dimen/cohesion_opacity"
+                            style="@style/ImageViewStatBackgroundHome"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/home_stat_background" />
+                            tools:ignore="ContentDescription" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -334,76 +321,51 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvStatNameIntelligence"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
                                 android:text="@string/stat_intelligence_name"
-                                android:textColor="@color/text_color"
-                                android:textSize="18sp"
-                                android:textStyle="italic"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatNameHome"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvStatNumberIntelligence"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/stat_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="22sp"
-                                android:textStyle="bold|italic"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatNumberHome"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNameIntelligence" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvSaveIntelligence"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="0.7"
                                 android:text="@string/name_save"
-                                android:textColor="@color/text_color"
-                                app:autoSizeMaxTextSize="14sp"
-                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNameHome"
                                 app:layout_constraintEnd_toStartOf="@+id/tvStatNumberIntelligence"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNumberIntelligence" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvSaveNumberIntelligence"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/save_mod_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNumberHome"
                                 app:layout_constraintEnd_toEndOf="@+id/tvSaveIntelligence"
                                 app:layout_constraintStart_toStartOf="@+id/tvSaveIntelligence"
                                 app:layout_constraintTop_toBottomOf="@+id/tvSaveIntelligence" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvModIntelligence"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="0.7"
                                 android:text="@string/title_mod"
-                                android:textColor="@color/text_color"
-                                app:autoSizeMaxTextSize="14sp"
-                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNameHome"
                                 app:layout_constraintStart_toEndOf="@+id/tvStatNumberIntelligence"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNumberIntelligence" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvModNumberIntelligence"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/save_mod_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNumberHome"
                                 app:layout_constraintEnd_toEndOf="@+id/tvModIntelligence"
                                 app:layout_constraintStart_toStartOf="@+id/tvModIntelligence"
                                 app:layout_constraintTop_toBottomOf="@+id/tvModIntelligence" />
@@ -411,21 +373,16 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        style="@style/ConstraintStatHome">
 
                         <ImageView
                             android:id="@+id/ivCharisma"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:alpha="@dimen/cohesion_opacity"
+                            style="@style/ImageViewStatBackgroundHome"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/home_stat_background" />
+                            tools:ignore="ContentDescription" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -436,82 +393,56 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvStatNameCharisma"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
                                 android:text="@string/stat_charisma_name"
-                                android:textColor="@color/text_color"
-                                android:textSize="18sp"
-                                android:textStyle="italic"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatNameHome"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvStatNumberCharisma"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/stat_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="22sp"
-                                android:textStyle="bold|italic"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatNumberHome"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNameCharisma" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvSaveCharisma"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="0.7"
                                 android:text="@string/name_save"
-                                android:textColor="@color/text_color"
-                                app:autoSizeMaxTextSize="14sp"
-                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNameHome"
                                 app:layout_constraintEnd_toStartOf="@+id/tvStatNumberCharisma"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNumberCharisma" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvSaveNumberCharisma"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/save_mod_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNumberHome"
                                 app:layout_constraintEnd_toEndOf="@+id/tvSaveCharisma"
                                 app:layout_constraintStart_toStartOf="@+id/tvSaveCharisma"
                                 app:layout_constraintTop_toBottomOf="@+id/tvSaveCharisma" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvModCharisma"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="0.7"
                                 android:text="@string/title_mod"
-                                android:textColor="@color/text_color"
-                                app:autoSizeMaxTextSize="14sp"
-                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNameHome"
                                 app:layout_constraintStart_toEndOf="@+id/tvStatNumberCharisma"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNumberCharisma" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvModNumberCharisma"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/save_mod_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNumberHome"
                                 app:layout_constraintEnd_toEndOf="@+id/tvModCharisma"
                                 app:layout_constraintStart_toStartOf="@+id/tvModCharisma"
                                 app:layout_constraintTop_toBottomOf="@+id/tvModCharisma" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
                 </TableRow>
 
                 <TableRow
@@ -519,21 +450,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
+
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        style="@style/ConstraintStatHome">
+
                         <ImageView
                             android:id="@+id/ivDexterity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:alpha="@dimen/cohesion_opacity"
+                            style="@style/ImageViewStatBackgroundHome"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/home_stat_background" />
+                            tools:ignore="ContentDescription" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -544,76 +472,51 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvStatNameDexterity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
                                 android:text="@string/stat_dexterity_name"
-                                android:textColor="@color/text_color"
-                                android:textSize="18sp"
-                                android:textStyle="italic"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatNameHome"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvStatNumberDexterity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/stat_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="22sp"
-                                android:textStyle="bold|italic"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatNumberHome"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNameDexterity" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvSaveDexterity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="0.7"
                                 android:text="@string/name_save"
-                                android:textColor="@color/text_color"
-                                app:autoSizeMaxTextSize="14sp"
-                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNameHome"
                                 app:layout_constraintEnd_toStartOf="@+id/tvStatNumberDexterity"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNumberDexterity" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvSaveNumberDexterity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/save_mod_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNumberHome"
                                 app:layout_constraintEnd_toEndOf="@+id/tvSaveDexterity"
                                 app:layout_constraintStart_toStartOf="@+id/tvSaveDexterity"
                                 app:layout_constraintTop_toBottomOf="@+id/tvSaveDexterity" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvModDexterity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="0.7"
                                 android:text="@string/title_mod"
-                                android:textColor="@color/text_color"
-                                app:autoSizeMaxTextSize="14sp"
-                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNameHome"
                                 app:layout_constraintStart_toEndOf="@+id/tvStatNumberDexterity"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNumberDexterity" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvModNumberDexterity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/save_mod_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNumberHome"
                                 app:layout_constraintEnd_toEndOf="@+id/tvModDexterity"
                                 app:layout_constraintStart_toStartOf="@+id/tvModDexterity"
                                 app:layout_constraintTop_toBottomOf="@+id/tvModDexterity" />
@@ -621,20 +524,16 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        style="@style/ConstraintStatHome">
+
                         <ImageView
                             android:id="@+id/ivWisdom"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:alpha="@dimen/cohesion_opacity"
+                            style="@style/ImageViewStatBackgroundHome"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/home_stat_background" />
+                            tools:ignore="ContentDescription" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -645,76 +544,51 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvStatNameWisdom"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
                                 android:text="@string/stat_wisdom_name"
-                                android:textColor="@color/text_color"
-                                android:textSize="18sp"
-                                android:textStyle="italic"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatNameHome"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvStatNumberWisdom"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/stat_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="22sp"
-                                android:textStyle="bold|italic"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatNumberHome"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNameWisdom" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvSaveWisdom"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="0.7"
                                 android:text="@string/name_save"
-                                android:textColor="@color/text_color"
-                                app:autoSizeMaxTextSize="14sp"
-                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNameHome"
                                 app:layout_constraintEnd_toStartOf="@+id/tvStatNumberWisdom"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNumberWisdom" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvSaveNumberWisdom"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/save_mod_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNumberHome"
                                 app:layout_constraintEnd_toEndOf="@+id/tvSaveWisdom"
                                 app:layout_constraintStart_toStartOf="@+id/tvSaveWisdom"
                                 app:layout_constraintTop_toBottomOf="@+id/tvSaveWisdom" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvModWisdom"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="0.7"
                                 android:text="@string/title_mod"
-                                android:textColor="@color/text_color"
-                                app:autoSizeMaxTextSize="14sp"
-                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNameHome"
                                 app:layout_constraintStart_toEndOf="@+id/tvStatNumberWisdom"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNumberWisdom" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvModNumberWisdom"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/save_mod_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNumberHome"
                                 app:layout_constraintEnd_toEndOf="@+id/tvModWisdom"
                                 app:layout_constraintStart_toStartOf="@+id/tvModWisdom"
                                 app:layout_constraintTop_toBottomOf="@+id/tvModWisdom" />
@@ -722,20 +596,16 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                            <ImageView
-                                android:id="@+id/ivConstitution"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:alpha="@dimen/cohesion_opacity"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/home_stat_background" />
+                        style="@style/ConstraintStatHome">
+
+                        <ImageView
+                            android:id="@+id/ivConstitution"
+                            style="@style/ImageViewStatBackgroundHome"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="ContentDescription" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -746,76 +616,51 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvStatNameConstitution"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
                                 android:text="@string/stat_constitution_name"
-                                android:textColor="@color/text_color"
-                                android:textSize="18sp"
-                                android:textStyle="italic"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatNameHome"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvStatNumberConstitution"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/stat_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="22sp"
-                                android:textStyle="bold|italic"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatNumberHome"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNameConstitution" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvSaveConstitution"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="0.7"
                                 android:text="@string/name_save"
-                                android:textColor="@color/text_color"
-                                app:autoSizeMaxTextSize="14sp"
-                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNameHome"
                                 app:layout_constraintEnd_toStartOf="@+id/tvStatNumberConstitution"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNumberConstitution" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvSaveNumberConstitution"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/save_mod_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNumberHome"
                                 app:layout_constraintEnd_toEndOf="@+id/tvSaveConstitution"
                                 app:layout_constraintStart_toStartOf="@+id/tvSaveConstitution"
                                 app:layout_constraintTop_toBottomOf="@+id/tvSaveConstitution" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvModConstitution"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="0.7"
                                 android:text="@string/title_mod"
-                                android:textColor="@color/text_color"
-                                app:autoSizeMaxTextSize="14sp"
-                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNameHome"
                                 app:layout_constraintStart_toEndOf="@+id/tvStatNumberConstitution"
                                 app:layout_constraintTop_toBottomOf="@+id/tvStatNumberConstitution" />
 
-                            <TextView
+                            <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/tvModNumberConstitution"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="1"
-                                android:text="@string/save_mod_placeholder"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
+                                app:autoSizeTextType="uniform"
+                                style="@style/StatSaveModNumberHome"
                                 app:layout_constraintEnd_toEndOf="@+id/tvModConstitution"
                                 app:layout_constraintStart_toStartOf="@+id/tvModConstitution"
                                 app:layout_constraintTop_toBottomOf="@+id/tvModConstitution" />
@@ -824,39 +669,39 @@
                 </TableRow>
 
             </TableLayout>
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/llButtons"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
 
                 <ImageButton
                     android:id="@+id/ibDice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:alpha="@dimen/cohesion_opacity"
                     android:background="#00FFFFFF"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/home_dice_icon"
-                    tools:ignore="NestedWeights" />
+                    tools:ignore="NestedWeights"
+                    android:contentDescription="@string/dice_text" />
 
                 <TextView
                     android:id="@+id/tvDice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_weight="0"
                     android:text="@string/dice_text"
                     android:textAlignment="center"
                     android:textSize="18sp" />
@@ -872,19 +717,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:alpha="@dimen/cohesion_opacity"
                     android:background="#00FFFFFF"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/home_combat_icon" />
+                    app:srcCompat="@drawable/home_combat_icon"
+                    android:contentDescription="@string/title_combat" />
 
                 <TextView
                     android:id="@+id/tvCombat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_weight="0"
                     android:text="@string/title_combat"
                     android:textAlignment="center"
                     android:textSize="18sp" />
@@ -900,20 +744,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:alpha="@dimen/cohesion_opacity"
                     android:background="#00FFFFFF"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/home_rest_icon" />
+                    app:srcCompat="@drawable/home_rest_icon"
+                    android:contentDescription="@string/title_rest" />
 
                 <TextView
                     android:id="@+id/tvRest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_weight="0"
-                    android:text="@string/rest_title"
+                    android:text="@string/title_rest"
                     android:textAlignment="center"
                     android:textSize="18sp" />
             </FrameLayout>
