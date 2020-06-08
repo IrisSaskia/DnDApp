@@ -44,6 +44,10 @@
     <string name="title_class">Class</string>
     <string name="next_button">Next</string>
     <string name="add_character">Add character</string>
+    <string name="dice_text">Dice</string>
+    <string name="rest_title">Rest</string>
+    <string name="title_damage">Damage</string>
+    <string name="title_heal">Heal</string>
 
 
     <!-- TODO: Add placeholder text for all images! -->
