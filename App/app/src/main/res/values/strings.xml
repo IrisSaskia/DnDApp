@@ -50,6 +50,8 @@
     <string name="title_heal">Heal</string>
     <string name="background_stat_description">Background image for stat</string>
     <string name="ac_title">AC</string>
+    <string name="title_speed">Speed</string>
+    <string name="title_initiative">Initiative</string>
 
 
     <!-- TODO: Add placeholder text for all images! -->

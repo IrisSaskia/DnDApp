@@ -155,520 +155,596 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.6"
+            android:baselineAligned="false"
             android:orientation="horizontal"
             android:paddingStart="@dimen/extra_stats_padding"
             android:paddingEnd="@dimen/extra_stats_padding"
             android:paddingBottom="5dp">
 
-            <ImageView
-                android:id="@+id/ivSpeed"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:alpha="@dimen/cohesion_opacity"
-                android:paddingTop="20dp"
-                app:srcCompat="@drawable/home_info_background"
-                tools:ignore="ContentDescription,NestedWeights" />
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-            <FrameLayout
+                <ImageView
+                    android:id="@+id/ivSpeed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:alpha="@dimen/cohesion_opacity"
+                    android:paddingTop="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/home_info_background"
+                    tools:ignore="ContentDescription,NestedWeights" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSpeedName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_speed"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ivSpeed" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSpeedNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stat_placeholder"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSpeedName" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0">
 
-                <TextView
-                    android:id="@+id/tvACName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ac_title" />
-
-                <TextView
-                    android:id="@+id/tvACValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/stat_placeholder" />
-
                 <ImageView
                     android:id="@+id/ivArmorClass"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
                     android:alpha="@dimen/cohesion_opacity"
                     android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/home_shield_ac"
                     tools:ignore="ContentDescription,ObsoleteLayoutParam" />
-            </FrameLayout>
 
-            <ImageView
-                android:id="@+id/ivInitiative"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvACName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/ac_title"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/tvACValue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvACValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/stat_placeholder"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivArmorClass"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ivArmorClass" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:alpha="@dimen/cohesion_opacity"
-                android:paddingTop="20dp"
-                app:srcCompat="@drawable/home_info_background"
-                tools:ignore="ContentDescription" />
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/ivInitiative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:alpha="@dimen/cohesion_opacity"
+                    android:paddingTop="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/home_info_background"
+                    tools:ignore="ContentDescription" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvInitiativeName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_initiative"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ivInitiative" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvInitiativeNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stat_placeholder"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvInitiativeName" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
 
-            <TableLayout
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/stats_margin"
+            android:layout_marginEnd="@dimen/stats_margin"
+            android:layout_weight="2.5">
+
+            <TableRow
+                android:id="@+id/trStatsOne"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.5"
-                android:layout_marginStart="@dimen/stats_margin"
-                android:layout_marginEnd="@dimen/stats_margin">
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-                <TableRow
-                    android:id="@+id/trStatsOne"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                <androidx.constraintlayout.widget.ConstraintLayout style="@style/ConstraintStatHome">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        style="@style/ConstraintStatHome">
-
-                        <ImageView
-                            android:id="@+id/ivStrength"
-                            style="@style/ImageViewStatBackgroundHome"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:ignore="ContentDescription" />
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvStatNameStrength"
-                                style="@style/StatNameHome"
-                                android:text="@string/stat_strength_name"
-                                app:autoSizeTextType="uniform"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvStatNumberStrength"
-                                style="@style/StatNumberHome"
-                                app:autoSizeTextType="uniform"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNameStrength" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSaveStrength"
-                                style="@style/StatSaveModNameHome"
-                                android:text="@string/name_save"
-                                app:autoSizeTextType="uniform"
-                                app:layout_constraintEnd_toStartOf="@+id/tvStatNumberStrength"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberStrength" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSaveNumberStrength"
-                                style="@style/StatSaveModNumberHome"
-                                app:autoSizeTextType="uniform"
-                                app:layout_constraintEnd_toEndOf="@+id/tvSaveStrength"
-                                app:layout_constraintStart_toStartOf="@+id/tvSaveStrength"
-                                app:layout_constraintTop_toBottomOf="@+id/tvSaveStrength" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvModStrength"
-                                style="@style/StatSaveModNameHome"
-                                android:text="@string/title_mod"
-                                app:autoSizeTextType="uniform"
-                                app:layout_constraintStart_toEndOf="@+id/tvStatNumberStrength"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberStrength" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvModNumberStrength"
-                                style="@style/StatSaveModNumberHome"
-                                app:autoSizeTextType="uniform"
-                                app:layout_constraintEnd_toEndOf="@+id/tvModStrength"
-                                app:layout_constraintStart_toStartOf="@+id/tvModStrength"
-                                app:layout_constraintTop_toBottomOf="@+id/tvModStrength" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/ivStrength"
+                        style="@style/ImageViewStatBackgroundHome"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        style="@style/ConstraintStatHome">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <ImageView
-                            android:id="@+id/ivIntelligence"
-                            style="@style/ImageViewStatBackgroundHome"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvStatNameStrength"
+                            style="@style/StatNameHome"
+                            android:text="@string/stat_strength_name"
+                            app:autoSizeTextType="uniform"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:ignore="ContentDescription" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvStatNumberStrength"
+                            style="@style/StatNumberHome"
+                            app:autoSizeTextType="uniform"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNameStrength" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvStatNameIntelligence"
-                                android:text="@string/stat_intelligence_name"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatNameHome"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSaveStrength"
+                            style="@style/StatSaveModNameHome"
+                            android:text="@string/name_save"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toStartOf="@+id/tvStatNumberStrength"
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNumberStrength" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvStatNumberIntelligence"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatNumberHome"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNameIntelligence" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSaveNumberStrength"
+                            style="@style/StatSaveModNumberHome"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="@+id/tvSaveStrength"
+                            app:layout_constraintStart_toStartOf="@+id/tvSaveStrength"
+                            app:layout_constraintTop_toBottomOf="@+id/tvSaveStrength" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSaveIntelligence"
-                                android:text="@string/name_save"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNameHome"
-                                app:layout_constraintEnd_toStartOf="@+id/tvStatNumberIntelligence"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberIntelligence" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvModStrength"
+                            style="@style/StatSaveModNameHome"
+                            android:text="@string/title_mod"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintStart_toEndOf="@+id/tvStatNumberStrength"
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNumberStrength" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSaveNumberIntelligence"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNumberHome"
-                                app:layout_constraintEnd_toEndOf="@+id/tvSaveIntelligence"
-                                app:layout_constraintStart_toStartOf="@+id/tvSaveIntelligence"
-                                app:layout_constraintTop_toBottomOf="@+id/tvSaveIntelligence" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvModIntelligence"
-                                android:text="@string/title_mod"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNameHome"
-                                app:layout_constraintStart_toEndOf="@+id/tvStatNumberIntelligence"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberIntelligence" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvModNumberIntelligence"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNumberHome"
-                                app:layout_constraintEnd_toEndOf="@+id/tvModIntelligence"
-                                app:layout_constraintStart_toStartOf="@+id/tvModIntelligence"
-                                app:layout_constraintTop_toBottomOf="@+id/tvModIntelligence" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvModNumberStrength"
+                            style="@style/StatSaveModNumberHome"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="@+id/tvModStrength"
+                            app:layout_constraintStart_toStartOf="@+id/tvModStrength"
+                            app:layout_constraintTop_toBottomOf="@+id/tvModStrength" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout style="@style/ConstraintStatHome">
+
+                    <ImageView
+                        android:id="@+id/ivIntelligence"
+                        style="@style/ImageViewStatBackgroundHome"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        style="@style/ConstraintStatHome">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <ImageView
-                            android:id="@+id/ivCharisma"
-                            style="@style/ImageViewStatBackgroundHome"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvStatNameIntelligence"
+                            style="@style/StatNameHome"
+                            android:text="@string/stat_intelligence_name"
+                            app:autoSizeTextType="uniform"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:ignore="ContentDescription" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvStatNumberIntelligence"
+                            style="@style/StatNumberHome"
+                            app:autoSizeTextType="uniform"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNameIntelligence" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvStatNameCharisma"
-                                android:text="@string/stat_charisma_name"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatNameHome"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSaveIntelligence"
+                            style="@style/StatSaveModNameHome"
+                            android:text="@string/name_save"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toStartOf="@+id/tvStatNumberIntelligence"
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNumberIntelligence" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvStatNumberCharisma"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatNumberHome"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNameCharisma" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSaveNumberIntelligence"
+                            style="@style/StatSaveModNumberHome"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="@+id/tvSaveIntelligence"
+                            app:layout_constraintStart_toStartOf="@+id/tvSaveIntelligence"
+                            app:layout_constraintTop_toBottomOf="@+id/tvSaveIntelligence" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSaveCharisma"
-                                android:text="@string/name_save"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNameHome"
-                                app:layout_constraintEnd_toStartOf="@+id/tvStatNumberCharisma"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberCharisma" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvModIntelligence"
+                            style="@style/StatSaveModNameHome"
+                            android:text="@string/title_mod"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintStart_toEndOf="@+id/tvStatNumberIntelligence"
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNumberIntelligence" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSaveNumberCharisma"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNumberHome"
-                                app:layout_constraintEnd_toEndOf="@+id/tvSaveCharisma"
-                                app:layout_constraintStart_toStartOf="@+id/tvSaveCharisma"
-                                app:layout_constraintTop_toBottomOf="@+id/tvSaveCharisma" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvModCharisma"
-                                android:text="@string/title_mod"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNameHome"
-                                app:layout_constraintStart_toEndOf="@+id/tvStatNumberCharisma"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberCharisma" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvModNumberCharisma"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNumberHome"
-                                app:layout_constraintEnd_toEndOf="@+id/tvModCharisma"
-                                app:layout_constraintStart_toStartOf="@+id/tvModCharisma"
-                                app:layout_constraintTop_toBottomOf="@+id/tvModCharisma" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvModNumberIntelligence"
+                            style="@style/StatSaveModNumberHome"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="@+id/tvModIntelligence"
+                            app:layout_constraintStart_toStartOf="@+id/tvModIntelligence"
+                            app:layout_constraintTop_toBottomOf="@+id/tvModIntelligence" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                </TableRow>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TableRow
-                    android:id="@+id/trStatsTwo"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                <androidx.constraintlayout.widget.ConstraintLayout style="@style/ConstraintStatHome">
+
+                    <ImageView
+                        android:id="@+id/ivCharisma"
+                        style="@style/ImageViewStatBackgroundHome"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        style="@style/ConstraintStatHome">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <ImageView
-                            android:id="@+id/ivDexterity"
-                            style="@style/ImageViewStatBackgroundHome"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvStatNameCharisma"
+                            style="@style/StatNameHome"
+                            android:text="@string/stat_charisma_name"
+                            app:autoSizeTextType="uniform"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:ignore="ContentDescription" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvStatNumberCharisma"
+                            style="@style/StatNumberHome"
+                            app:autoSizeTextType="uniform"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNameCharisma" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvStatNameDexterity"
-                                android:text="@string/stat_dexterity_name"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatNameHome"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSaveCharisma"
+                            style="@style/StatSaveModNameHome"
+                            android:text="@string/name_save"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toStartOf="@+id/tvStatNumberCharisma"
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNumberCharisma" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvStatNumberDexterity"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatNumberHome"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNameDexterity" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSaveNumberCharisma"
+                            style="@style/StatSaveModNumberHome"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="@+id/tvSaveCharisma"
+                            app:layout_constraintStart_toStartOf="@+id/tvSaveCharisma"
+                            app:layout_constraintTop_toBottomOf="@+id/tvSaveCharisma" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSaveDexterity"
-                                android:text="@string/name_save"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNameHome"
-                                app:layout_constraintEnd_toStartOf="@+id/tvStatNumberDexterity"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberDexterity" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvModCharisma"
+                            style="@style/StatSaveModNameHome"
+                            android:text="@string/title_mod"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintStart_toEndOf="@+id/tvStatNumberCharisma"
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNumberCharisma" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSaveNumberDexterity"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNumberHome"
-                                app:layout_constraintEnd_toEndOf="@+id/tvSaveDexterity"
-                                app:layout_constraintStart_toStartOf="@+id/tvSaveDexterity"
-                                app:layout_constraintTop_toBottomOf="@+id/tvSaveDexterity" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvModDexterity"
-                                android:text="@string/title_mod"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNameHome"
-                                app:layout_constraintStart_toEndOf="@+id/tvStatNumberDexterity"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberDexterity" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvModNumberDexterity"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNumberHome"
-                                app:layout_constraintEnd_toEndOf="@+id/tvModDexterity"
-                                app:layout_constraintStart_toStartOf="@+id/tvModDexterity"
-                                app:layout_constraintTop_toBottomOf="@+id/tvModDexterity" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvModNumberCharisma"
+                            style="@style/StatSaveModNumberHome"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="@+id/tvModCharisma"
+                            app:layout_constraintStart_toStartOf="@+id/tvModCharisma"
+                            app:layout_constraintTop_toBottomOf="@+id/tvModCharisma" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/trStatsTwo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <androidx.constraintlayout.widget.ConstraintLayout style="@style/ConstraintStatHome">
+
+                    <ImageView
+                        android:id="@+id/ivDexterity"
+                        style="@style/ImageViewStatBackgroundHome"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        style="@style/ConstraintStatHome">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <ImageView
-                            android:id="@+id/ivWisdom"
-                            style="@style/ImageViewStatBackgroundHome"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvStatNameDexterity"
+                            style="@style/StatNameHome"
+                            android:text="@string/stat_dexterity_name"
+                            app:autoSizeTextType="uniform"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:ignore="ContentDescription" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvStatNumberDexterity"
+                            style="@style/StatNumberHome"
+                            app:autoSizeTextType="uniform"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNameDexterity" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvStatNameWisdom"
-                                android:text="@string/stat_wisdom_name"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatNameHome"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSaveDexterity"
+                            style="@style/StatSaveModNameHome"
+                            android:text="@string/name_save"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toStartOf="@+id/tvStatNumberDexterity"
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNumberDexterity" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvStatNumberWisdom"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatNumberHome"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNameWisdom" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSaveNumberDexterity"
+                            style="@style/StatSaveModNumberHome"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="@+id/tvSaveDexterity"
+                            app:layout_constraintStart_toStartOf="@+id/tvSaveDexterity"
+                            app:layout_constraintTop_toBottomOf="@+id/tvSaveDexterity" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSaveWisdom"
-                                android:text="@string/name_save"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNameHome"
-                                app:layout_constraintEnd_toStartOf="@+id/tvStatNumberWisdom"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberWisdom" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvModDexterity"
+                            style="@style/StatSaveModNameHome"
+                            android:text="@string/title_mod"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintStart_toEndOf="@+id/tvStatNumberDexterity"
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNumberDexterity" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSaveNumberWisdom"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNumberHome"
-                                app:layout_constraintEnd_toEndOf="@+id/tvSaveWisdom"
-                                app:layout_constraintStart_toStartOf="@+id/tvSaveWisdom"
-                                app:layout_constraintTop_toBottomOf="@+id/tvSaveWisdom" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvModWisdom"
-                                android:text="@string/title_mod"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNameHome"
-                                app:layout_constraintStart_toEndOf="@+id/tvStatNumberWisdom"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberWisdom" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvModNumberWisdom"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNumberHome"
-                                app:layout_constraintEnd_toEndOf="@+id/tvModWisdom"
-                                app:layout_constraintStart_toStartOf="@+id/tvModWisdom"
-                                app:layout_constraintTop_toBottomOf="@+id/tvModWisdom" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvModNumberDexterity"
+                            style="@style/StatSaveModNumberHome"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="@+id/tvModDexterity"
+                            app:layout_constraintStart_toStartOf="@+id/tvModDexterity"
+                            app:layout_constraintTop_toBottomOf="@+id/tvModDexterity" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout style="@style/ConstraintStatHome">
+
+                    <ImageView
+                        android:id="@+id/ivWisdom"
+                        style="@style/ImageViewStatBackgroundHome"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        style="@style/ConstraintStatHome">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <ImageView
-                            android:id="@+id/ivConstitution"
-                            style="@style/ImageViewStatBackgroundHome"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvStatNameWisdom"
+                            style="@style/StatNameHome"
+                            android:text="@string/stat_wisdom_name"
+                            app:autoSizeTextType="uniform"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:ignore="ContentDescription" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvStatNumberWisdom"
+                            style="@style/StatNumberHome"
+                            app:autoSizeTextType="uniform"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNameWisdom" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvStatNameConstitution"
-                                android:text="@string/stat_constitution_name"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatNameHome"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSaveWisdom"
+                            style="@style/StatSaveModNameHome"
+                            android:text="@string/name_save"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toStartOf="@+id/tvStatNumberWisdom"
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNumberWisdom" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvStatNumberConstitution"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatNumberHome"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNameConstitution" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSaveNumberWisdom"
+                            style="@style/StatSaveModNumberHome"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="@+id/tvSaveWisdom"
+                            app:layout_constraintStart_toStartOf="@+id/tvSaveWisdom"
+                            app:layout_constraintTop_toBottomOf="@+id/tvSaveWisdom" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSaveConstitution"
-                                android:text="@string/name_save"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNameHome"
-                                app:layout_constraintEnd_toStartOf="@+id/tvStatNumberConstitution"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberConstitution" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvModWisdom"
+                            style="@style/StatSaveModNameHome"
+                            android:text="@string/title_mod"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintStart_toEndOf="@+id/tvStatNumberWisdom"
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNumberWisdom" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvSaveNumberConstitution"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNumberHome"
-                                app:layout_constraintEnd_toEndOf="@+id/tvSaveConstitution"
-                                app:layout_constraintStart_toStartOf="@+id/tvSaveConstitution"
-                                app:layout_constraintTop_toBottomOf="@+id/tvSaveConstitution" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvModConstitution"
-                                android:text="@string/title_mod"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNameHome"
-                                app:layout_constraintStart_toEndOf="@+id/tvStatNumberConstitution"
-                                app:layout_constraintTop_toBottomOf="@+id/tvStatNumberConstitution" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/tvModNumberConstitution"
-                                app:autoSizeTextType="uniform"
-                                style="@style/StatSaveModNumberHome"
-                                app:layout_constraintEnd_toEndOf="@+id/tvModConstitution"
-                                app:layout_constraintStart_toStartOf="@+id/tvModConstitution"
-                                app:layout_constraintTop_toBottomOf="@+id/tvModConstitution" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvModNumberWisdom"
+                            style="@style/StatSaveModNumberHome"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="@+id/tvModWisdom"
+                            app:layout_constraintStart_toStartOf="@+id/tvModWisdom"
+                            app:layout_constraintTop_toBottomOf="@+id/tvModWisdom" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-                </TableRow>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </TableLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout style="@style/ConstraintStatHome">
+
+                    <ImageView
+                        android:id="@+id/ivConstitution"
+                        style="@style/ImageViewStatBackgroundHome"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvStatNameConstitution"
+                            style="@style/StatNameHome"
+                            android:text="@string/stat_constitution_name"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvStatNumberConstitution"
+                            style="@style/StatNumberHome"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNameConstitution" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSaveConstitution"
+                            style="@style/StatSaveModNameHome"
+                            android:text="@string/name_save"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toStartOf="@+id/tvStatNumberConstitution"
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNumberConstitution" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSaveNumberConstitution"
+                            style="@style/StatSaveModNumberHome"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="@+id/tvSaveConstitution"
+                            app:layout_constraintStart_toStartOf="@+id/tvSaveConstitution"
+                            app:layout_constraintTop_toBottomOf="@+id/tvSaveConstitution" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvModConstitution"
+                            style="@style/StatSaveModNameHome"
+                            android:text="@string/title_mod"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintStart_toEndOf="@+id/tvStatNumberConstitution"
+                            app:layout_constraintTop_toBottomOf="@+id/tvStatNumberConstitution" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvModNumberConstitution"
+                            style="@style/StatSaveModNumberHome"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="@+id/tvModConstitution"
+                            app:layout_constraintStart_toStartOf="@+id/tvModConstitution"
+                            app:layout_constraintTop_toBottomOf="@+id/tvModConstitution" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </TableRow>
+
+        </TableLayout>
 
         <LinearLayout
             android:id="@+id/llButtons"
