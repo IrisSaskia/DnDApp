@@ -14,8 +14,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="409dp"
+        android:id="@+id/rvBagItem"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:padding="20dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,6 +35,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -119,8 +123,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:background="@color/invisible"
                             android:ems="10"
                             android:inputType="number"
+                            android:numeric="integer"
                             android:singleLine="true"
                             android:textAlignment="center"
                             android:textColor="@color/text_color" />
@@ -155,8 +161,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:background="@color/invisible"
                             android:ems="10"
                             android:inputType="number"
+                            android:numeric="integer"
                             android:singleLine="true"
                             android:textAlignment="center"
                             android:textColor="@color/text_color" />
@@ -191,8 +199,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:background="@color/invisible"
                             android:ems="10"
                             android:inputType="number"
+                            android:numeric="integer"
                             android:singleLine="true"
                             android:textAlignment="center"
                             android:textColor="@color/text_color" />
@@ -227,8 +237,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:background="@color/invisible"
                             android:ems="10"
                             android:inputType="number"
+                            android:numeric="integer"
                             android:singleLine="true"
                             android:textAlignment="center"
                             android:textColor="@color/text_color" />
@@ -263,8 +275,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:background="@color/invisible"
                             android:ems="10"
                             android:inputType="number"
+                            android:numeric="integer"
                             android:singleLine="true"
                             android:textAlignment="center"
                             android:textColor="@color/text_color" />
@@ -274,4 +288,11 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        style="@style/CustomFAB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_input_add" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,8 +5,10 @@ import androidx.room.Database
 import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.dndapp.database.bagItems.BagItemDAO
 import com.example.dndapp.database.characters.DnDCharacterDAO
 import com.example.dndapp.database.stats.StatsDAO
+import com.example.dndapp.model.BagItem
 import com.example.dndapp.model.DnDCharacter
 import com.example.dndapp.model.stats.*
 import kotlinx.coroutines.CoroutineScope
@@ -14,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Database(entities = [DnDCharacter::class,
+                        BagItem::class,
                         Strength::class,
                         Dexterity::class,
                         Constitution::class,
@@ -22,6 +25,7 @@ import kotlinx.coroutines.launch
                         Charisma::class], version = 3, exportSchema = false)
 abstract class DnDDatabase : RoomDatabase() {
     abstract fun dndCharacterDAO(): DnDCharacterDAO
+    abstract fun bagItemDAO(): BagItemDAO
     abstract fun statsDAO(): StatsDAO
 
     companion object {
@@ -61,6 +65,12 @@ abstract class DnDDatabase : RoomDatabase() {
                                         database.statsDAO().insertIntelligence(Intelligence(10, 0, 0,2, 2, 0, 0, 2, 1))
                                         database.statsDAO().insertWisdom(Wisdom(15, 2, 4, 2, 4, 2, 2, 2, 1))
                                         database.statsDAO().insertCharisma(Charisma(10, 0, 2, 0, 0, 0, 2, 1))
+
+                                        database.bagItemDAO().insertBagItem(BagItem(1, "Caltrops", 5, 1))
+                                        database.bagItemDAO().insertBagItem(BagItem(1, "Shield", 25, 1))
+                                        database.bagItemDAO().insertBagItem(BagItem(10, "Ball bearings", 10, 1))
+                                        database.bagItemDAO().insertBagItem(BagItem(1, "Dagger", 10, 1))
+
                                         database.dndCharacterDAO().insertDnDCharacter(
                                             DnDCharacter(
                                                 //TODO: replace with resource
@@ -83,6 +93,10 @@ abstract class DnDDatabase : RoomDatabase() {
                                         database.statsDAO().insertIntelligence(Intelligence(4, 0, 0,2, 2, 0, 0, 2, 2))
                                         database.statsDAO().insertWisdom(Wisdom(5, 2, 4, 2, 4, 2, 2, 2, 2))
                                         database.statsDAO().insertCharisma(Charisma(6, 0, 2, 0, 0, 0, 2, 2))
+
+                                        database.bagItemDAO().insertBagItem(BagItem(2, "Potion of healing", 12, 2))
+                                        database.bagItemDAO().insertBagItem(BagItem(1, "Plate armor", 50, 2))
+                                        database.bagItemDAO().insertBagItem(BagItem(8, "Rations", 40, 2))
                                     }
                                 }
                             }

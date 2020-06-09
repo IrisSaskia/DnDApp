@@ -7,8 +7,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.dndapp.database.api.DnDApiRepository
+import com.example.dndapp.database.bagItems.BagItemRepository
 import com.example.dndapp.database.characters.DnDCharacterRepository
 import com.example.dndapp.database.stats.StatsRepository
+import com.example.dndapp.model.BagItem
 import com.example.dndapp.model.DnDCharacter
 import com.example.dndapp.model.api.dataClasses.BackgroundResult
 import com.example.dndapp.model.api.dataClasses.CClassResult
@@ -30,6 +32,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val ioScope = CoroutineScope(Dispatchers.IO)
 
     private val dndCharacterRepository = DnDCharacterRepository(application.applicationContext)
+    private val bagItemRepository = BagItemRepository(application.applicationContext)
     private val statsRepository = StatsRepository(application.applicationContext)
     private val dndApiRepository = DnDApiRepository()
 
@@ -94,6 +97,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     val dndCharacters: LiveData<List<DnDCharacter>> = dndCharacterRepository.getAllCharacters()
+
+    var bagItems = Transformations.switchMap(currentCharacterID) {currentCharacterID ->
+        if(currentCharacterID == null) {
+            bagItemRepository.getAllBagItems(standardCharacterID)
+        } else {
+            bagItemRepository.getAllBagItems(currentCharacterID)
+        }
+    }
 
     val backgroundInfo = MutableLiveData<String>()
     val raceSpeed = MutableLiveData<Int>()
