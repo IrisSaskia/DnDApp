@@ -6,10 +6,6 @@ import com.example.dndapp.model.stats.*
 
 @Entity(tableName = "dndCharacterTable")
 data class DnDCharacter (
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    var id: Long? = null,
-
     @ColumnInfo(name = "active")
     var active: Boolean,
 
@@ -37,5 +33,13 @@ data class DnDCharacter (
     //TODO: Test the Nullable thing
     @ColumnInfo(name = "subRace")
     @Nullable
-    var subRace: String
+    var subRace: String,
+
+    //TODO: Add multiclassing
+    @ColumnInfo(name = "cclass")
+    var cclass: String,
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Long? = null
 )

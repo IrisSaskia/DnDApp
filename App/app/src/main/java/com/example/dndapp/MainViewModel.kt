@@ -13,6 +13,7 @@ import com.example.dndapp.model.DnDCharacter
 import com.example.dndapp.model.api.dataClasses.BackgroundResult
 import com.example.dndapp.model.api.dataClasses.CClassResult
 import com.example.dndapp.model.api.dataClasses.RaceResult
+import com.example.dndapp.model.stats.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -102,6 +103,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     var cclassNames = MutableLiveData<List<String>>()
     var backgroundNames = MutableLiveData<List<String>>()
 
+    var racialStatBonusesRace = MutableLiveData<List<String>>()
+    var racialStatBonusValueRace = MutableLiveData<Int>()
+
+    var racialStatBonusesSubrace = MutableLiveData<List<String>>()
+    var racialStatBonusValueSubrace = MutableLiveData<Int>()
+
+    //TODO: this ^
+
     //TODO: iets waarmee alles in 1 zit???
     //TODO: moet er 1 viewmodel zijn waarin dit maar 1x gedaan hoeft te worden?
 
@@ -110,6 +119,24 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     * onResponse if the response is successful populate the [result] object.
     * If the call encountered an error then populate the [error] object.
     */
+
+    fun addCharacterToDatabase(newCharacter: DnDCharacter,
+                               newStrength: Strength,
+                               newDexterity: Dexterity,
+                               newIntelligence: Intelligence,
+                               newWisdom: Wisdom,
+                               newCharisma: Charisma,
+                               newConstitution: Constitution) {
+        ioScope.launch {
+            dndCharacterRepository.insertDnDCharacter(newCharacter)
+            statsRepository.insertStrength(newStrength)
+            statsRepository.insertDexterity(newDexterity)
+            statsRepository.insertIntelligence(newIntelligence)
+            statsRepository.insertWisdom(newWisdom)
+            statsRepository.insertCharisma(newCharisma)
+            statsRepository.insertConstitution(newConstitution)
+        }
+    }
 
     fun changeCurrentCharacter(chosenCharacterID: Int, currentCharacterID: Int) {
         ioScope.launch {
@@ -267,6 +294,33 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         })
     }
+    //Retrieve a list of all subrace names from the api depending on the selected race
+    /*fun getRacialStatBonuses(chosenRace: String, chosenSubrace: String): LiveData<List<String>> {
+        dndApiRepository.getRace(chosenRace).enqueue(object : Callback<RaceResult> {
+            override fun onResponse(call: Call<RaceResult>, response: Response<RaceResult>) {
+                if (response.isSuccessful) {
+                    val namesList = ArrayList<String>(response.body()!!.count)
+                    response.body()!!.results[0].subraces.forEachIndexed{index, value ->
+                        namesList.add(value.name)
+                        Log.d("SUBRACE res $index", namesList[index])
+                    }
+                    subraceNames.apply {
+                        value = namesList
+                    }
+
+                } else {
+                    error.value = "An error occurred: ${response.errorBody().toString()}"
+                }
+            }
+
+            override fun onFailure(call: Call<RaceResult>, t: Throwable) {
+                error.value = t.message
+            }
+        })
+
+        return subraceNames
+    }*/
+
 
     /*fun onAppClosure() {
         //TODO: saving the current selected character, when it changes, niet perse hier

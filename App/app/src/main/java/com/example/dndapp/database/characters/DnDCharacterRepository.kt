@@ -14,6 +14,10 @@ class DnDCharacterRepository(context: Context) {
         dndCharacterDAO = database!!.dndCharacterDAO()
     }
 
+    suspend fun insertDnDCharacter(dndCharacter: DnDCharacter) {
+        dndCharacterDAO.insertDnDCharacter(dndCharacter)
+    }
+
     fun getDnDCharacter(currentDnDCharacter: Int): LiveData<DnDCharacter?> {
         return dndCharacterDAO.getDnDCharacter(currentDnDCharacter)
     }

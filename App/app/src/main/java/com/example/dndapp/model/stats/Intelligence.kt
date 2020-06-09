@@ -15,10 +15,6 @@ import com.example.dndapp.model.DnDCharacter
     )
 ])
 data class Intelligence (
-    @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name = "characterID")
-    override var characterID: Long? = null,
-
     @ColumnInfo(name = "stat")
     override var stat: Int,
 
@@ -41,5 +37,9 @@ data class Intelligence (
     var nature: Int,
 
     @ColumnInfo(name = "religion")
-    var religion: Int
+    var religion: Int,
+
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "characterID")
+    override var characterID: Long? = null
 ) : Stat()

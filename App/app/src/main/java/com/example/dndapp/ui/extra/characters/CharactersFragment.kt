@@ -7,9 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,7 +20,9 @@ import com.example.dndapp.MainViewModel
 import com.example.dndapp.R
 import com.example.dndapp.model.CharacterAdapter
 import com.example.dndapp.model.DnDCharacter
+import com.example.dndapp.model.stats.*
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.add_character_dialog_stats.*
 import kotlinx.android.synthetic.main.fragment_extra_characters.*
 
 class CharactersFragment : Fragment() {
@@ -30,7 +30,19 @@ class CharactersFragment : Fragment() {
     private val dndCharacters = arrayListOf<DnDCharacter>()
     private val characterAdapter = CharacterAdapter(dndCharacters) { dndCharacter -> onCharacterClick(dndCharacter) }
     private lateinit var viewModel: MainViewModel
-    private lateinit var backgroundSpinner: Spinner
+
+    //The chosen options for the character making process
+    private lateinit var newCharacterRace: String
+    private lateinit var newCharacterSubrace: String
+    private lateinit var newCharacterCClass: String
+    private lateinit var newCharacterBackground: String
+    private var newCharacterStrength: Int = 0
+    private var newCharacterDexterity: Int = 0
+    private var newCharacterIntelligence: Int = 0
+    private var newCharacterWisdom: Int = 0
+    private var newCharacterCharisma: Int = 0
+    private var newCharacterConstitution: Int = 0
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
@@ -48,8 +60,8 @@ class CharactersFragment : Fragment() {
 
     private fun initViews() {
         parentActivity = activity!!
-        /*backgroundSpinner = layoutDialog.findViewById(R.id.spinnerBackground)*/
 
+        //Making the recyclerview for the list of all characters
         rvCharacters.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         rvCharacters.adapter = characterAdapter
         rvCharacters.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
@@ -72,23 +84,25 @@ class CharactersFragment : Fragment() {
         })
     }
 
+    //This function makes an alert dialog
+    private fun makeAlert(layout: Int, title: Int): Pair<AlertDialog, View> {
+        val dialogView = LayoutInflater.from(context).inflate(layout, null)
+        val newAlertBuilder = AlertDialog.Builder(context, R.style.AlertDialogStyle)
+            .setView(dialogView)
+            .setTitle(title)
+
+        return Pair(newAlertBuilder.show(), dialogView)
+    }
+    //This function gets the selected value of a spinner
+    private fun getSelectedCharacterOptions(spinner: Spinner): String {
+        return spinner.selectedItem.toString()
+    }
+
     //////////////////////////////////////////////////
     //Button opens dialog for new character creation//
     //////////////////////////////////////////////////
     private fun newCharacter() {
-        //Toast.makeText(viewModel.getApplication(), R.string.add_character, Toast.LENGTH_SHORT).show()
-        /*val newCharacterDialog = LayoutInflater.from(context).inflate(R.layout.add_character_dialog, null)*/
-
-
-
-        /*val newCharacterBuilder = AlertDialog.Builder(context, R.style.AlertDialogStyle)
-            .setView(newCharacterDialog)
-            .setTitle(R.string.add_character)*/
-
-
-        /*val alertDialog = newCharacterBuilder.show()*/
-
-        val alertDialog = makeAlert(R.layout.add_character_dialog, R.string.add_character)
+        val (alertDialog, alertView) = makeAlert(R.layout.add_character_dialog, R.string.add_character)
 
         val exitButton: Button = alertDialog.findViewById(R.id.btnCancel)
         val nextButton: Button = alertDialog.findViewById(R.id.btnNext)
@@ -107,34 +121,27 @@ class CharactersFragment : Fragment() {
 
         nextButton.setOnClickListener {
             //TODO: Save the currently chosen options!!
-            //TODO: Add error handling for when the spinners are not filled yet
-            val selectedRace = getSelectedCharacterOptions(raceSpinner)
-            val selectedCClass = getSelectedCharacterOptions(cclassSpinner)
-            val selectedBackground = getSelectedCharacterOptions(backgroundSpinner)
 
-            Log.d("race", selectedRace)
-            Log.d("cclass", selectedCClass)
-            Log.d("background", selectedBackground)
+            if(raceSpinner.count != 0 &&
+                cclassSpinner.count != 0 &&
+                    backgroundSpinner.count != 0) {
+                newCharacterRace = getSelectedCharacterOptions(raceSpinner)
+                newCharacterCClass = getSelectedCharacterOptions(cclassSpinner)
+                newCharacterBackground = getSelectedCharacterOptions(backgroundSpinner)
 
-            alertDialog.dismiss()
-            selectSubRace(selectedRace)
+                Log.d("race", newCharacterRace)
+                Log.d("cclass", newCharacterCClass)
+                Log.d("background", newCharacterBackground)
+
+                alertDialog.dismiss()
+                selectSubRace()
+            } else {
+                //TODO: make string value
+                Toast.makeText(context, "Wacht even op het laden", Toast.LENGTH_LONG).show()
+            }
         }
 
         alertDialog.show()
-    }
-
-    //This function makes an alert dialog
-    private fun makeAlert(layout: Int, title: Int): AlertDialog {
-        val dialogView = LayoutInflater.from(context).inflate(layout, null)
-        val newAlertBuilder = AlertDialog.Builder(context, R.style.AlertDialogStyle)
-            .setView(dialogView)
-            .setTitle(title)
-
-        return newAlertBuilder.show()
-    }
-
-    private fun getSelectedCharacterOptions(spinner: Spinner): String {
-        return spinner.selectedItem.toString()
     }
 
     //This function fills the race spinner with all race names gotten from the api
@@ -173,13 +180,15 @@ class CharactersFragment : Fragment() {
         })
     }
 
+
     ///////////////////////////////////////////////////////////
     //This function is for the dialog for selecting a subrace//
     ///////////////////////////////////////////////////////////
-    private fun selectSubRace(chosenRace: String) {
-        viewModel.getSubraceNames(chosenRace).observe(this, Observer {subraceNames ->
+    private fun selectSubRace() {
+        viewModel.getSubraceNames(newCharacterRace).observe(this, Observer {subraceNames ->
             if(subraceNames != null && subraceNames.isNotEmpty()) {
-                val alertDialog = makeAlert(R.layout.add_character_dialog_subrace, R.string.select_subrace)
+                //TODO: hij opent soms dubbel?
+                val (alertDialog, alertView) = makeAlert(R.layout.add_character_dialog_subrace, R.string.select_subrace)
 
                 val subraceSpinner: Spinner = alertDialog.findViewById(R.id.spinnerSubrace)
                 val adapter = ArrayAdapter(parentActivity, android.R.layout.simple_spinner_item, subraceNames)
@@ -195,15 +204,24 @@ class CharactersFragment : Fragment() {
 
                 nextButton.setOnClickListener {
                     //TODO: Save the currently chosen options!!
-                    val selectedSubrace = getSelectedCharacterOptions(subraceSpinner)
+                    if(subraceSpinner.count != 0) {
+                        newCharacterSubrace = getSelectedCharacterOptions(subraceSpinner)
 
-                    Log.d("subrace", selectedSubrace)
+                        Log.d("subrace", newCharacterSubrace)
+
+                        alertDialog.dismiss()
+                        selectStats()
+                    } else {
+                        //TODO: make string value
+                        Toast.makeText(context, "Wacht even op het laden", Toast.LENGTH_LONG).show()
+                    }
 
                     alertDialog.dismiss()
-                    selectStats(chosenRace)
                 }
 
                 alertDialog.show()
+            } else {
+                selectStats()
             }
         })
     }
@@ -211,23 +229,108 @@ class CharactersFragment : Fragment() {
     //////////////////////////////////////////////////////////////////
     //This function handles the alert dialog for the stats selection//
     //////////////////////////////////////////////////////////////////
-    private fun selectStats(chosenRace: String) {
-        val alertDialog = makeAlert(R.layout.add_character_dialog, R.string.add_character)
+    private fun selectStats() {
+        val (alertDialog, alertView) = makeAlert(R.layout.add_character_dialog_stats, R.string.select_stats)
 
         val previousButton: Button = alertDialog.findViewById(R.id.btnStatPrevious)
         val nextButton: Button = alertDialog.findViewById(R.id.btnStatNext)
 
         previousButton.setOnClickListener {
             alertDialog.dismiss()
-            selectSubRace(chosenRace)
+            selectSubRace()
         }
 
         nextButton.setOnClickListener {
             //TODO: Save the currently chosen options!!
+            newCharacterStrength = alertDialog.findViewById<EditText>(R.id.etStrengthSelect).text.toString().toInt()
+            newCharacterDexterity = alertDialog.findViewById<EditText>(R.id.etDexteritySelect).text.toString().toInt()
+            newCharacterIntelligence = alertDialog.findViewById<EditText>(R.id.etIntelligenceSelect).text.toString().toInt()
+            newCharacterWisdom = alertDialog.findViewById<EditText>(R.id.etWisdomSelect).text.toString().toInt()
+            newCharacterCharisma = alertDialog.findViewById<EditText>(R.id.etCharismaSelect).text.toString().toInt()
+            newCharacterConstitution = alertDialog.findViewById<EditText>(R.id.etConstitutionSelect).text.toString().toInt()
+            Log.d("str", newCharacterStrength.toString())
+
             alertDialog.dismiss()
+            addNewCharacter()
         }
 
         alertDialog.show()
+    }
+
+    private fun addNewCharacter() {
+        val newCharacter = DnDCharacter(
+            false,
+            "Bob",
+            'F',
+            "Chaotic",
+            1,
+            "Note",
+            newCharacterBackground,
+            newCharacterRace,
+            newCharacterSubrace,
+            newCharacterCClass)
+
+        val newStrength = Strength(
+            newCharacterStrength,
+            1,
+            1,
+            1,
+            newCharacter.id
+        )
+
+        val newDexterity = Dexterity(
+            newCharacterDexterity,
+            1,
+            1,
+            1,
+            1,
+            1,
+            newCharacter.id
+        )
+
+        val newIntelligence = Intelligence(
+            newCharacterIntelligence,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            newCharacter.id
+        )
+
+        val newWisdom = Wisdom(
+            newCharacterWisdom,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            newCharacter.id
+        )
+
+        val newCharisma = Charisma(
+            newCharacterCharisma,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            newCharacter.id
+        )
+
+        val newConstitution = Constitution(
+            newCharacterConstitution,
+            1,
+            1,
+            newCharacter.id
+        )
+
+        viewModel.addCharacterToDatabase(newCharacter, newStrength, newDexterity, newIntelligence, newWisdom, newCharisma, newConstitution)
     }
 
     //////////////////////////////////////////////////////////

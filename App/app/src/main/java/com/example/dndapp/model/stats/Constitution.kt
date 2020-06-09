@@ -15,10 +15,6 @@ import com.example.dndapp.model.DnDCharacter
     )
 ])
 data class Constitution (
-    @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name = "characterID")
-    override var characterID: Long? = null,
-
     @ColumnInfo(name = "stat")
     override var stat: Int,
 
@@ -26,5 +22,9 @@ data class Constitution (
     override var modifier: Int,
 
     @ColumnInfo(name = "save")
-    override var save: Int
+    override var save: Int,
+
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "characterID")
+    override var characterID: Long? = null
 ) : Stat()

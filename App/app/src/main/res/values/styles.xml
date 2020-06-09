@@ -11,24 +11,15 @@
         <item name="alertDialogTheme">@style/AlertDialogStyle</item>
     </style>
 
+    <!--    The custom style for the alert dialogs  -->
     <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/text_color</item>
         <item name="android:editTextColor">@color/text_color</item>
         <item name="android:background">@color/content_background</item>
-        <item name="android:windowTitleStyle">@style/AlertDialogTitle</item>
     </style>
 
-    <style name="AlertDialogTitle" parent="Widget.AppCompat.TextView">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:alpha">@dimen/cohesion_opacity</item>
-        <item name="android:background">@drawable/title_background</item>
-        <item name="android:gravity">center_horizontal|center_vertical</item>
-        <item name="android:textAlignment">gravity</item>
-        <item name="android:textSize">@dimen/title_font_size</item>
-    </style>
-
+    <!--    The custom style for the titles on the pages    -->
     <style name="CustomTitleBar" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/title_image_height</item>

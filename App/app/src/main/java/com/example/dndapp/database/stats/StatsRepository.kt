@@ -14,6 +14,27 @@ class StatsRepository(context: Context) {
         statsDAO = database!!.statsDAO()
     }
 
+    suspend fun insertStrength(strength: Strength) {
+        statsDAO.insertStrength(strength)
+    }
+
+    suspend fun insertDexterity(dexterity: Dexterity) {
+        statsDAO.insertDexterity(dexterity)
+    }
+    suspend fun insertIntelligence(intelligence: Intelligence) {
+        statsDAO.insertIntelligence(intelligence)
+    }
+    suspend fun insertWisdom(wisdom: Wisdom) {
+        statsDAO.insertWisdom(wisdom)
+    }
+    suspend fun insertCharisma(charisma: Charisma) {
+        statsDAO.insertCharisma(charisma)
+    }
+
+    suspend fun insertConstitution(constitution: Constitution) {
+        statsDAO.insertConstitution(constitution)
+    }
+
     fun getStrength(currentDnDCharacter: Int): LiveData<Strength?> {
         return statsDAO.getStrength(currentDnDCharacter)
     }

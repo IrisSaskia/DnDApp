@@ -15,10 +15,6 @@ import com.example.dndapp.model.DnDCharacter
     )
 ])
 data class Strength (
-    @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name = "characterID")
-    override var characterID: Long? = null,
-
     @ColumnInfo(name = "stat")
     override var stat: Int,
 
@@ -29,5 +25,9 @@ data class Strength (
     override var save: Int,
 
     @ColumnInfo(name = "athletics")
-    var athletics: Int
+    var athletics: Int,
+
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "characterID")
+    override var characterID: Long? = null
 ) : Stat()

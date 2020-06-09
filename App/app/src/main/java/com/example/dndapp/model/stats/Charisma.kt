@@ -15,10 +15,6 @@ import com.example.dndapp.model.DnDCharacter
     )
 ])
 data class Charisma (
-    @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name = "characterID")
-    override var characterID: Long? = null,
-
     @ColumnInfo(name = "stat")
     override var stat: Int,
 
@@ -38,5 +34,9 @@ data class Charisma (
     var performance: Int,
 
     @ColumnInfo(name = "persuasion")
-    var persuasion: Int
+    var persuasion: Int,
+
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "characterID")
+    override var characterID: Long? = null
 ) : Stat()

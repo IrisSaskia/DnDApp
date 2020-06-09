@@ -15,10 +15,6 @@ import com.example.dndapp.model.DnDCharacter
     )
 ])
 data class Wisdom (
-    @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name = "characterID")
-    override var characterID: Long? = null,
-
     @ColumnInfo(name = "stat")
     override var stat: Int,
 
@@ -41,5 +37,9 @@ data class Wisdom (
     var perception: Int,
 
     @ColumnInfo(name = "survival")
-    var survival: Int
+    var survival: Int,
+
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "characterID")
+    override var characterID: Long? = null
 ) : Stat()

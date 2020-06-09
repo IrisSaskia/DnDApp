@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
                         Constitution::class,
                         Intelligence::class,
                         Wisdom::class,
-                        Charisma::class], version = 2, exportSchema = false)
+                        Charisma::class], version = 3, exportSchema = false)
 abstract class DnDDatabase : RoomDatabase() {
     abstract fun dndCharacterDAO(): DnDCharacterDAO
     abstract fun statsDAO(): StatsDAO
@@ -42,7 +42,6 @@ abstract class DnDDatabase : RoomDatabase() {
                                         database.dndCharacterDAO().insertDnDCharacter(
                                             DnDCharacter(
                                                 //TODO: replace with resource
-                                                1,
                                                 false,
                                                 "Test",
                                                 'O',
@@ -51,19 +50,20 @@ abstract class DnDDatabase : RoomDatabase() {
                                                 "Dit is een notitie",
                                                 "Acolyte",
                                                 "Dwarf",
-                                                "Hill"
+                                                "Hill",
+                                                "Barbarian",
+                                                1
                                             )
                                         )
-                                        database.statsDAO().insertStrength(Strength(1, 14, 2, 2, 2))
-                                        database.statsDAO().insertDexterity(Dexterity(1, 10, 0, 0, 0, 0, 0))
-                                        database.statsDAO().insertConstitution(Constitution(1, 16, 3, 3))
-                                        database.statsDAO().insertIntelligence(Intelligence(1, 10, 0, 0,2, 2, 0, 0, 2))
-                                        database.statsDAO().insertWisdom(Wisdom(1, 15, 2, 4, 2, 4, 2, 2, 2))
-                                        database.statsDAO().insertCharisma(Charisma(1, 10, 0, 2, 0, 0, 0, 2))
+                                        database.statsDAO().insertStrength(Strength(4, 2, 2, 2, 1))
+                                        database.statsDAO().insertDexterity(Dexterity(10, 0, 0, 0, 0, 0, 1))
+                                        database.statsDAO().insertConstitution(Constitution(16, 3, 3, 1))
+                                        database.statsDAO().insertIntelligence(Intelligence(10, 0, 0,2, 2, 0, 0, 2, 1))
+                                        database.statsDAO().insertWisdom(Wisdom(15, 2, 4, 2, 4, 2, 2, 2, 1))
+                                        database.statsDAO().insertCharisma(Charisma(10, 0, 2, 0, 0, 0, 2, 1))
                                         database.dndCharacterDAO().insertDnDCharacter(
                                             DnDCharacter(
                                                 //TODO: replace with resource
-                                                2,
                                                 true,
                                                 "Test 2",
                                                 'V',
@@ -72,15 +72,17 @@ abstract class DnDDatabase : RoomDatabase() {
                                                 "Dit is een notitieee",
                                                 "Scoundrel",
                                                 "Dragonborn",
-                                                ""
+                                                "",
+                                                "Bard",
+                                                2
                                             )
                                         )
-                                        database.statsDAO().insertStrength(Strength(2, 1, 2, 2, 2))
-                                        database.statsDAO().insertDexterity(Dexterity(2, 2, 0, 0, 0, 0, 0))
-                                        database.statsDAO().insertConstitution(Constitution(2, 3, 3, 3))
-                                        database.statsDAO().insertIntelligence(Intelligence(2, 4, 0, 0,2, 2, 0, 0, 2))
-                                        database.statsDAO().insertWisdom(Wisdom(2, 5, 2, 4, 2, 4, 2, 2, 2))
-                                        database.statsDAO().insertCharisma(Charisma(2, 6, 0, 2, 0, 0, 0, 2))
+                                        database.statsDAO().insertStrength(Strength(1, 2, 2, 2, 2))
+                                        database.statsDAO().insertDexterity(Dexterity(2, 0, 0, 0, 0, 0, 2))
+                                        database.statsDAO().insertConstitution(Constitution(3, 3, 3, 2))
+                                        database.statsDAO().insertIntelligence(Intelligence(4, 0, 0,2, 2, 0, 0, 2, 2))
+                                        database.statsDAO().insertWisdom(Wisdom(5, 2, 4, 2, 4, 2, 2, 2, 2))
+                                        database.statsDAO().insertCharisma(Charisma(6, 0, 2, 0, 0, 0, 2, 2))
                                     }
                                 }
                             }
