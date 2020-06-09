@@ -49,6 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:adjustViewBounds="true"
                     app:srcCompat="@drawable/money_platinum" />
 
                 <ImageView
@@ -56,6 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:adjustViewBounds="true"
                     app:srcCompat="@drawable/money_gold" />
 
                 <ImageView
@@ -63,6 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:adjustViewBounds="true"
                     app:srcCompat="@drawable/money_electrum" />
 
                 <ImageView
@@ -70,6 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:adjustViewBounds="true"
                     app:srcCompat="@drawable/money_silver" />
 
                 <ImageView
@@ -77,6 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:adjustViewBounds="true"
                     app:srcCompat="@drawable/money_copper" />
             </LinearLayout>
 
@@ -86,66 +91,186 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputLayout
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/home_stat_background">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
-                    <EditText
-                        android:id="@+id/etPlatinum"
+                    <ImageView
+                        android:id="@+id/ivPlatinum2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:singleLine="true"
-                        android:textAlignment="center" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/home_stat_background" />
 
-                <EditText
-                    android:id="@+id/etGold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/home_stat_background"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:singleLine="true"
-                    android:textAlignment="center" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorAccent"
+                        app:boxBackgroundMode="filled">
 
-                <EditText
-                    android:id="@+id/etElectrum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/home_stat_background"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:singleLine="true"
-                    android:textAlignment="center" />
+                        <EditText
+                            android:id="@+id/etPlatinum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_color" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </FrameLayout>
 
-                <EditText
-                    android:id="@+id/etSilver"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/home_stat_background"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:singleLine="true"
-                    android:textAlignment="center" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
-                <EditText
-                    android:id="@+id/etCopper"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/home_stat_background"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:singleLine="true"
-                    android:textAlignment="center" />
+                    <ImageView
+                        android:id="@+id/ivPlatinum3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/home_stat_background" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorAccent"
+                        app:boxBackgroundMode="filled">
+
+                        <EditText
+                            android:id="@+id/etGold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_color" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/ivPlatinum4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/home_stat_background" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorAccent"
+                        app:boxBackgroundMode="filled">
+
+                        <EditText
+                            android:id="@+id/etElectrum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_color" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/ivPlatinum5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/home_stat_background" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorAccent"
+                        app:boxBackgroundMode="filled">
+
+                        <EditText
+                            android:id="@+id/etSilver"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_color" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/ivPlatinum6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/home_stat_background" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorAccent"
+                        app:boxBackgroundMode="filled">
+
+                        <EditText
+                            android:id="@+id/etCopper"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_color" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </FrameLayout>
+
             </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
