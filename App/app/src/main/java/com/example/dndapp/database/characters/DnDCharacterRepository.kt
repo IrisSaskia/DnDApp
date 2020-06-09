@@ -28,7 +28,6 @@ class DnDCharacterRepository(context: Context) {
 
     @Transaction
     suspend fun changeCurrentCharacter(chosenCharacterID: Int, currentCharacterID: Int) {
-        //dndCharacterDAO.changeCurrentCharacter(chosenCharacterID, currentCharacterID)
         dndCharacterDAO.makeActive(chosenCharacterID)
         dndCharacterDAO.makeInactive(currentCharacterID)
     }

@@ -12,8 +12,8 @@ data class DnDCharacter (
     @ColumnInfo(name = "name")
     var name: String,
 
-    @ColumnInfo(name = "sex")
-    var sex: Char,
+    @ColumnInfo(name = "gender")
+    var gender: String,
 
     @ColumnInfo(name = "alignment")
     var alignment: String,

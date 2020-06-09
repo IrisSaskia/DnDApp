@@ -13,12 +13,10 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class SpellsFragment : Fragment() {
-    private lateinit var spellsViewModel: SpellsViewModel
     private lateinit var spellsFragmentAdapter: SpellsPagerAdapter
     private lateinit var spellsViewPager: ViewPager2
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        spellsViewModel = ViewModelProvider(this).get(SpellsViewModel::class.java)
         return inflater.inflate(R.layout.fragment_spells, container, false)
     }
 

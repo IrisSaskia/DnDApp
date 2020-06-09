@@ -1,4 +1,4 @@
-package com.example.dndapp.ui.extra.characters
+package com.example.dndapp.ui.extra
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -22,7 +22,6 @@ import com.example.dndapp.model.CharacterAdapter
 import com.example.dndapp.model.DnDCharacter
 import com.example.dndapp.model.stats.*
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.add_character_dialog_stats.*
 import kotlinx.android.synthetic.main.fragment_extra_characters.*
 
 class CharactersFragment : Fragment() {
@@ -42,6 +41,9 @@ class CharactersFragment : Fragment() {
     private var newCharacterWisdom: Int = 0
     private var newCharacterCharisma: Int = 0
     private var newCharacterConstitution: Int = 0
+    private lateinit var newCharacterName: String
+    private lateinit var newCharacterAlignment: String
+    private lateinit var newCharacterGender: String
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -251,82 +253,121 @@ class CharactersFragment : Fragment() {
             Log.d("str", newCharacterStrength.toString())
 
             alertDialog.dismiss()
+            selectIdentity()
+        }
+
+        alertDialog.show()
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //This function handles the alert dialog for name, alignment and gender of the character selection//
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    private fun selectIdentity() {
+        val (alertDialog, alertView) = makeAlert(R.layout.add_character_dialog_name, R.string.select_stats)
+
+        val genderSpinner: Spinner = alertDialog.findViewById(R.id.spinnerGender)
+        val alignmentSpinner: Spinner = alertDialog.findViewById(R.id.spinnerAlignment)
+
+        val previousButton: Button = alertDialog.findViewById(R.id.btnNamePrevious)
+        val nextButton: Button = alertDialog.findViewById(R.id.btnNameNext)
+
+        previousButton.setOnClickListener {
+            alertDialog.dismiss()
+            selectStats()
+        }
+
+        nextButton.setOnClickListener {
+            //TODO: Save the currently chosen options!!
+            newCharacterName = alertDialog.findViewById<EditText>(R.id.etName).text.toString()
+            newCharacterAlignment = getSelectedCharacterOptions(alignmentSpinner)
+            newCharacterGender = getSelectedCharacterOptions(genderSpinner)
+
+            alertDialog.dismiss()
             addNewCharacter()
         }
 
         alertDialog.show()
     }
 
+    ////////////////////////////////////////
+    //This function adds the new character//
+    ///////////////////////////////////////
     private fun addNewCharacter() {
         val newCharacter = DnDCharacter(
             false,
-            "Bob",
-            'F',
-            "Chaotic",
+            newCharacterName,
+            newCharacterGender,
+            newCharacterAlignment,
             1,
-            "Note",
+            "Note",//TODO: replace with string resource
             newCharacterBackground,
             newCharacterRace,
             newCharacterSubrace,
             newCharacterCClass)
 
+        val strengthMod = calculateStatModifier(newCharacterStrength)
         val newStrength = Strength(
             newCharacterStrength,
-            1,
-            1,
-            1,
+            strengthMod,
+            strengthMod,
+            strengthMod,
             newCharacter.id
         )
 
+        val dexterityMod = calculateStatModifier(newCharacterDexterity)
         val newDexterity = Dexterity(
             newCharacterDexterity,
-            1,
-            1,
-            1,
-            1,
-            1,
+            dexterityMod,
+            dexterityMod,
+            dexterityMod,
+            dexterityMod,
+            dexterityMod,
             newCharacter.id
         )
 
+        val intelligenceMod = calculateStatModifier(newCharacterIntelligence)
         val newIntelligence = Intelligence(
             newCharacterIntelligence,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
+            intelligenceMod,
+            intelligenceMod,
+            intelligenceMod,
+            intelligenceMod,
+            intelligenceMod,
+            intelligenceMod,
+            intelligenceMod,
             newCharacter.id
         )
 
+        val wisdomMod = calculateStatModifier(newCharacterWisdom)
         val newWisdom = Wisdom(
             newCharacterWisdom,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
+            wisdomMod,
+            wisdomMod,
+            wisdomMod,
+            wisdomMod,
+            wisdomMod,
+            wisdomMod,
+            wisdomMod,
             newCharacter.id
         )
 
+        val charismaMod = calculateStatModifier(newCharacterCharisma)
         val newCharisma = Charisma(
             newCharacterCharisma,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
+            charismaMod,
+            charismaMod,
+            charismaMod,
+            charismaMod,
+            charismaMod,
+            charismaMod,
             newCharacter.id
         )
 
+        val constitutionMod = calculateStatModifier(newCharacterConstitution)
         val newConstitution = Constitution(
             newCharacterConstitution,
-            1,
-            1,
+            constitutionMod,
+            constitutionMod,
             newCharacter.id
         )
 
@@ -351,11 +392,30 @@ class CharactersFragment : Fragment() {
         })
     }
 
+    private fun calculateStatModifier(statValue: Int): Int {
+        var modifierValue = 0
+        val calculation = statValue - 10
+        var modifiedCalculationResult = 0
+
+        if(calculation%2 != 0) {
+            modifiedCalculationResult = calculation-1
+        } else {
+            modifiedCalculationResult = calculation
+        }
+
+        if(modifiedCalculationResult == 0) {
+            modifierValue = 0
+        } else {
+            modifierValue = modifiedCalculationResult/2
+        }
+
+        return modifierValue
+    }
+
     //This function switches the loaded fragment to be the home fragment
     private fun startHomeFragment(){
         parentActivity.findNavController(R.id.nav_host_fragment).navigate(R.id.navigation_home)
     }
-
 
     //This gets executed when the fragment is being left
     override fun onPause() {

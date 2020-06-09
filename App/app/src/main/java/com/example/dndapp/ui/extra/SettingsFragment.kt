@@ -1,4 +1,4 @@
-package com.example.dndapp.ui.extra.combat
+package com.example.dndapp.ui.extra
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,41 +8,47 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.dndapp.MainActivity
+import com.example.dndapp.MainViewModel
 import com.example.dndapp.R
+import kotlinx.android.synthetic.main.fragment_extra_settings.*
 
-class CombatFragment : Fragment() {
-    private lateinit var combatViewModel: CombatViewModel
+class SettingsFragment : Fragment() {
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        combatViewModel = ViewModelProvider(this).get(CombatViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        return inflater.inflate(R.layout.fragment_extra_combat, container, false)
+        return inflater.inflate(R.layout.fragment_extra_settings, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //(activity as MainActivity?)?.checkCurrentFragment()
+        (activity as MainActivity?)?.checkCurrentFragment()
 
         initViews()
         initViewModel()
     }
 
     private fun initViews() {
-/*        fab.setOnClickListener {
-            newCharacter()
-        }*/
+        fab.setOnClickListener {
+            saveSettings()
+        }
     }
 
     private fun initViewModel() {
 
     }
 
-    /*private fun newCharacter() {
-        Toast.makeText(combatViewModel.getApplication(), R.string.add_character, Toast.LENGTH_SHORT).show()
-    }*/
+    private fun saveSettings() {
+        Toast.makeText(viewModel.getApplication(), R.string.saving_text, Toast.LENGTH_SHORT).show()
+
+        Toast.makeText(viewModel.getApplication(), R.string.saved_text, Toast.LENGTH_SHORT).show()
+    }
 
     override fun onPause() {
         super.onPause()
+
+        saveSettings()
         (activity as MainActivity?)?.checkCurrentFragment()
     }
 }

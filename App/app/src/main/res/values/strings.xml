@@ -56,6 +56,25 @@
     <string name="previous">Previous</string>
     <string name="select_stats">Select the stats</string>
     <string name="racial_stat_bonus">Racial stat bonus:</string>
+    <string name="title_alignment">Alignment</string>
+    <string name="title_gender">Gender</string>
+    <string-array name="genders">
+        <item>Female</item>
+        <item>Male</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="alignments">
+        <item>Lawful Good</item>
+        <item>Neutral Good</item>
+        <item>Chaotic Good</item>
+        <item>Lawful Neutral</item>
+        <item>Neutral</item>
+        <item>Chaotic Neutral</item>
+        <item>Lawful Evil</item>
+        <item>Neutral Evil</item>
+        <item>Chaotic Evil</item>
+    </string-array>
 
 
     <!-- TODO: Add placeholder text for all images! -->

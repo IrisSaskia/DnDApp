@@ -44,7 +44,7 @@ abstract class DnDDatabase : RoomDatabase() {
                                                 //TODO: replace with resource
                                                 false,
                                                 "Test",
-                                                'O',
+                                                "Other",
                                                 "Chaotic Testing",
                                                 25,
                                                 "Dit is een notitie",
@@ -66,7 +66,7 @@ abstract class DnDDatabase : RoomDatabase() {
                                                 //TODO: replace with resource
                                                 true,
                                                 "Test 2",
-                                                'V',
+                                                "Female",
                                                 "Chaotic Testing",
                                                 20,
                                                 "Dit is een notitieee",
