@@ -27,7 +27,10 @@
             android:ems="10"
             android:hint="@string/stat_strength_name"
             android:inputType="number"
-            android:textColor="@color/text_color" />
+            android:textAlignment="center"
+            android:textAppearance="@style/CustomTabTextAppearance"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_color" />
 
         <EditText
             android:id="@+id/etIntelligenceSelect"
@@ -37,7 +40,10 @@
             android:ems="10"
             android:hint="@string/stat_intelligence_name"
             android:inputType="number"
-            android:textColor="@color/text_color" />
+            android:textAlignment="center"
+            android:textAppearance="@style/CustomTabTextAppearance"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_color" />
 
         <EditText
             android:id="@+id/etCharismaSelect"
@@ -47,7 +53,10 @@
             android:ems="10"
             android:hint="@string/stat_charisma_name"
             android:inputType="number"
-            android:textColor="@color/text_color" />
+            android:textAlignment="center"
+            android:textAppearance="@style/CustomTabTextAppearance"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_color" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,7 +73,10 @@
             android:ems="10"
             android:hint="@string/stat_dexterity_name"
             android:inputType="number"
-            android:textColor="@color/text_color" />
+            android:textAlignment="center"
+            android:textAppearance="@style/CustomTabTextAppearance"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_color" />
 
         <EditText
             android:id="@+id/etWisdomSelect"
@@ -74,7 +86,10 @@
             android:ems="10"
             android:hint="@string/stat_wisdom_name"
             android:inputType="number"
-            android:textColor="@color/text_color" />
+            android:textAlignment="center"
+            android:textAppearance="@style/CustomTabTextAppearance"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_color" />
 
         <EditText
             android:id="@+id/etConstitutionSelect"
@@ -84,7 +99,10 @@
             android:ems="10"
             android:hint="@string/stat_constitution_name"
             android:inputType="number"
-            android:textColor="@color/text_color" />
+            android:textAlignment="center"
+            android:textAppearance="@style/CustomTabTextAppearance"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_color" />
     </LinearLayout>
 
     <TextView
