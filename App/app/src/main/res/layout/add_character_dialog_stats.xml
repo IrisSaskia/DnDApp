@@ -19,90 +19,293 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/etStrengthSelect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/stat_strength_name"
-            android:inputType="number"
-            android:textAlignment="center"
-            android:textAppearance="@style/CustomTabTextAppearance"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-        <EditText
-            android:id="@+id/etIntelligenceSelect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/stat_intelligence_name"
-            android:inputType="number"
-            android:textAlignment="center"
-            android:textAppearance="@style/CustomTabTextAppearance"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color" />
+            <ImageView
+                android:id="@+id/ivPointsLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/home_info_background" />
 
-        <EditText
-            android:id="@+id/etCharismaSelect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/stat_charisma_name"
-            android:inputType="number"
-            android:textAlignment="center"
-            android:textAppearance="@style/CustomTabTextAppearance"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tvPointsLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/points_left"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </FrameLayout>
 
-    <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/etDexteritySelect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/stat_dexterity_name"
-            android:inputType="number"
-            android:textAlignment="center"
-            android:textAppearance="@style/CustomTabTextAppearance"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color" />
+            <LinearLayout
+                android:id="@+id/llStr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/etWisdomSelect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/stat_wisdom_name"
-            android:inputType="number"
-            android:textAlignment="center"
-            android:textAppearance="@style/CustomTabTextAppearance"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color" />
+                <ImageButton
+                    android:id="@+id/ibStrMin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:background="@color/invisible"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/text_color"
+                    app:srcCompat="@drawable/ic_remove_circle_black_24dp" />
 
-        <EditText
-            android:id="@+id/etConstitutionSelect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/stat_constitution_name"
-            android:inputType="number"
-            android:textAlignment="center"
-            android:textAppearance="@style/CustomTabTextAppearance"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color" />
+                <EditText
+                    android:id="@+id/etStrengthSelect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/stat_strength_name"
+                    android:inputType="number"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/CustomTabTextAppearance"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/text_color" />
+
+                <ImageButton
+                    android:id="@+id/ibStrPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:background="@color/invisible"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/text_color"
+                    app:srcCompat="@drawable/ic_add_circle_black_24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDex"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/ibDexMin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:background="@color/invisible"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/text_color"
+                    app:srcCompat="@drawable/ic_remove_circle_black_24dp" />
+
+                <EditText
+                    android:id="@+id/etDexteritySelect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/stat_dexterity_name"
+                    android:inputType="number"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/CustomTabTextAppearance"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/text_color" />
+
+                <ImageButton
+                    android:id="@+id/ibDexPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:background="@color/invisible"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/text_color"
+                    app:srcCompat="@drawable/ic_add_circle_black_24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llInt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/ibIntMin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:background="@color/invisible"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/text_color"
+                    app:srcCompat="@drawable/ic_remove_circle_black_24dp" />
+
+                <EditText
+                    android:id="@+id/etIntelligenceSelect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/stat_intelligence_name"
+                    android:inputType="number"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/CustomTabTextAppearance"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/text_color" />
+
+                <ImageButton
+                    android:id="@+id/ibIntPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:background="@color/invisible"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/text_color"
+                    app:srcCompat="@drawable/ic_add_circle_black_24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llWis"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/ibWisMin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:background="@color/invisible"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/text_color"
+                    app:srcCompat="@drawable/ic_remove_circle_black_24dp" />
+
+                <EditText
+                    android:id="@+id/etWisdomSelect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/stat_wisdom_name"
+                    android:inputType="number"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/CustomTabTextAppearance"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/text_color" />
+
+                <ImageButton
+                    android:id="@+id/ibWisPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:background="@color/invisible"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/text_color"
+                    app:srcCompat="@drawable/ic_add_circle_black_24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llChar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/ibCharMin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:background="@color/invisible"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/text_color"
+                    app:srcCompat="@drawable/ic_remove_circle_black_24dp" />
+
+                <EditText
+                    android:id="@+id/etCharismaSelect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/stat_charisma_name"
+                    android:inputType="number"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/CustomTabTextAppearance"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/text_color" />
+
+                <ImageButton
+                    android:id="@+id/ibCharPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:background="@color/invisible"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/text_color"
+                    app:srcCompat="@drawable/ic_add_circle_black_24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llCon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/ibConMin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:background="@color/invisible"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/text_color"
+                    app:srcCompat="@drawable/ic_remove_circle_black_24dp" />
+
+                <EditText
+                    android:id="@+id/etConstitutionSelect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/stat_constitution_name"
+                    android:inputType="number"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/CustomTabTextAppearance"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/text_color" />
+
+                <ImageButton
+                    android:id="@+id/ibConPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:background="@color/invisible"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/text_color"
+                    app:srcCompat="@drawable/ic_add_circle_black_24dp" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
@@ -113,28 +316,29 @@
         android:text="@string/racial_stat_bonus" />
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        android:id="@+id/llStatsButtons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/btnStatPrevious"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:padding="5dp">
+            android:text="@string/previous"
+            tools:ignore="NestedWeights" />
 
-            <Button
-                android:id="@+id/btnStatPrevious"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/previous"
-                tools:ignore="NestedWeights" />
-
-            <Button
-                android:id="@+id/btnStatNext"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/next_button"
-                android:textColor="@color/text_color" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/btnStatNext"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/next_button"
+            android:textColor="@color/text_color" />
+    </LinearLayout>
     </LinearLayout>

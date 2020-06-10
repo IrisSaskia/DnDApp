@@ -62,6 +62,7 @@
     <string name="title_item_amount">Amount</string>
     <string name="title_item_name">Item name</string>
     <string name="title_item_weight">Weight</string>
+    <string name="points_left">Points left: %1s</string>
 
     <string-array name="genders">
         <item>Female</item>

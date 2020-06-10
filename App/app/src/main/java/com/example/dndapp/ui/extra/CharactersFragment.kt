@@ -3,6 +3,8 @@ package com.example.dndapp.ui.extra
 import android.app.Activity
 import android.app.AlertDialog
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +25,7 @@ import com.example.dndapp.model.DnDCharacter
 import com.example.dndapp.model.stats.*
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_extra_characters.*
+
 
 class CharactersFragment : Fragment() {
     private lateinit var parentActivity: Activity
@@ -244,6 +247,49 @@ class CharactersFragment : Fragment() {
         val charismaInputField = alertDialog.findViewById<EditText>(R.id.etCharismaSelect)
         val constitutionInputField = alertDialog.findViewById<EditText>(R.id.etConstitutionSelect)
 
+        /*text.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(
+                s: CharSequence,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
+                if (your_string.equals(s.toString())) {
+                    //do something
+                } else {
+                    //do something
+                }
+            }
+
+            override fun afterTextChanged(s: Editable) {}
+        })*/
+
+        /*val strengthMin = alertDialog.findViewById<ImageButton>(R.id.ibStrMin)
+        val strengthPlus = alertDialog.findViewById<ImageButton>(R.id.ibStrPlus)
+
+        val dexterityMin = alertDialog.findViewById<ImageButton>(R.id.ibDexMin)
+        val dexterityPlus = alertDialog.findViewById<ImageButton>(R.id.ibDexPlus)
+
+        val intelligenceMin = alertDialog.findViewById<ImageButton>(R.id.ibIntMin)
+        val intelligencePlus = alertDialog.findViewById<ImageButton>(R.id.ibIntPlus)
+
+        val wisdomMin = alertDialog.findViewById<ImageButton>(R.id.ibWisMin)
+        val wisdomPlus = alertDialog.findViewById<ImageButton>(R.id.ibWisPlus)
+
+        val charismaMin = alertDialog.findViewById<ImageButton>(R.id.ibCharMin)
+        val charismaPlus = alertDialog.findViewById<ImageButton>(R.id.ibCharPlus)
+
+        val constitutionMin = alertDialog.findViewById<ImageButton>(R.id.ibConMin)
+        val constitutionPlus = alertDialog.findViewById<ImageButton>(R.id.ibConPlus)*/
+
         previousButton.setOnClickListener {
             alertDialog.dismiss()
             selectSubRace()
@@ -408,6 +454,9 @@ class CharactersFragment : Fragment() {
         })
     }
 
+    ////////////////////////////////////////////////////////////////////
+    //This function calculates the modifier based on the selected stat//
+    ////////////////////////////////////////////////////////////////////
     private fun calculateStatModifier(statValue: Int): Int {
         var modifierValue = 0
         val calculation = statValue - 10
@@ -426,6 +475,80 @@ class CharactersFragment : Fragment() {
         }
 
         return modifierValue
+    }
+
+    /*private fun buttonPressStats(statsView: View) {
+        val strengthMin = statsView.findViewById<ImageButton>(R.id.ibStrMin)
+        val strengthPlus = statsView.findViewById<ImageButton>(R.id.ibStrPlus)
+
+        val dexterityMin = statsView.findViewById<ImageButton>(R.id.ibDexMin)
+        val dexterityPlus = statsView.findViewById<ImageButton>(R.id.ibDexPlus)
+
+        val intelligenceMin = statsView.findViewById<ImageButton>(R.id.ibIntMin)
+        val intelligencePlus = statsView.findViewById<ImageButton>(R.id.ibIntPlus)
+
+        val wisdomMin = statsView.findViewById<ImageButton>(R.id.ibWisMin)
+        val wisdomPlus = statsView.findViewById<ImageButton>(R.id.ibWisPlus)
+
+        val charismaMin = statsView.findViewById<ImageButton>(R.id.ibCharMin)
+        val charismaPlus = statsView.findViewById<ImageButton>(R.id.ibCharPlus)
+
+        val constitutionMin = statsView.findViewById<ImageButton>(R.id.ibConMin)
+        val constitutionPlus = statsView.findViewById<ImageButton>(R.id.ibConPlus)
+    }*/
+
+    //////////////////////////////////////////////////////////
+    //This function returns the cost of a certain stat value//
+    //////////////////////////////////////////////////////////
+    private fun calculatePointBuyCost(statValue: Int, remainingPoints: Int, typeOfButtonPressed: String): Pair<Int, Int> {
+        var pointBuyCost = 0
+        var isAllowed = true
+        var evaluatedStat = 0
+        var evaluatedPoints = 0
+
+        val min = R.integer.minimumStatValueCharacterCreation
+        val switch = R.integer.pointBuyMaximumValueForCostOfOne
+        val max = R.integer.maximumStatValueCharacterCreation
+
+        if(typeOfButtonPressed == "plus") {
+            if(statValue in min..switch) {
+                pointBuyCost = 1
+                isAllowed = true
+            } else if(statValue in (switch + 1)..max) {
+                pointBuyCost = 2
+                isAllowed = true
+            } else {
+                isAllowed = false
+            }
+
+            if(!isAllowed) {
+                evaluatedStat = statValue
+                evaluatedPoints = remainingPoints
+            } else {
+                evaluatedPoints = remainingPoints - pointBuyCost
+                evaluatedStat = statValue+1
+            }
+        } else {
+            if(statValue < min) {
+                isAllowed = false
+            } else if(statValue in (switch+1)..max) {
+                pointBuyCost = 2
+                isAllowed = true
+            } else if(statValue in min..switch) {
+                pointBuyCost = 1
+                isAllowed = true
+            }
+
+            if(isAllowed) {
+                evaluatedPoints = remainingPoints + pointBuyCost
+                evaluatedStat = statValue-1
+            } else {
+                evaluatedStat = statValue
+            }
+
+        }
+
+        return Pair(evaluatedPoints, evaluatedStat)
     }
 
     //This function switches the loaded fragment to be the home fragment

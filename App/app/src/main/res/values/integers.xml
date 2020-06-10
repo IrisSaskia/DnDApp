@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="levels_with_prof_bonus_of_2">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+    <integer-array name="levels_with_prof_bonus_of_3">
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </integer-array>
+    <integer-array name="levels_with_prof_bonus_of_4">
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </integer-array>
+    <integer-array name="levels_with_prof_bonus_of_5">
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+    </integer-array>
+    <integer-array name="levels_with_prof_bonus_of_6">
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+    </integer-array>
+
+    <integer name="maximumStatValueCharacterCreation">15</integer>
+    <integer name="minimumStatValueCharacterCreation">8</integer>
+    <integer name="pointBuyMaximumValueForCostOfOne">13</integer>
+    <integer name="pointBuyPoints">27</integer>
+</resources>
