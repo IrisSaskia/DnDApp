@@ -1,14 +1,19 @@
 package com.example.dndapp.model
 
 import android.content.Context
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dndapp.R
 import kotlinx.android.synthetic.main.item_character.view.*
 
-class CharacterAdapter(private val dndCharacters: List<DnDCharacter>, private val onClick: (DnDCharacter) -> Unit) : RecyclerView.Adapter<CharacterAdapter.ViewHolder>() {
+class CharacterAdapter(private val dndCharacters: List<DnDCharacter>,
+                       private val onSelect: (DnDCharacter) -> Unit,
+                       private val onDelete: (DnDCharacter) -> Unit) : RecyclerView.Adapter<CharacterAdapter.ViewHolder>() {
     private lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -42,7 +47,8 @@ class CharacterAdapter(private val dndCharacters: List<DnDCharacter>, private va
             itemView.tvCharacterClassRace.text = dndCharacter.race //TODO: add class
         }
         init {
-            itemView.setOnClickListener { onClick(dndCharacters[adapterPosition]) }
+            itemView.findViewById<ConstraintLayout>(R.id.clCharacterInfo).setOnClickListener { onSelect(dndCharacters[adapterPosition]) }
+            itemView.findViewById<ImageButton>(R.id.ibDeleteCharacter).setOnClickListener { onDelete(dndCharacters[adapterPosition]) }
         }
     }
 }

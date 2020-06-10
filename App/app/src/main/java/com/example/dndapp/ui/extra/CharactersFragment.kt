@@ -30,7 +30,7 @@ import kotlinx.android.synthetic.main.fragment_extra_characters.*
 class CharactersFragment : Fragment() {
     private lateinit var parentActivity: Activity
     private val dndCharacters = arrayListOf<DnDCharacter>()
-    private val characterAdapter = CharacterAdapter(dndCharacters) { dndCharacter -> onCharacterClick(dndCharacter) }
+    private val characterAdapter = CharacterAdapter(dndCharacters, { dndCharacter -> onCharacterClick(dndCharacter) }, { dndCharacter -> onDeleteClick(dndCharacter)})
     private lateinit var viewModel: MainViewModel
 
     //The chosen options for the character making process
@@ -433,7 +433,8 @@ class CharactersFragment : Fragment() {
             newCharacter.id
         )
 
-        viewModel.addCharacterToDatabase(newCharacter, newStrength, newDexterity, newIntelligence, newWisdom, newCharisma, newConstitution)
+        viewModel.addCharacterToDatabase(newCharacter)
+        viewModel.addStatsToDatabase(newStrength, newDexterity, newIntelligence, newWisdom, newCharisma, newConstitution)
     }
 
     //////////////////////////////////////////////////////////
@@ -447,6 +448,29 @@ class CharactersFragment : Fragment() {
                 } else {
                     viewModel.changeCurrentCharacter(dndCharacter.id!!.toInt(), currentDnDCharacter.id!!.toInt())
                     startHomeFragment()
+                }
+            } else {
+                Snackbar.make(rvCharacters, R.string.error, Snackbar.LENGTH_LONG).show()
+            }
+        })
+    }
+
+    /////////////////////////////////////////////////////
+    //This function handles the deleting of a character//
+    /////////////////////////////////////////////////////
+    private fun onDeleteClick(dndCharacter: DnDCharacter) {
+        viewModel.currentDnDCharacter.observe(this, Observer {currentDnDCharacter ->
+            if (currentDnDCharacter != null) {
+                if(currentDnDCharacter.id == dndCharacter.id) {
+                    Snackbar.make(rvCharacters, "Please do not delete your currently selected character", Snackbar.LENGTH_SHORT).show()
+                } else {
+                    viewModel.getCharacterByID(dndCharacter.id?.toInt()!!).observe(this, Observer { deletableDnDCharacter ->
+                        if (deletableDnDCharacter != null) {
+                            viewModel.deleteCharacter(deletableDnDCharacter)
+                        }
+                    })
+                    //viewModel.changeCurrentCharacter(dndCharacter.id!!.toInt(), currentDnDCharacter.id!!.toInt())
+                    //startHomeFragment()
                 }
             } else {
                 Snackbar.make(rvCharacters, R.string.error, Snackbar.LENGTH_LONG).show()

@@ -131,15 +131,19 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     * If the call encountered an error then populate the [error] object.
     */
 
-    fun addCharacterToDatabase(newCharacter: DnDCharacter,
-                               newStrength: Strength,
+    fun addCharacterToDatabase(newCharacter: DnDCharacter) {
+        ioScope.launch {
+            dndCharacterRepository.insertDnDCharacter(newCharacter)
+        }
+    }
+
+    fun addStatsToDatabase(    newStrength: Strength,
                                newDexterity: Dexterity,
                                newIntelligence: Intelligence,
                                newWisdom: Wisdom,
                                newCharisma: Charisma,
                                newConstitution: Constitution) {
         ioScope.launch {
-            dndCharacterRepository.insertDnDCharacter(newCharacter)
             statsRepository.insertStrength(newStrength)
             statsRepository.insertDexterity(newDexterity)
             statsRepository.insertIntelligence(newIntelligence)
@@ -153,6 +157,22 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         ioScope.launch {
             dndCharacterRepository.changeCurrentCharacter(chosenCharacterID, currentCharacterID)
         }
+    }
+
+    fun deleteCharacter(dndCharacter: DnDCharacter) {
+        ioScope.launch {
+            dndCharacterRepository.deleteDnDCharacter(dndCharacter)
+        }
+    }
+
+    fun deleteStats(dndCharacterID: Int) {
+        ioScope.launch {
+            statsRepository.deleteStats(dndCharacterID)
+        }
+    }
+
+    fun getCharacterByID(id: Int): LiveData<DnDCharacter?> {
+        return dndCharacterRepository.getDnDCharacter(id)
     }
 
 

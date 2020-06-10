@@ -1,50 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:alpha="@dimen/cohesion_opacity">
+    android:alpha="@dimen/cohesion_opacity"
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvCharacterNameLevel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:padding="5dp"
-        android:text="@string/character_in_list"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvCharacterClassRace"
-        app:layout_constraintEnd_toStartOf="@+id/ivDeleteCharacter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clCharacterInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvCharacterClassRace"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:padding="5dp"
-        android:text="@string/class_race_placeholder"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ivDeleteCharacter"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tvCharacterNameLevel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:padding="5dp"
+            android:text="@string/character_in_list"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/ivDeleteCharacter"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_margin="3dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/home_stat_background"
-        android:scaleType="fitCenter"
-        android:tint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_delete"
-        app:tintMode="multiply" />
+        <TextView
+            android:id="@+id/tvCharacterClassRace"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:padding="5dp"
+            android:text="@string/class_race_placeholder"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCharacterNameLevel" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/ibDeleteCharacter"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center_vertical"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/home_stat_background"
+            android:scaleType="fitCenter"
+            android:tint="@color/colorAccent"
+            app:srcCompat="@android:drawable/ic_menu_delete"
+            app:tintMode="multiply" />
+</FrameLayout>

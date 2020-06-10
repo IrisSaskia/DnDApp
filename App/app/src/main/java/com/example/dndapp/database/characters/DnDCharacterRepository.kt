@@ -18,6 +18,11 @@ class DnDCharacterRepository(context: Context) {
         dndCharacterDAO.insertDnDCharacter(dndCharacter)
     }
 
+    //Deletion of the character
+    suspend fun deleteDnDCharacter(dndCharacter: DnDCharacter) {
+        dndCharacterDAO.deleteDnDCharacter(dndCharacter)
+    }
+
     fun getDnDCharacter(currentDnDCharacter: Int): LiveData<DnDCharacter?> {
         return dndCharacterDAO.getDnDCharacter(currentDnDCharacter)
     }

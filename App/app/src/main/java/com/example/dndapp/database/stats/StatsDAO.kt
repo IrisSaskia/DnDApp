@@ -3,12 +3,14 @@ package com.example.dndapp.database.stats
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.dndapp.model.stats.*
 
 @Dao
 interface StatsDAO {
+    //All insert functions for the six stats
     @Insert
     suspend fun insertStrength(strength: Strength)
 
@@ -27,6 +29,28 @@ interface StatsDAO {
     @Insert
     suspend fun insertCharisma(charisma: Charisma)
 
+
+    //All delete functions for the six stats
+    @Query("DELETE FROM strengthTable WHERE characterID = :dndCharacterID")
+    fun deleteStrength(dndCharacterID: Int)
+
+    @Query("DELETE FROM dexterityTable WHERE characterID = :dndCharacterID")
+    fun deleteDexterity(dndCharacterID: Int)
+
+    @Query("DELETE FROM constitutionTable WHERE characterID = :dndCharacterID")
+    fun deleteConstitution(dndCharacterID: Int)
+
+    @Query("DELETE FROM intelligenceTable WHERE characterID = :dndCharacterID")
+    fun deleteIntelligence(dndCharacterID: Int)
+
+    @Query("DELETE FROM wisdomTable WHERE characterID = :dndCharacterID")
+    fun deleteWisdom(dndCharacterID: Int)
+
+    @Query("DELETE FROM charismaTable WHERE characterID = :dndCharacterID")
+    fun deleteCharisma(dndCharacterID: Int)
+
+
+    //All get functions for the six stats
     @Query("SELECT * FROM strengthTable WHERE characterID = :currentDnDCharacter")
     fun getStrength(currentDnDCharacter: Int): LiveData<Strength?>
 
@@ -44,7 +68,4 @@ interface StatsDAO {
 
     @Query("SELECT * FROM charismaTable WHERE characterID = :currentDnDCharacter")
     fun getCharisma(currentDnDCharacter: Int): LiveData<Charisma?>
-
-    /*@Query("UPDATE strengthTable AS str INNER JOIN dndCharacterTable as dnd ON (str.id=dnd.strengthID) WHERE dnd.id = :currentDnDCharacter")
-    suspend fun updateStrength(currentDnDCharacter: Int, strength: Strength)*/
 }

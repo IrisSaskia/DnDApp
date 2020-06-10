@@ -3,6 +3,7 @@ package com.example.dndapp.database.stats
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.room.Transaction
 import com.example.dndapp.database.DnDDatabase
 import com.example.dndapp.model.stats.*
 
@@ -12,6 +13,16 @@ class StatsRepository(context: Context) {
     init {
         val database = DnDDatabase.getDatabase((context))
         statsDAO = database!!.statsDAO()
+    }
+
+    @Transaction
+    suspend fun deleteStats(dndCharacterID: Int) {
+        statsDAO.deleteStrength(dndCharacterID)
+        statsDAO.deleteDexterity(dndCharacterID)
+        statsDAO.deleteConstitution(dndCharacterID)
+        statsDAO.deleteWisdom(dndCharacterID)
+        statsDAO.deleteIntelligence(dndCharacterID)
+        statsDAO.deleteCharisma(dndCharacterID)
     }
 
     suspend fun insertStrength(strength: Strength) {
