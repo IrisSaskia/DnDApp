@@ -237,6 +237,13 @@ class CharactersFragment : Fragment() {
         val previousButton: Button = alertDialog.findViewById(R.id.btnStatPrevious)
         val nextButton: Button = alertDialog.findViewById(R.id.btnStatNext)
 
+        val strengthInputField = alertDialog.findViewById<EditText>(R.id.etStrengthSelect)
+        val dexterityInputField = alertDialog.findViewById<EditText>(R.id.etDexteritySelect)
+        val intelligenceInputField = alertDialog.findViewById<EditText>(R.id.etIntelligenceSelect)
+        val wisdomInputField = alertDialog.findViewById<EditText>(R.id.etWisdomSelect)
+        val charismaInputField = alertDialog.findViewById<EditText>(R.id.etCharismaSelect)
+        val constitutionInputField = alertDialog.findViewById<EditText>(R.id.etConstitutionSelect)
+
         previousButton.setOnClickListener {
             alertDialog.dismiss()
             selectSubRace()
@@ -244,18 +251,27 @@ class CharactersFragment : Fragment() {
 
         nextButton.setOnClickListener {
             //TODO: Save the currently chosen options!!
-            newCharacterStrength = alertDialog.findViewById<EditText>(R.id.etStrengthSelect).text.toString().toInt()
-            newCharacterDexterity = alertDialog.findViewById<EditText>(R.id.etDexteritySelect).text.toString().toInt()
-            newCharacterIntelligence = alertDialog.findViewById<EditText>(R.id.etIntelligenceSelect).text.toString().toInt()
-            newCharacterWisdom = alertDialog.findViewById<EditText>(R.id.etWisdomSelect).text.toString().toInt()
-            newCharacterCharisma = alertDialog.findViewById<EditText>(R.id.etCharismaSelect).text.toString().toInt()
-            newCharacterConstitution = alertDialog.findViewById<EditText>(R.id.etConstitutionSelect).text.toString().toInt()
-            Log.d("str", newCharacterStrength.toString())
+            if( strengthInputField.text.toString() != "" &&
+                dexterityInputField.text.toString() != "" &&
+                intelligenceInputField.text.toString() != "" &&
+                wisdomInputField.text.toString() != "" &&
+                charismaInputField.text.toString() != "" &&
+                constitutionInputField.text.toString() != "")
+            {
+                newCharacterStrength = strengthInputField.text.toString().toInt()
+                newCharacterDexterity = dexterityInputField.text.toString().toInt()
+                newCharacterIntelligence = intelligenceInputField.text.toString().toInt()
+                newCharacterWisdom = wisdomInputField.text.toString().toInt()
+                newCharacterCharisma = charismaInputField.text.toString().toInt()
+                newCharacterConstitution = constitutionInputField.text.toString().toInt()
+                Log.d("str", newCharacterStrength.toString())
 
-            alertDialog.dismiss()
-            selectIdentity()
+                alertDialog.dismiss()
+                selectIdentity()
+            } else {
+                Toast.makeText(context, "Vul alle velden in aub", Toast.LENGTH_LONG).show()
+            }
         }
-
         alertDialog.show()
     }
 

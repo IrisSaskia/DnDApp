@@ -20,14 +20,14 @@
         android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilName"
+            android:id="@+id/tilItemAmount"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textColorHint="@color/text_color">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etName"
+                android:id="@+id/etItemAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name_placeholder" />
@@ -41,24 +41,19 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvGender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilItemName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/title_gender"
-            android:textColor="@color/text_color"
-            tools:ignore="NestedWeights" />
+            android:textColorHint="@color/text_color">
 
-        <Spinner
-            android:id="@+id/spinnerGender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/genders"
-            android:popupBackground="@color/background"
-            android:spinnerMode="dropdown" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etItemName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name_placeholder" />
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -67,24 +62,19 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvAlignment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilItemWeight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/title_alignment"
-            android:textColor="@color/text_color"
-            tools:ignore="NestedWeights" />
+            android:textColorHint="@color/text_color">
 
-        <Spinner
-            android:id="@+id/spinnerAlignment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/alignments"
-            android:popupBackground="@color/background"
-            android:spinnerMode="dropdown" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etItemWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name_placeholder" />
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -95,7 +85,7 @@
             android:padding="5dp">
 
             <Button
-                android:id="@+id/btnNamePrevious"
+                android:id="@+id/btnItemPrevious"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,7 +94,7 @@
                 tools:ignore="NestedWeights" />
 
             <Button
-                android:id="@+id/btnNameNext"
+                android:id="@+id/btnItemNext"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
