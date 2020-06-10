@@ -30,7 +30,6 @@ data class DnDCharacter (
     @ColumnInfo(name = "race")
     var race: String,
 
-    //TODO: Test the Nullable thing
     @ColumnInfo(name = "subRace")
     @Nullable
     var subRace: String,

@@ -125,8 +125,6 @@ class CharactersFragment : Fragment() {
         }
 
         nextButton.setOnClickListener {
-            //TODO: Save the currently chosen options!!
-
             if(raceSpinner.count != 0 &&
                 cclassSpinner.count != 0 &&
                     backgroundSpinner.count != 0) {
@@ -208,7 +206,6 @@ class CharactersFragment : Fragment() {
                 }
 
                 nextButton.setOnClickListener {
-                    //TODO: Save the currently chosen options!!
                     if(subraceSpinner.count != 0) {
                         newCharacterSubrace = getSelectedCharacterOptions(subraceSpinner)
 
@@ -246,6 +243,8 @@ class CharactersFragment : Fragment() {
         val wisdomInputField = alertDialog.findViewById<EditText>(R.id.etWisdomSelect)
         val charismaInputField = alertDialog.findViewById<EditText>(R.id.etCharismaSelect)
         val constitutionInputField = alertDialog.findViewById<EditText>(R.id.etConstitutionSelect)
+
+        var pointBuy = R.integer.pointBuyPoints
 
         /*text.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(
@@ -290,13 +289,13 @@ class CharactersFragment : Fragment() {
         val constitutionMin = alertDialog.findViewById<ImageButton>(R.id.ibConMin)
         val constitutionPlus = alertDialog.findViewById<ImageButton>(R.id.ibConPlus)*/
 
+        //Go back and close the current dialog
         previousButton.setOnClickListener {
             alertDialog.dismiss()
             selectSubRace()
         }
 
         nextButton.setOnClickListener {
-            //TODO: Save the currently chosen options!!
             if( strengthInputField.text.toString() != "" &&
                 dexterityInputField.text.toString() != "" &&
                 intelligenceInputField.text.toString() != "" &&
@@ -333,13 +332,13 @@ class CharactersFragment : Fragment() {
         val previousButton: Button = alertDialog.findViewById(R.id.btnNamePrevious)
         val nextButton: Button = alertDialog.findViewById(R.id.btnNameNext)
 
+        //Go back and close the current dialog
         previousButton.setOnClickListener {
             alertDialog.dismiss()
             selectStats()
         }
 
         nextButton.setOnClickListener {
-            //TODO: Save the currently chosen options!!
             newCharacterName = alertDialog.findViewById<EditText>(R.id.etName).text.toString()
             newCharacterAlignment = getSelectedCharacterOptions(alignmentSpinner)
             newCharacterGender = getSelectedCharacterOptions(genderSpinner)
@@ -355,13 +354,14 @@ class CharactersFragment : Fragment() {
     //This function adds the new character//
     ///////////////////////////////////////
     private fun addNewCharacter() {
+        //Make objects from the selected options
         val newCharacter = DnDCharacter(
             false,
             newCharacterName,
             newCharacterGender,
             newCharacterAlignment,
             1,
-            "Note",//TODO: replace with string resource
+            "Note", //TODO: replace with string resource
             newCharacterBackground,
             newCharacterRace,
             newCharacterSubrace,
@@ -433,8 +433,11 @@ class CharactersFragment : Fragment() {
             newCharacter.id
         )
 
+        //Add the above values into the database
         viewModel.addCharacterToDatabase(newCharacter)
         viewModel.addStatsToDatabase(newStrength, newDexterity, newIntelligence, newWisdom, newCharisma, newConstitution)
+
+        //TODO: Change immediately to the newly made character
     }
 
     //////////////////////////////////////////////////////////
@@ -467,10 +470,9 @@ class CharactersFragment : Fragment() {
                     viewModel.getCharacterByID(dndCharacter.id?.toInt()!!).observe(this, Observer { deletableDnDCharacter ->
                         if (deletableDnDCharacter != null) {
                             viewModel.deleteCharacter(deletableDnDCharacter)
+                            viewModel.deleteCharacter(deletableDnDCharacter)
                         }
                     })
-                    //viewModel.changeCurrentCharacter(dndCharacter.id!!.toInt(), currentDnDCharacter.id!!.toInt())
-                    //startHomeFragment()
                 }
             } else {
                 Snackbar.make(rvCharacters, R.string.error, Snackbar.LENGTH_LONG).show()

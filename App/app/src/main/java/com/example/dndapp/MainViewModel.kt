@@ -119,11 +119,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     var racialStatBonusesSubrace = MutableLiveData<List<String>>()
     var racialStatBonusValueSubrace = MutableLiveData<Int>()
-
     //TODO: this ^
-
-    //TODO: iets waarmee alles in 1 zit???
-    //TODO: moet er 1 viewmodel zijn waarin dit maar 1x gedaan hoeft te worden?
 
     /**
     * Get a random number trivia from the repository using Retrofit.
@@ -134,6 +130,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun addCharacterToDatabase(newCharacter: DnDCharacter) {
         ioScope.launch {
             dndCharacterRepository.insertDnDCharacter(newCharacter)
+        }
+    }
+
+    fun addItemToDatabase(newItem: BagItem) {
+        ioScope.launch {
+            bagItemRepository.insertBagItem(newItem)
         }
     }
 
@@ -176,8 +178,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    //TODO: misschien nog error handling voor bijvoorbeeld het opslaan van een lege notitie?
-
+    //TODO: misschien nog error handling voor bijvoorbeeld het opslaan van een lege notitie? Volgens mij is dat niet nodig
     fun updateNotes(loadedCharacterID: Int) {
         mainScope.launch {
             withContext(Dispatchers.IO) {
@@ -325,7 +326,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         })
     }
-    //Retrieve a list of all subrace names from the api depending on the selected race
+
     /*fun getRacialStatBonuses(chosenRace: String, chosenSubrace: String): LiveData<List<String>> {
         dndApiRepository.getRace(chosenRace).enqueue(object : Callback<RaceResult> {
             override fun onResponse(call: Call<RaceResult>, response: Response<RaceResult>) {
@@ -350,10 +351,5 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         })
 
         return subraceNames
-    }*/
-
-
-    /*fun onAppClosure() {
-        //TODO: saving the current selected character, when it changes, niet perse hier
     }*/
 }

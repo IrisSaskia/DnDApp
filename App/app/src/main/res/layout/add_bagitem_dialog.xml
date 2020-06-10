@@ -30,7 +30,7 @@
                 android:id="@+id/etItemAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/name_placeholder" />
+                android:hint="@string/title_item_amount" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
@@ -52,7 +52,7 @@
                 android:id="@+id/etItemName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/name_placeholder" />
+                android:hint="@string/title_item_name" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -73,7 +73,7 @@
                 android:id="@+id/etItemWeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/name_placeholder" />
+                android:hint="@string/title_item_weight" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -84,22 +84,22 @@
             android:orientation="horizontal"
             android:padding="5dp">
 
-            <Button
-                android:id="@+id/btnItemPrevious"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/previous"
-                tools:ignore="NestedWeights" />
+        <Button
+            android:id="@+id/btnItemCancel"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@android:string/cancel"
+            tools:ignore="NestedWeights" />
 
-            <Button
-                android:id="@+id/btnItemNext"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/next_button"
-                android:textColor="@color/text_color" />
+        <Button
+            android:id="@+id/btnItemAdd"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/title_add"
+            android:textColor="@color/text_color" />
         </LinearLayout>
     </LinearLayout>

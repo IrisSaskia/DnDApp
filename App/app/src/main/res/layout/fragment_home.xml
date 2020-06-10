@@ -230,6 +230,7 @@
                     android:layout_gravity="center"
                     android:text="@string/ac_title"
                     android:textAlignment="center"
+                    android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:autoSizeTextType="uniform"
@@ -244,6 +245,7 @@
                     android:layout_gravity="center"
                     android:text="@string/stat_placeholder"
                     android:textAlignment="center"
+                    android:textColor="@color/design_default_color_on_secondary"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:autoSizeTextType="uniform"
@@ -251,6 +253,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/ivArmorClass" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

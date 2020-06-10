@@ -46,14 +46,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        /*viewModel.currentCharacterID.observe(viewLifecycleOwner, Observer { currentCharacterID ->
-            if(currentCharacterID != null) {
-                Log.d("null?", "yay")
-            } else {
-                Log.d("null?", "potver")
-            }
-        })
-*/
         viewModel.currentDnDCharacter.observe(viewLifecycleOwner, Observer { currentDnDCharacter ->
             if(currentDnDCharacter != null) {
                 tvName.text = currentDnDCharacter.name
