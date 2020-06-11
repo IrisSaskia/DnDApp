@@ -484,8 +484,9 @@ class CharactersFragment : Fragment() {
                 } else {
                     viewModel.getCharacterByID(dndCharacter.id?.toInt()!!).observe(this, Observer { deletableDnDCharacter ->
                         if (deletableDnDCharacter != null) {
+                            viewModel.deleteStats(deletableDnDCharacter.id!!.toInt())
                             viewModel.deleteCharacter(deletableDnDCharacter)
-                            viewModel.deleteCharacter(deletableDnDCharacter)
+
                         }
                     })
                 }
