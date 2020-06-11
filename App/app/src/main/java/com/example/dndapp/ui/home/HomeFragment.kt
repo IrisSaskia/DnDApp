@@ -66,6 +66,8 @@ class HomeFragment : Fragment() {
             }
         })
 
+        
+
         viewModel.raceSpeed.observe(viewLifecycleOwner, Observer { raceSpeed ->
             if(raceSpeed != null) {
                 tvSpeedNumber.text = raceSpeed.toString()
