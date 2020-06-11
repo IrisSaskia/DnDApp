@@ -106,6 +106,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    var money = Transformations.switchMap(currentCharacterID) {currentCharacterID ->
+        if(currentCharacterID == null) {
+            bagItemRepository.getMoney(standardCharacterID)
+        } else {
+            bagItemRepository.getMoney(currentCharacterID)
+        }
+    }
+
     val backgroundInfo = MutableLiveData<String>()
     val raceSpeed = MutableLiveData<Int>()
     val error = MutableLiveData<String>()

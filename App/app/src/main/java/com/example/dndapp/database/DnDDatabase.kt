@@ -10,6 +10,7 @@ import com.example.dndapp.database.characters.DnDCharacterDAO
 import com.example.dndapp.database.stats.StatsDAO
 import com.example.dndapp.model.BagItem
 import com.example.dndapp.model.DnDCharacter
+import com.example.dndapp.model.Money
 import com.example.dndapp.model.stats.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +18,7 @@ import kotlinx.coroutines.launch
 
 @Database(entities = [DnDCharacter::class,
                         BagItem::class,
+                        Money::class,
                         Strength::class,
                         Dexterity::class,
                         Constitution::class,
@@ -71,6 +73,8 @@ abstract class DnDDatabase : RoomDatabase() {
                                         database.bagItemDAO().insertBagItem(BagItem(10, "Ball bearings", 10, 1))
                                         database.bagItemDAO().insertBagItem(BagItem(1, "Dagger", 10, 1))
 
+                                        database.bagItemDAO().insertMoney(Money(10, 5, 1, 12, 5, 1))
+
                                         database.dndCharacterDAO().insertDnDCharacter(
                                             DnDCharacter(
                                                 //TODO: replace with resource
@@ -97,6 +101,8 @@ abstract class DnDDatabase : RoomDatabase() {
                                         database.bagItemDAO().insertBagItem(BagItem(2, "Potion of healing", 12, 2))
                                         database.bagItemDAO().insertBagItem(BagItem(1, "Plate armor", 50, 2))
                                         database.bagItemDAO().insertBagItem(BagItem(8, "Rations", 40, 2))
+
+                                        database.bagItemDAO().insertMoney(Money(0, 45, 10, 2, 5, 2))
                                     }
                                 }
                             }
