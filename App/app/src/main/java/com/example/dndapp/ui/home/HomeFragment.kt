@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
             }
         })
 
-        
+
 
         viewModel.raceSpeed.observe(viewLifecycleOwner, Observer { raceSpeed ->
             if(raceSpeed != null) {

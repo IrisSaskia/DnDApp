@@ -26,6 +26,7 @@ import com.example.dndapp.model.Money
 import com.example.dndapp.model.stats.*
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_extra_characters.*
+import kotlinx.android.synthetic.main.item_item.view.*
 
 
 class CharactersFragment : Fragment() {
@@ -247,34 +248,7 @@ class CharactersFragment : Fragment() {
         val charismaInputField = alertDialog.findViewById<EditText>(R.id.etCharismaSelect)
         val constitutionInputField = alertDialog.findViewById<EditText>(R.id.etConstitutionSelect)
 
-        var pointBuy = R.integer.pointBuyPoints
-
-        /*text.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(
-                s: CharSequence,
-                start: Int,
-                count: Int,
-                after: Int
-            ) {
-            }
-
-            override fun onTextChanged(
-                s: CharSequence,
-                start: Int,
-                before: Int,
-                count: Int
-            ) {
-                if (your_string.equals(s.toString())) {
-                    //do something
-                } else {
-                    //do something
-                }
-            }
-
-            override fun afterTextChanged(s: Editable) {}
-        })*/
-
-        /*val strengthMin = alertDialog.findViewById<ImageButton>(R.id.ibStrMin)
+        val strengthMin = alertDialog.findViewById<ImageButton>(R.id.ibStrMin)
         val strengthPlus = alertDialog.findViewById<ImageButton>(R.id.ibStrPlus)
 
         val dexterityMin = alertDialog.findViewById<ImageButton>(R.id.ibDexMin)
@@ -290,7 +264,35 @@ class CharactersFragment : Fragment() {
         val charismaPlus = alertDialog.findViewById<ImageButton>(R.id.ibCharPlus)
 
         val constitutionMin = alertDialog.findViewById<ImageButton>(R.id.ibConMin)
-        val constitutionPlus = alertDialog.findViewById<ImageButton>(R.id.ibConPlus)*/
+        val constitutionPlus = alertDialog.findViewById<ImageButton>(R.id.ibConPlus)
+
+        var pointBuy = 27
+
+        val tvPoints = alertDialog.findViewById<TextView>(R.id.tvPointsLeft)
+        tvPoints.text = getString(R.string.points_left, pointBuy.toString())
+
+        strengthMin.setOnClickListener{
+            val (pointGet, statGet) = calculatePointBuyCost(strengthInputField.text.toString().toInt(), pointBuy, "min")
+
+            pointBuy = pointGet
+
+            strengthInputField.setText(statGet.toString())
+            tvPoints.text = getString(R.string.points_left, pointBuy.toString())
+
+            Log.d("punten over", pointBuy.toString())
+            Log.d("stat wordt", statGet.toString())
+        }
+
+        strengthPlus.setOnClickListener{
+            val (pointGet, statGet) = calculatePointBuyCost(strengthInputField.text.toString().toInt(), pointBuy, "plus")
+            pointBuy = pointGet
+
+            strengthInputField.setText(statGet.toString())
+            tvPoints.text = getString(R.string.points_left, pointBuy.toString())
+
+            Log.d("punten over", pointBuy.toString())
+            Log.d("stat wordt", statGet.toString())
+        }
 
         //Go back and close the current dialog
         previousButton.setOnClickListener {
@@ -323,13 +325,66 @@ class CharactersFragment : Fragment() {
         alertDialog.show()
     }
 
+    //////////////////////////////////////////////////////////
+    //This function returns the cost of a certain stat value//
+    //////////////////////////////////////////////////////////
+    private fun calculatePointBuyCost(statValue: Int, remainingPoints: Int, typeOfButtonPressed: String): Pair<Int, Int> {
+        var pointBuyCost = 0
+        var isAllowed = true
+        var evaluatedStat = 0
+        var evaluatedPoints = 0
+
+        val min = R.integer.minimumStatValueCharacterCreation
+        val switch = R.integer.pointBuyMaximumValueForCostOfOne
+        val max = R.integer.maximumStatValueCharacterCreation
+
+        if(typeOfButtonPressed == "plus") {
+            if(statValue in min..switch) {
+                pointBuyCost = 1
+                isAllowed = true
+            } else if(statValue in (switch + 1)..max) {
+                pointBuyCost = 2
+                isAllowed = true
+            } else {
+                isAllowed = false
+            }
+
+            if(!isAllowed) {
+                evaluatedStat = statValue
+                evaluatedPoints = remainingPoints
+            } else {
+                evaluatedPoints = remainingPoints - pointBuyCost
+                evaluatedStat = statValue+1
+            }
+        } else {
+            if(statValue < min) {
+                isAllowed = false
+            } else if(statValue in (switch+1)..max) {
+                pointBuyCost = 2
+                isAllowed = true
+            } else if(statValue in min..switch) {
+                pointBuyCost = 1
+                isAllowed = true
+            }
+
+            if(isAllowed) {
+                evaluatedPoints = remainingPoints + pointBuyCost
+                evaluatedStat = statValue-1
+            } else {
+                evaluatedPoints = remainingPoints
+                evaluatedStat = statValue
+            }
+
+        }
+
+        return Pair(evaluatedPoints, evaluatedStat)
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //This function handles the alert dialog for name, alignment and gender of the character selection//
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     private fun selectIdentity() {
         val (alertDialog, alertView) = makeAlert(R.layout.add_character_dialog_name, R.string.select_stats)
-
-
 
         val genderSpinner: Spinner = alertDialog.findViewById(R.id.spinnerGender)
         val alignmentSpinner: Spinner = alertDialog.findViewById(R.id.spinnerAlignment)
@@ -517,80 +572,6 @@ class CharactersFragment : Fragment() {
         }
 
         return modifierValue
-    }
-
-    /*private fun buttonPressStats(statsView: View) {
-        val strengthMin = statsView.findViewById<ImageButton>(R.id.ibStrMin)
-        val strengthPlus = statsView.findViewById<ImageButton>(R.id.ibStrPlus)
-
-        val dexterityMin = statsView.findViewById<ImageButton>(R.id.ibDexMin)
-        val dexterityPlus = statsView.findViewById<ImageButton>(R.id.ibDexPlus)
-
-        val intelligenceMin = statsView.findViewById<ImageButton>(R.id.ibIntMin)
-        val intelligencePlus = statsView.findViewById<ImageButton>(R.id.ibIntPlus)
-
-        val wisdomMin = statsView.findViewById<ImageButton>(R.id.ibWisMin)
-        val wisdomPlus = statsView.findViewById<ImageButton>(R.id.ibWisPlus)
-
-        val charismaMin = statsView.findViewById<ImageButton>(R.id.ibCharMin)
-        val charismaPlus = statsView.findViewById<ImageButton>(R.id.ibCharPlus)
-
-        val constitutionMin = statsView.findViewById<ImageButton>(R.id.ibConMin)
-        val constitutionPlus = statsView.findViewById<ImageButton>(R.id.ibConPlus)
-    }*/
-
-    //////////////////////////////////////////////////////////
-    //This function returns the cost of a certain stat value//
-    //////////////////////////////////////////////////////////
-    private fun calculatePointBuyCost(statValue: Int, remainingPoints: Int, typeOfButtonPressed: String): Pair<Int, Int> {
-        var pointBuyCost = 0
-        var isAllowed = true
-        var evaluatedStat = 0
-        var evaluatedPoints = 0
-
-        val min = R.integer.minimumStatValueCharacterCreation
-        val switch = R.integer.pointBuyMaximumValueForCostOfOne
-        val max = R.integer.maximumStatValueCharacterCreation
-
-        if(typeOfButtonPressed == "plus") {
-            if(statValue in min..switch) {
-                pointBuyCost = 1
-                isAllowed = true
-            } else if(statValue in (switch + 1)..max) {
-                pointBuyCost = 2
-                isAllowed = true
-            } else {
-                isAllowed = false
-            }
-
-            if(!isAllowed) {
-                evaluatedStat = statValue
-                evaluatedPoints = remainingPoints
-            } else {
-                evaluatedPoints = remainingPoints - pointBuyCost
-                evaluatedStat = statValue+1
-            }
-        } else {
-            if(statValue < min) {
-                isAllowed = false
-            } else if(statValue in (switch+1)..max) {
-                pointBuyCost = 2
-                isAllowed = true
-            } else if(statValue in min..switch) {
-                pointBuyCost = 1
-                isAllowed = true
-            }
-
-            if(isAllowed) {
-                evaluatedPoints = remainingPoints + pointBuyCost
-                evaluatedStat = statValue-1
-            } else {
-                evaluatedStat = statValue
-            }
-
-        }
-
-        return Pair(evaluatedPoints, evaluatedStat)
     }
 
     //This function switches the loaded fragment to be the home fragment
