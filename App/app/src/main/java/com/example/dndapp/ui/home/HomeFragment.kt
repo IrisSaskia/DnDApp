@@ -60,15 +60,21 @@ class HomeFragment : Fragment() {
                     charRace = currentDnDCharacter.race + " " + currentDnDCharacter.cclass
                 }
                 tvCharacterClassRace.text = charRace
-                //TODO: Add HP
 
                 viewModel.getRaceSpeed(currentDnDCharacter.race)
+                viewModel.getHPInfo(currentDnDCharacter.cclass)
             }
         })
 
         viewModel.raceSpeed.observe(viewLifecycleOwner, Observer { raceSpeed ->
             if(raceSpeed != null) {
                 tvSpeedNumber.text = raceSpeed.toString()
+            }
+        })
+
+        viewModel.charHP.observe(viewLifecycleOwner, Observer { charHP ->
+            if(charHP != null) {
+                tvHP.text = getString(R.string.hp_text, charHP.toString())
             }
         })
 

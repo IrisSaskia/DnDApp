@@ -10,6 +10,7 @@ import retrofit2.Call
 class DnDApiRepository {
     private val dndApi: DnDApiService = DnDApi.createApi()
 
+    //API requests for race
     fun getRaceNames(): Call<RaceResult> {
         return dndApi.getRaceNames()
     }
@@ -17,6 +18,7 @@ class DnDApiRepository {
         return dndApi.getRace(name)
     }
 
+    //API requests for cclass
     fun getCClassNames(): Call<CClassResult> {
         return dndApi.getCClassNames()
     }
@@ -24,6 +26,7 @@ class DnDApiRepository {
         return dndApi.getCClass(name)
     }
 
+    //API requests for background
     fun getBackgroundNames(): Call<BackgroundResult> {
         return dndApi.getBackgroundNames()
     }
