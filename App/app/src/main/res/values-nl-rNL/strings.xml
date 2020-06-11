@@ -35,7 +35,7 @@
     <string name="title_subrace">Sub-ras</string>
     <string name="notes_hint">Notities:</string>
     <string name="notes_placeholder">Type hier...</string>
-    <string name="save_mod_placeholder">%1s</string>
+    <string name="save_mod_placeholder">+%1s</string>
     <string name="stat_constitution_name">Con</string>
     <string name="stat_dexterity_name">Dex</string>
     <string name="stat_intelligence_name">Int</string>
@@ -55,4 +55,8 @@
     <string name="title_initiative">Initiatief</string>
     <string name="title_rest">Rust</string>
     <string name="title_speed">Snelheid</string>
+    <string name="item_placeholder">item</string>
+    <string name="points_left">Punten over: %1s</string>
+    <string name="racial_stat_bonus">Ras stat bonus:</string>
+    <string name="select_stats">Selecteer de stats</string>
 </resources>

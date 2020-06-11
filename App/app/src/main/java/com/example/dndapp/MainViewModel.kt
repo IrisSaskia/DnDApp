@@ -89,6 +89,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    //The notes of the current character will be saved in a livedata variable
     var note = Transformations.switchMap(currentCharacterID) {currentCharacterID ->
         if(currentCharacterID == null) {
             dndCharacterRepository.getNote(standardCharacterID)
@@ -97,8 +98,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    //All characters that are in the database will be put into a list
     val dndCharacters: LiveData<List<DnDCharacter>> = dndCharacterRepository.getAllCharacters()
 
+    //All items from the currently selected character will be put into a list
     var bagItems = Transformations.switchMap(currentCharacterID) {currentCharacterID ->
         if(currentCharacterID == null) {
             bagItemRepository.getAllBagItems(standardCharacterID)
@@ -107,6 +110,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    //The money of the current character will be saved in a livedata variable
     var money = Transformations.switchMap(currentCharacterID) {currentCharacterID ->
         if(currentCharacterID == null) {
             bagItemRepository.getMoney(standardCharacterID)
@@ -136,24 +140,28 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     * If the call encountered an error then populate the [error] object.
     */
 
+    //Function to ask the repository to add a new character to the database
     fun addCharacterToDatabase(newCharacter: DnDCharacter) {
         ioScope.launch {
             dndCharacterRepository.insertDnDCharacter(newCharacter)
         }
     }
 
+    //Ask the repository to insert an item into the database
     fun addItemToDatabase(newItem: BagItem) {
         ioScope.launch {
             bagItemRepository.insertBagItem(newItem)
         }
     }
 
+    //Ask the repository to add a money object to the database
     fun addMoneyToDatabase(newMoney: Money) {
         ioScope.launch {
             bagItemRepository.insertMoney(newMoney)
         }
     }
 
+    //Ask the repository to add stats to the database
     fun addStatsToDatabase(    newStrength: Strength,
                                newDexterity: Dexterity,
                                newIntelligence: Intelligence,
