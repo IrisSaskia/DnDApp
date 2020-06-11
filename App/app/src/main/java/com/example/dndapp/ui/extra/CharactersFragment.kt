@@ -294,6 +294,121 @@ class CharactersFragment : Fragment() {
             Log.d("stat wordt", statGet.toString())
         }
 
+        dexterityMin.setOnClickListener{
+            val (pointGet, statGet) = calculatePointBuyCost(dexterityInputField.text.toString().toInt(), pointBuy, "min")
+
+            pointBuy = pointGet
+
+            dexterityInputField.setText(statGet.toString())
+            tvPoints.text = getString(R.string.points_left, pointBuy.toString())
+
+            Log.d("punten over", pointBuy.toString())
+            Log.d("stat wordt", statGet.toString())
+        }
+
+        dexterityPlus.setOnClickListener{
+            val (pointGet, statGet) = calculatePointBuyCost(dexterityInputField.text.toString().toInt(), pointBuy, "plus")
+            pointBuy = pointGet
+
+            dexterityInputField.setText(statGet.toString())
+            tvPoints.text = getString(R.string.points_left, pointBuy.toString())
+
+            Log.d("punten over", pointBuy.toString())
+            Log.d("stat wordt", statGet.toString())
+        }
+
+        intelligenceMin.setOnClickListener{
+            val (pointGet, statGet) = calculatePointBuyCost(intelligenceInputField.text.toString().toInt(), pointBuy, "min")
+
+            pointBuy = pointGet
+
+            intelligenceInputField.setText(statGet.toString())
+            tvPoints.text = getString(R.string.points_left, pointBuy.toString())
+
+            Log.d("punten over", pointBuy.toString())
+            Log.d("stat wordt", statGet.toString())
+        }
+
+        intelligencePlus.setOnClickListener{
+            val (pointGet, statGet) = calculatePointBuyCost(intelligenceInputField.text.toString().toInt(), pointBuy, "plus")
+            pointBuy = pointGet
+
+            intelligenceInputField.setText(statGet.toString())
+            tvPoints.text = getString(R.string.points_left, pointBuy.toString())
+
+            Log.d("punten over", pointBuy.toString())
+            Log.d("stat wordt", statGet.toString())
+        }
+
+        wisdomMin.setOnClickListener{
+            val (pointGet, statGet) = calculatePointBuyCost(wisdomInputField.text.toString().toInt(), pointBuy, "min")
+
+            pointBuy = pointGet
+
+            wisdomInputField.setText(statGet.toString())
+            tvPoints.text = getString(R.string.points_left, pointBuy.toString())
+
+            Log.d("punten over", pointBuy.toString())
+            Log.d("stat wordt", statGet.toString())
+        }
+
+        wisdomPlus.setOnClickListener{
+            val (pointGet, statGet) = calculatePointBuyCost(wisdomInputField.text.toString().toInt(), pointBuy, "plus")
+            pointBuy = pointGet
+
+            wisdomInputField.setText(statGet.toString())
+            tvPoints.text = getString(R.string.points_left, pointBuy.toString())
+
+            Log.d("punten over", pointBuy.toString())
+            Log.d("stat wordt", statGet.toString())
+        }
+
+        charismaMin.setOnClickListener{
+            val (pointGet, statGet) = calculatePointBuyCost(charismaInputField.text.toString().toInt(), pointBuy, "min")
+
+            pointBuy = pointGet
+
+            charismaInputField.setText(statGet.toString())
+            tvPoints.text = getString(R.string.points_left, pointBuy.toString())
+
+            Log.d("punten over", pointBuy.toString())
+            Log.d("stat wordt", statGet.toString())
+        }
+
+        charismaPlus.setOnClickListener{
+            val (pointGet, statGet) = calculatePointBuyCost(charismaInputField.text.toString().toInt(), pointBuy, "plus")
+            pointBuy = pointGet
+
+            charismaInputField.setText(statGet.toString())
+            tvPoints.text = getString(R.string.points_left, pointBuy.toString())
+
+            Log.d("punten over", pointBuy.toString())
+            Log.d("stat wordt", statGet.toString())
+        }
+
+        constitutionMin.setOnClickListener{
+            val (pointGet, statGet) = calculatePointBuyCost(constitutionInputField.text.toString().toInt(), pointBuy, "min")
+
+            pointBuy = pointGet
+
+            constitutionInputField.setText(statGet.toString())
+            tvPoints.text = getString(R.string.points_left, pointBuy.toString())
+
+            Log.d("punten over", pointBuy.toString())
+            Log.d("stat wordt", statGet.toString())
+        }
+
+        constitutionPlus.setOnClickListener{
+            val (pointGet, statGet) = calculatePointBuyCost(constitutionInputField.text.toString().toInt(), pointBuy, "plus")
+            pointBuy = pointGet
+
+            constitutionInputField.setText(statGet.toString())
+            tvPoints.text = getString(R.string.points_left, pointBuy.toString())
+
+            Log.d("punten over", pointBuy.toString())
+            Log.d("stat wordt", statGet.toString())
+        }
+
         //Go back and close the current dialog
         previousButton.setOnClickListener {
             alertDialog.dismiss()
@@ -334,18 +449,23 @@ class CharactersFragment : Fragment() {
         var evaluatedStat = 0
         var evaluatedPoints = 0
 
-        val min = R.integer.minimumStatValueCharacterCreation
-        val switch = R.integer.pointBuyMaximumValueForCostOfOne
-        val max = R.integer.maximumStatValueCharacterCreation
+        Log.d("begin stat input", statValue.toString())
+
+        val min = 8
+        val switch = 13
+        val max = 15
 
         if(typeOfButtonPressed == "plus") {
-            if(statValue in min..switch) {
+            if(statValue in min until switch) {
+                Log.d("stap 1", "correct")
                 pointBuyCost = 1
                 isAllowed = true
-            } else if(statValue in (switch + 1)..max) {
+            } else if(statValue in switch until max) {
+                Log.d("stap 1", "half correct")
                 pointBuyCost = 2
                 isAllowed = true
             } else {
+                Log.d("stap 1", "niet correct")
                 isAllowed = false
             }
 
@@ -357,7 +477,7 @@ class CharactersFragment : Fragment() {
                 evaluatedStat = statValue+1
             }
         } else {
-            if(statValue < min) {
+            if(statValue <= min) {
                 isAllowed = false
             } else if(statValue in (switch+1)..max) {
                 pointBuyCost = 2
