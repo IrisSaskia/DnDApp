@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -22,6 +23,7 @@ import com.example.dndapp.MainViewModel
 import com.example.dndapp.R
 import com.example.dndapp.model.BagAdapter
 import com.example.dndapp.model.BagItem
+import com.example.dndapp.model.Money
 import kotlinx.android.synthetic.main.fragment_bag.*
 
 class BagFragment : Fragment() {
@@ -63,6 +65,16 @@ class BagFragment : Fragment() {
             this.bagItems.clear()
             this.bagItems.addAll(bagItems)
             bagAdapter.notifyDataSetChanged()
+        })
+
+        viewModel.money.observe(this, Observer {money ->
+            if(money != null) {
+                etPlatinum.setText(money.amountOfPlatinum.toString())
+                etGold.setText(money.amountOfGold.toString())
+                etElectrum.setText(money.amountOfElectrum.toString())
+                etSilver.setText(money.amountOfSilver.toString())
+                etCopper.setText(money.amountOfCopper.toString())
+            }
         })
     }
 
@@ -121,6 +133,25 @@ class BagFragment : Fragment() {
 
     private fun onItemClick(bagItem: BagItem) {
 
+    }
+
+    private fun saveMoney() {
+        Toast.makeText(viewModel.getApplication(), R.string.saving_text, Toast.LENGTH_SHORT).show()
+        var platinum = etPlatinum.text.toString().toInt()
+        var gold = etGold.text.toString().toInt()
+        var electrum = etElectrum.text.toString().toInt()
+        var silver = etSilver.text.toString().toInt()
+        var copper = etCopper.text.toString().toInt()
+        val saveableMoney = Money(platinum, gold, electrum, silver, copper)
+        viewModel.note.value?.apply {
+            viewModel.note = MutableLiveData(etNotes.text.toString())
+        }
+
+        viewModel.currentCharacterID.observe(viewLifecycleOwner, Observer { currentCharacterID ->
+            viewModel.updateNotes(currentCharacterID)
+        })
+
+        Toast.makeText(viewModel.getApplication(), R.string.saved_text, Toast.LENGTH_SHORT).show()
     }
 
     override fun onPause() {

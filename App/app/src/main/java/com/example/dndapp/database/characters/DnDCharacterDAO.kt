@@ -24,12 +24,19 @@ interface DnDCharacterDAO {
     fun getAllCharacters(): LiveData<List<DnDCharacter>>
 
 
+    //GET THE MOST RECENT LOADED CHARACTER FROM THE LAST TIME THE APP WAS ACTIVE
+    @Query("SELECT id FROM dndCharacterTable WHERE active ORDER BY id LIMIT 1")
+    fun getLoadedCharacter(): LiveData<Int>
 
     @Query("UPDATE dndCharacterTable SET active = 1 WHERE id = :chosenCharacterID")
     fun makeActive(chosenCharacterID: Int)
 
     @Query("UPDATE dndCharacterTable SET active = 0 WHERE id = :currentCharacterID")
     fun makeInactive(currentCharacterID: Int)
+
+    //////////////////////////////
+    //          NOTES           //
+    //////////////////////////////
 
     //UPDATE THE NOTES FOR THE SELECTED CHARACTER
     @Query("UPDATE dndCharacterTable SET note = :note WHERE id = :currentDnDCharacter")
@@ -38,8 +45,4 @@ interface DnDCharacterDAO {
     //GET THE NOTES FROM THE SELECTED CHARACTER
     @Query("SELECT note FROM dndCharacterTable WHERE id = :currentDnDCharacter")
     fun getNote(currentDnDCharacter: Int): LiveData<String>
-
-    //GET THE MOST RECENT LOADED CHARACTER FROM THE LAST TIME THE APP WAS ACTIVE
-    @Query("SELECT id FROM dndCharacterTable WHERE active ORDER BY id LIMIT 1")
-    fun getLoadedCharacter(): LiveData<Int>
 }

@@ -2,6 +2,7 @@ package com.example.dndapp.database.bagItems
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.room.Transaction
 import com.example.dndapp.database.DnDDatabase
 import com.example.dndapp.model.BagItem
 import com.example.dndapp.model.Money
@@ -22,8 +23,13 @@ class BagItemRepository(context: Context) {
         bagItemDAO.insertMoney(money)
     }
 
-    suspend fun updateMoney(platinum: Int, gold: Int, electrum: Int, silver: Int, copper: Int) {
-        bagItemDAO.updateMoney(platinum, gold, electrum, silver, copper)
+    @Transaction
+    suspend fun updateMoney(platinum: Int, gold: Int, electrum: Int, silver: Int, copper: Int, currentDnDCharacter: Int) {
+        bagItemDAO.updatePlatinum(platinum, currentDnDCharacter)
+        bagItemDAO.updateGold(gold, currentDnDCharacter)
+        bagItemDAO.updateElectrum(electrum, currentDnDCharacter)
+        bagItemDAO.updateSilver(silver, currentDnDCharacter)
+        bagItemDAO.updateCopper(copper, currentDnDCharacter)
     }
 
     fun getMoney(currentDnDCharacter: Int): LiveData<Money> {

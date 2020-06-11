@@ -14,6 +14,7 @@ class DnDCharacterRepository(context: Context) {
         dndCharacterDAO = database!!.dndCharacterDAO()
     }
 
+    //Insert a character into the database
     suspend fun insertDnDCharacter(dndCharacter: DnDCharacter) {
         dndCharacterDAO.insertDnDCharacter(dndCharacter)
     }
@@ -23,6 +24,7 @@ class DnDCharacterRepository(context: Context) {
         dndCharacterDAO.deleteDnDCharacter(dndCharacter)
     }
 
+    //Get a character from the database based on id
     fun getDnDCharacter(currentDnDCharacter: Int): LiveData<DnDCharacter?> {
         return dndCharacterDAO.getDnDCharacter(currentDnDCharacter)
     }
@@ -30,6 +32,11 @@ class DnDCharacterRepository(context: Context) {
     //Get all characters from the database
     fun getAllCharacters(): LiveData<List<DnDCharacter>> {
         return dndCharacterDAO.getAllCharacters()
+    }
+
+    //Get the characterID of the character that is currently active
+    fun getLoadedCharacter(): LiveData<Int> {
+        return  dndCharacterDAO.getLoadedCharacter()
     }
 
     //Set the old current character to inactive while setting the new character to active
@@ -47,10 +54,5 @@ class DnDCharacterRepository(context: Context) {
     //Load the note for the current character
     fun getNote(currentDnDCharacter: Int): LiveData<String> {
         return dndCharacterDAO.getNote(currentDnDCharacter)
-    }
-
-    //Get the characterID of the character that is currently active
-    fun getLoadedCharacter(): LiveData<Int> {
-        return  dndCharacterDAO.getLoadedCharacter()
     }
 }
