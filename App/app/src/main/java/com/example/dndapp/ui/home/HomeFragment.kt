@@ -52,12 +52,12 @@ class HomeFragment : Fragment() {
                 Log.d("name textview", tvName.text as String)
                 Log.d("name database", currentDnDCharacter.name)
                 tvLevel.text = getString(R.string.level_indicator, currentDnDCharacter.level.toString())
-                //TODO: Add class
+
                 var charRace: String
                 if(currentDnDCharacter.subRace != "" && currentDnDCharacter.subRace != null) {
-                    charRace = currentDnDCharacter.subRace + " " + currentDnDCharacter.race
+                    charRace = currentDnDCharacter.subRace + " " + currentDnDCharacter.cclass
                 } else {
-                    charRace = currentDnDCharacter.race
+                    charRace = currentDnDCharacter.race + " " + currentDnDCharacter.cclass
                 }
                 tvCharacterClassRace.text = charRace
                 //TODO: Add HP

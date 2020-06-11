@@ -20,6 +20,12 @@ public interface DnDApiService {
     @GET("/classes/?format=json")
     fun getCClassNames(): Call<CClassResult>
 
+    // The GET method needed to retrieve the HP info for the character
+    @GET("/classes/?format=json")
+    fun getCClass(
+        @Query("name") name: String?
+    ): Call<CClassResult>
+
     @GET("/backgrounds/?format=json")
     fun getBackgroundNames(): Call<BackgroundResult>
 

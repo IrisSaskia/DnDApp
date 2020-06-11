@@ -223,7 +223,7 @@
                     app:srcCompat="@drawable/home_shield_ac"
                     tools:ignore="ContentDescription,ObsoleteLayoutParam" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <TextView
                     android:id="@+id/tvACName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -238,7 +238,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <TextView
                     android:id="@+id/tvACValue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

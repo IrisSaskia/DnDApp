@@ -60,7 +60,6 @@ class CharactersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
-        initViewModel()
         observeViewModel()
     }
 
@@ -78,10 +77,7 @@ class CharactersFragment : Fragment() {
         }
     }
 
-    private fun initViewModel() {
-
-    }
-
+    //Live updating of the character list via the viewmodel
     private fun observeViewModel() {
         viewModel.dndCharacters.observe(this, Observer { dndCharacters ->
             this.dndCharacters.clear()
@@ -89,6 +85,10 @@ class CharactersFragment : Fragment() {
             characterAdapter.notifyDataSetChanged()
         })
     }
+
+    /////////////////////////////////
+    //      Re-used functions      //
+    /////////////////////////////////
 
     //This function makes an alert dialog
     private fun makeAlert(layout: Int, title: Int): Pair<AlertDialog, View> {
@@ -99,6 +99,7 @@ class CharactersFragment : Fragment() {
 
         return Pair(newAlertBuilder.show(), dialogView)
     }
+
     //This function gets the selected value of a spinner
     private fun getSelectedCharacterOptions(spinner: Spinner): String {
         return spinner.selectedItem.toString()
@@ -224,6 +225,7 @@ class CharactersFragment : Fragment() {
 
                 alertDialog.show()
             } else {
+                newCharacterSubrace = ""
                 selectStats()
             }
         })

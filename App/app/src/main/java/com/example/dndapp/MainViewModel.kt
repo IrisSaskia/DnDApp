@@ -119,6 +119,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    val charHP = MutableLiveData<Int>()
     val backgroundInfo = MutableLiveData<String>()
     val raceSpeed = MutableLiveData<Int>()
     val error = MutableLiveData<String>()
@@ -297,6 +298,27 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         })
         return cclassNames
     }
+
+    //Retrieve HP for the selected class
+    fun getHPInfo(cclassName: String) {
+        dndApiRepository.getCClass(cclassName).enqueue(object : Callback<CClassResult> {
+            override fun onResponse(call: Call<CClassResult>, response: Response<CClassResult>) {
+                if (response.isSuccessful) {
+                    var resultHitDice =  response.body()!!.results[0].hit_dice
+                    resultHitDice = resultHitDice.replace("1d", "")
+                    charHP.value = resultHitDice.toInt()
+                    Log.d("Result cclass api", charHP.value.toString())
+                } else {
+                    error.value = "An error occurred: ${response.errorBody().toString()}"
+                }
+            }
+
+            override fun onFailure(call: Call<CClassResult>, t: Throwable) {
+                error.value = t.message
+            }
+        })
+    }
+
 
     //Retrieve a list of all background names from the api
     fun getBackgroundNames(): LiveData<List<String>> {

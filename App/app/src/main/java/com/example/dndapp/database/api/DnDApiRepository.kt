@@ -20,6 +20,9 @@ class DnDApiRepository {
     fun getCClassNames(): Call<CClassResult> {
         return dndApi.getCClassNames()
     }
+    fun getCClass(name: String): Call<CClassResult> {
+        return dndApi.getCClass(name)
+    }
 
     fun getBackgroundNames(): Call<BackgroundResult> {
         return dndApi.getBackgroundNames()
