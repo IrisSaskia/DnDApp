@@ -9,6 +9,7 @@ import com.example.dndapp.model.Money
 
 @Dao
 interface BagItemDAO {
+    //Inserts for money and items
     @Insert
     suspend fun insertBagItem(bagItem: BagItem)
 

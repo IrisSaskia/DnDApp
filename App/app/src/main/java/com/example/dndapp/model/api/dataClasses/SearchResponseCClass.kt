@@ -2,6 +2,7 @@ package com.example.dndapp.model.api.dataClasses
 
 import com.google.gson.annotations.SerializedName
 
+//Data class which has info about the class that was retrieved from the api
 data class CClass (
     @SerializedName("name") val name : String,
     @SerializedName("slug") val slug : String,
@@ -24,6 +25,7 @@ data class CClass (
     @SerializedName("document__license_url") val document__license_url : String
 )
 
+//Data class which holds data about the result and an array with results
 data class CClassResult (
     @SerializedName("count") val count : Int,
     @SerializedName("next") val next : String,
@@ -31,6 +33,7 @@ data class CClassResult (
     @SerializedName("results") val results : List<CClass>
 )
 
+//A "sub" data class of the CClass class
 data class Archetypes (
     @SerializedName("name") val name : String,
     @SerializedName("slug") val slug : String,

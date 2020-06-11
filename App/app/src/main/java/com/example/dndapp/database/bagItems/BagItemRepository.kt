@@ -15,6 +15,7 @@ class BagItemRepository(context: Context) {
         bagItemDAO = database!!.bagItemDAO()
     }
 
+    //Inserts for items and money
     suspend fun insertBagItem(bagItem: BagItem) {
         bagItemDAO.insertBagItem(bagItem)
     }
@@ -33,6 +34,7 @@ class BagItemRepository(context: Context) {
         bagItemDAO.updateCopper(money.amountOfCopper, currentDnDCharacter)
     }
 
+    //Get money function and get all items function
     fun getMoney(currentDnDCharacter: Int): LiveData<Money> {
         return bagItemDAO.getMoney(currentDnDCharacter)
     }

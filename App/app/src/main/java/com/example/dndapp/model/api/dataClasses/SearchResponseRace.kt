@@ -2,6 +2,7 @@ package com.example.dndapp.model.api.dataClasses
 
 import com.google.gson.annotations.SerializedName
 
+//Data class with info about the race that was retrieved from the api
 data class Race (
     @SerializedName("name") val name : String,
     @SerializedName("slug") val slug : String,
@@ -22,6 +23,7 @@ data class Race (
     @SerializedName("document__license_url") val document__license_url : String
 )
 
+//Data class which holds data about the result and an array with results
 data class RaceResult (
     @SerializedName("count") val count : Int,
     @SerializedName("next") val next : String,
@@ -29,10 +31,12 @@ data class RaceResult (
     @SerializedName("results") val results : List<Race>
 )
 
+//A "sub" data class from race
 data class Speed (
     @SerializedName("walk") val walk : Int
 )
 
+//A "sub" data class from race
 data class Subrace (
     @SerializedName("name") val name : String,
     @SerializedName("slug") val slug : String,
@@ -44,6 +48,7 @@ data class Subrace (
     @SerializedName("document__title") val document__title : String
 )
 
+//A "sub" data class from race and subrace
 data class Asi (
     @SerializedName("attributes") val attributes : List<String>,
     @SerializedName("value") val value : Int

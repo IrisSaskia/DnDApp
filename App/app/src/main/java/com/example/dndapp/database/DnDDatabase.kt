@@ -26,6 +26,7 @@ import kotlinx.coroutines.launch
                         Wisdom::class,
                         Charisma::class], version = 3, exportSchema = false)
 abstract class DnDDatabase : RoomDatabase() {
+    //All room daos
     abstract fun dndCharacterDAO(): DnDCharacterDAO
     abstract fun bagItemDAO(): BagItemDAO
     abstract fun statsDAO(): StatsDAO
@@ -37,6 +38,7 @@ abstract class DnDDatabase : RoomDatabase() {
         private var INSTANCE: DnDDatabase? = null
 
         fun getDatabase(context: Context): DnDDatabase? {
+            //Build the database if it does not exist already
             if (INSTANCE == null) {
                 synchronized(DnDDatabase::class.java) {
                     if (INSTANCE == null) {
@@ -44,6 +46,7 @@ abstract class DnDDatabase : RoomDatabase() {
                             override fun onCreate(db: SupportSQLiteDatabase) {
                                 super.onCreate(db)
                                 INSTANCE?.let { database ->
+                                    //Insert some example characters into the database
                                     CoroutineScope(Dispatchers.IO).launch {
                                         database.dndCharacterDAO().insertDnDCharacter(
                                             DnDCharacter(

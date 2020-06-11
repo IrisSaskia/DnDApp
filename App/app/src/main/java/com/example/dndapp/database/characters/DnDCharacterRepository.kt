@@ -41,7 +41,7 @@ class DnDCharacterRepository(context: Context) {
 
     //Set the old current character to inactive while setting the new character to active
     @Transaction
-    suspend fun changeCurrentCharacter(chosenCharacterID: Int, currentCharacterID: Int) {
+    fun changeCurrentCharacter(chosenCharacterID: Int, currentCharacterID: Int) {
         dndCharacterDAO.makeActive(chosenCharacterID)
         dndCharacterDAO.makeInactive(currentCharacterID)
     }

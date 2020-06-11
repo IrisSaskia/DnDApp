@@ -6,6 +6,7 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.example.dndapp.model.DnDCharacter
 
+//Foreign key reference to the character table
 @Entity(tableName = "dexterityTable", foreignKeys = [
     ForeignKey(
         entity = DnDCharacter::class,
