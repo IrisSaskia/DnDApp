@@ -59,4 +59,11 @@
     <string name="points_left">Punten over: %1s</string>
     <string name="racial_stat_bonus">Ras stat bonus:</string>
     <string name="select_stats">Selecteer de stats</string>
+    <string name="title_add">Toevoegen</string>
+    <string name="title_add_item">Item toevoegen</string>
+    <string name="title_alignment">Moreel kompas</string>
+    <string name="title_gender">Geslacht</string>
+    <string name="title_item_amount">Aantal</string>
+    <string name="title_item_name">Item naam</string>
+    <string name="title_item_weight">Gewicht</string>
 </resources>
