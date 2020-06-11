@@ -22,6 +22,7 @@ import com.example.dndapp.MainViewModel
 import com.example.dndapp.R
 import com.example.dndapp.model.CharacterAdapter
 import com.example.dndapp.model.DnDCharacter
+import com.example.dndapp.model.Money
 import com.example.dndapp.model.stats.*
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_extra_characters.*
@@ -326,6 +327,8 @@ class CharactersFragment : Fragment() {
     private fun selectIdentity() {
         val (alertDialog, alertView) = makeAlert(R.layout.add_character_dialog_name, R.string.select_stats)
 
+
+
         val genderSpinner: Spinner = alertDialog.findViewById(R.id.spinnerGender)
         val alignmentSpinner: Spinner = alertDialog.findViewById(R.id.spinnerAlignment)
 
@@ -338,6 +341,7 @@ class CharactersFragment : Fragment() {
             selectStats()
         }
 
+        //Make the next button add the character
         nextButton.setOnClickListener {
             newCharacterName = alertDialog.findViewById<EditText>(R.id.etName).text.toString()
             newCharacterAlignment = getSelectedCharacterOptions(alignmentSpinner)
@@ -366,6 +370,9 @@ class CharactersFragment : Fragment() {
             newCharacterRace,
             newCharacterSubrace,
             newCharacterCClass)
+
+        //Add the character into the database
+        viewModel.addCharacterToDatabase(newCharacter)
 
         val strengthMod = calculateStatModifier(newCharacterStrength)
         val newStrength = Strength(
@@ -433,9 +440,13 @@ class CharactersFragment : Fragment() {
             newCharacter.id
         )
 
-        //Add the above values into the database
-        viewModel.addCharacterToDatabase(newCharacter)
+        //Add the stats into the database
         viewModel.addStatsToDatabase(newStrength, newDexterity, newIntelligence, newWisdom, newCharisma, newConstitution)
+
+        val emptyMoney = Money(0, 0, 0, 0, 0, newCharacter.id)
+
+        //Insert the money into the database
+        viewModel.addMoneyToDatabase(emptyMoney)
 
         //TODO: Change immediately to the newly made character
     }
@@ -444,6 +455,7 @@ class CharactersFragment : Fragment() {
     //This function handles the loading of another character//
     //////////////////////////////////////////////////////////
     private fun onCharacterClick(dndCharacter: DnDCharacter) {
+        //If the character is already selected show a message, otherwise switch to it
         viewModel.currentDnDCharacter.observe(this, Observer {currentDnDCharacter ->
             if (currentDnDCharacter != null) {
                 if(currentDnDCharacter.id == dndCharacter.id) {
@@ -462,6 +474,7 @@ class CharactersFragment : Fragment() {
     //This function handles the deleting of a character//
     /////////////////////////////////////////////////////
     private fun onDeleteClick(dndCharacter: DnDCharacter) {
+        //The app will now allow the user to delete the character they have currently selected, if it is not the one selected it will allow the deletion
         viewModel.currentDnDCharacter.observe(this, Observer {currentDnDCharacter ->
             if (currentDnDCharacter != null) {
                 if(currentDnDCharacter.id == dndCharacter.id) {

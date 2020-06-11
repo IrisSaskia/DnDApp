@@ -23,13 +23,14 @@ class BagItemRepository(context: Context) {
         bagItemDAO.insertMoney(money)
     }
 
+    //Updates all money values for the current character at the same time
     @Transaction
-    suspend fun updateMoney(platinum: Int, gold: Int, electrum: Int, silver: Int, copper: Int, currentDnDCharacter: Int) {
-        bagItemDAO.updatePlatinum(platinum, currentDnDCharacter)
-        bagItemDAO.updateGold(gold, currentDnDCharacter)
-        bagItemDAO.updateElectrum(electrum, currentDnDCharacter)
-        bagItemDAO.updateSilver(silver, currentDnDCharacter)
-        bagItemDAO.updateCopper(copper, currentDnDCharacter)
+    suspend fun updateMoney(currentDnDCharacter: Int, money: Money) {
+        bagItemDAO.updatePlatinum(money.amountOfPlatinum, currentDnDCharacter)
+        bagItemDAO.updateGold(money.amountOfGold, currentDnDCharacter)
+        bagItemDAO.updateElectrum(money.amountOfElectrum, currentDnDCharacter)
+        bagItemDAO.updateSilver(money.amountOfSilver, currentDnDCharacter)
+        bagItemDAO.updateCopper(money.amountOfCopper, currentDnDCharacter)
     }
 
     fun getMoney(currentDnDCharacter: Int): LiveData<Money> {

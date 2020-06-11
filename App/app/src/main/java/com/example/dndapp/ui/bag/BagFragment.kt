@@ -143,12 +143,13 @@ class BagFragment : Fragment() {
         var silver = etSilver.text.toString().toInt()
         var copper = etCopper.text.toString().toInt()
         val saveableMoney = Money(platinum, gold, electrum, silver, copper)
-        viewModel.note.value?.apply {
-            viewModel.note = MutableLiveData(etNotes.text.toString())
+
+        viewModel.money.value?.apply {
+            viewModel.money = MutableLiveData(saveableMoney)
         }
 
         viewModel.currentCharacterID.observe(viewLifecycleOwner, Observer { currentCharacterID ->
-            viewModel.updateNotes(currentCharacterID)
+            viewModel.updateMoney(currentCharacterID)
         })
 
         Toast.makeText(viewModel.getApplication(), R.string.saved_text, Toast.LENGTH_SHORT).show()
@@ -156,6 +157,8 @@ class BagFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
+
+        saveMoney()
         (activity as MainActivity?)?.checkCurrentFragment()
     }
 }

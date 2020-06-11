@@ -12,6 +12,7 @@ import com.example.dndapp.database.characters.DnDCharacterRepository
 import com.example.dndapp.database.stats.StatsRepository
 import com.example.dndapp.model.BagItem
 import com.example.dndapp.model.DnDCharacter
+import com.example.dndapp.model.Money
 import com.example.dndapp.model.api.dataClasses.BackgroundResult
 import com.example.dndapp.model.api.dataClasses.CClassResult
 import com.example.dndapp.model.api.dataClasses.RaceResult
@@ -147,6 +148,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun addMoneyToDatabase(newMoney: Money) {
+        ioScope.launch {
+            bagItemRepository.insertMoney(newMoney)
+        }
+    }
+
     fun addStatsToDatabase(    newStrength: Strength,
                                newDexterity: Dexterity,
                                newIntelligence: Intelligence,
@@ -181,6 +188,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    //Ask the repository to load the character based on the id
     fun getCharacterByID(id: Int): LiveData<DnDCharacter?> {
         return dndCharacterRepository.getDnDCharacter(id)
     }
@@ -191,6 +199,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         mainScope.launch {
             withContext(Dispatchers.IO) {
                 dndCharacterRepository.updateNote(loadedCharacterID, note.value!!)
+            }
+        }
+    }
+
+    //Update the money for the current character
+    fun updateMoney(loadedCharacterID: Int) {
+        mainScope.launch {
+            withContext(Dispatchers.IO) {
+                bagItemRepository.updateMoney(loadedCharacterID, money.value!!)
             }
         }
     }
